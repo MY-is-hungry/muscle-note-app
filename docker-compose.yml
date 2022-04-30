@@ -2,11 +2,11 @@ version: "3.7"
 
 services:
   front:
-    build: ./front
+    build: .
     volumes:
       - type: bind
-        source: "./front"
-        target: "/front"
+        source: .
+        target: /front
     tty: true
     env_file: .env
     ports:

@@ -17,8 +17,3 @@ get-local-ip-addr.sh
 
 Makefile
 .env
-.vscode
-
-# docker
-Dockerfile
-docker-compose.yml

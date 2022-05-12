@@ -1,0 +1,6 @@
+
+const AuthNavigator = () => {
+  return (
+    null
+  )
+}

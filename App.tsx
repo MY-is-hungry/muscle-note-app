@@ -1,28 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { TailwindProvider } from 'tailwind-rn/dist';
+import { LogBox, StyleSheet, View } from 'react-native';
+import { TailwindProvider } from 'tailwind-rn';
 import utilities from './tailwind.json';
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { RecoilRoot } from 'recoil';
+import AppNavigator from './src/navigations/AppNavigator';
+
+LogBox.ignoreLogs(['Remote debugger']);
 
 const App = () => {
-  let renderComponent
-  
+  let renderComponent = <AppNavigator initialRouteName='Test' />
+
   return (
-    <TailwindProvider utilities={utilities}>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-        {renderComponent}
-      </View>
-    </TailwindProvider>
+    <RecoilRoot>
+      <PaperProvider>
+        <NavigationContainer>
+          <TailwindProvider utilities={utilities}>
+            <View style={styles.container}>
+              <StatusBar style="auto" />
+              {renderComponent}
+              {/* <Test/> */}
+            </View>
+          </TailwindProvider>
+        </NavigationContainer>
+      </PaperProvider>
+    </RecoilRoot>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
 });
 

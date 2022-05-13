@@ -6,9 +6,9 @@ import AppTabNavigator from './AppTabNavigator';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({initialRouteName}: Props) => {
+
   return (
     <View style={{ flex: 1 }}>
-      {/* <Header/> */}
       <Stack.Navigator
         screenOptions={{headerShown: false}}
       >

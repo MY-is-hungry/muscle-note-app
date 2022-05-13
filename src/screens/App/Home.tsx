@@ -6,10 +6,10 @@ const Home = ({ navigation }: any) => {
   console.log(navigation)
   const tailwind = useTailwind()
   return (
-    <View>
-      <Button title="Test" onPress={() => navigation.navigate('Test')}/>
+    <View style={tailwind('flex-1 items-center justify-center')}>
+      <Button title="History" onPress={() => navigation.navigate('History')}/>
     </View>
-  );
-};
+  )
+}
 
 export default Home;

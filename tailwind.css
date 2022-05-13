@@ -22,9 +22,17 @@
   align-items: center
 }
 
+.justify-center {
+  justify-content: center
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.text-center {
+  text-align: center
 }
 
 .text-white {
@@ -35,4 +43,8 @@
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity))
+}
+
+.opacity-50 {
+  opacity: 0.5
 }

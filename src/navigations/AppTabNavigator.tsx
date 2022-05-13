@@ -23,8 +23,17 @@ const AppTabNavigator = () => {
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.disabled,
         tabBarStyle: {
-          height: 50,
+          height: 45,
         },
+        // tabBarIconStyle: {
+        //   padding: 0,
+        //   margin: 0
+        // },
+        // tabBarLabelStyle: {
+        //   marginTop: 0,
+        //   paddingTop: 0,
+        //   paddingBottom: 5,
+        // }
       }}
     >
       <Tab.Screen 

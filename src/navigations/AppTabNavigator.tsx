@@ -1,10 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View } from 'react-native';
 import { Button, useTheme } from 'react-native-paper';
-import { SCREENS } from '../common/constants';
-import { DISABLED_COLOR, PRIMARY_COLOR } from '../common/styles/themes';
-import { tailwind } from '../common/utils/tailwind';
-import { useTailwind } from 'tailwind-rn';
 import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import Home from '../screens/App/Home';
 import History from '../screens/App/History';

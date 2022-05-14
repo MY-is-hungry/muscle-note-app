@@ -3,10 +3,10 @@ import { LogBox, StyleSheet, View } from 'react-native';
 import { TailwindProvider } from 'tailwind-rn';
 import utilities from './tailwind.json';
 import { NavigationContainer } from '@react-navigation/native';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
 import AppNavigator from './src/navigations/AppNavigator';
-import { PRIMARY_COLOR } from './src/common/styles/themes';
+import { customPaperTheme } from './src/common/styles/themes';
 
 LogBox.ignoreLogs(['Remote debugger']);
 
@@ -15,13 +15,12 @@ const App = () => {
 
   return (
     <RecoilRoot>
-      <PaperProvider theme={theme}>
+      <PaperProvider theme={customPaperTheme}>
         <NavigationContainer>
           <TailwindProvider utilities={utilities}>
             <View style={styles.container}>
               <StatusBar style="auto" />
               {renderComponent}
-              {/* <Test/> */}
             </View>
           </TailwindProvider>
         </NavigationContainer>
@@ -35,13 +34,5 @@ const styles = StyleSheet.create({
     flex: 1
   },
 });
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: PRIMARY_COLOR,
-  },
-};
 
 export default App

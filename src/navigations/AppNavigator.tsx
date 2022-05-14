@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
-import Header from '../components/organisms/Header';
 import AppTabNavigator from './AppTabNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

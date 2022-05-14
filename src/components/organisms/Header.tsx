@@ -3,11 +3,10 @@ import {View, Text} from 'react-native';
 import { useTailwind } from 'tailwind-rn';
 
 type Props = {
-  /** ヘッダに表示するタイトル */
   title?: string;
-  /** ヘッダ左側の要素 */
+  // ヘッダ左側の要素
   left?: React.ReactNode;
-  /** ヘッダ右側の要素 */
+  // ヘッダ右側の要素
   right?: React.ReactNode;
 };
 

@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
+import { fetch } from '../../common/utils/axios';
 import Header from '../../components/organisms/Header';
 
 const Home = ({ navigation }: any) => {
-  console.log(navigation)
+  const res = fetch('users')
+  console.log(res)
+  // console.log(navigation)
   const tailwind = useTailwind()
   return (
     <>

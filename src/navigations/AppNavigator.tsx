@@ -22,7 +22,6 @@ type RootStackParamList = {
   Tab: undefined
   App: undefined
   Home: undefined
-  Test: undefined
 }
 type Props = {
   initialRouteName: string

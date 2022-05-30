@@ -7,11 +7,31 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
 import AppNavigator from './src/navigations/AppNavigator';
 import { customPaperTheme } from './src/common/styles/themes';
+import AuthNavigator from './src/navigations/AuthNavigator';
+import { firebaseAuth } from './src/common/utils/firebase';
+import { onAuthStateChanged } from '@firebase/auth';
+import { useEffect, useState } from 'react';
 
-LogBox.ignoreLogs(['Remote debugger']);
+// LogBox.ignoreLogs(['Remote debugger']);
 
 const App = () => {
-  let renderComponent = <AppNavigator initialRouteName='Test' />
+  const [renderComponent, setRenderComponent] = useState<JSX.Element>(
+    firebaseAuth?.currentUser ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
+  )
+
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (user) => {
+      if (user) {
+        // サインイン中
+        console.log('ログイン済み')
+        setRenderComponent(<AppNavigator initialRouteName='Home' />)
+      } else {
+        // サインアウト中
+        console.log('非ログイン')
+        setRenderComponent(<AuthNavigator initialRouteName='Login' />)
+      }
+    })
+  }, [])
 
   return (
     <RecoilRoot>

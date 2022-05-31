@@ -2,12 +2,20 @@
   display: flex
 }
 
-.h-16 {
-  height: 4rem
+.h-8 {
+  height: 2.0rem
 }
 
 .h-full {
   height: 100%
+}
+
+.h-20 {
+  height: 5rem
+}
+
+.h-24 {
+  height: 6rem
 }
 
 .flex-1 {
@@ -49,20 +57,16 @@
   line-height: 1.75rem
 }
 
-.font-medium {
-  font-weight: 500
-}
-
 .font-semibold {
   font-weight: 600
-}
-
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity))
 }
 
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity))
 }

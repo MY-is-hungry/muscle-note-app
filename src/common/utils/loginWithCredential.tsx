@@ -1,16 +1,20 @@
 import { signInWithCredential, updateEmail, updateProfile } from '@firebase/auth'
 import type { AuthCredential } from '@firebase/auth'
 import { firebaseAuth } from '@common/utils/firebase';
+import { useSetRecoilState } from 'recoil';
+import { initialCurrentUserId } from '@common/recoil/atoms';
 
 export const loginWithCredential = async (credential: AuthCredential, data?: any) => {
-  console.log('auth', firebaseAuth)
-  console.log('currenUser', firebaseAuth?.currentUser)
+  const setCurrentUserId = useSetRecoilState(initialCurrentUserId)
   console.log('credential and data', credential, data)
+  console.log('currentUser', firebaseAuth?.currentUser)
 
   const { user } = await signInWithCredential(firebaseAuth, credential)
-  console.log('AppleUser', user)
+  console.log('firebase User', user)
 
-  console.log('Signed in with credential. Updating profile details...')
+  if (user?.uid) {
+    setCurrentUserId(user.uid)
+  }
 
   if (data?.email && !user.email) {
     await updateEmail(user, data.email)

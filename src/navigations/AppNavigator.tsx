@@ -5,7 +5,6 @@ import AppTabNavigator from './AppTabNavigator';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({initialRouteName}: Props) => {
-
   return (
     <View style={{ flex: 1 }}>
       <Stack.Navigator
@@ -18,10 +17,7 @@ const AppNavigator = ({initialRouteName}: Props) => {
 }
 
 type RootStackParamList = {
-  Main: undefined
   Tab: undefined
-  App: undefined
-  Home: undefined
 }
 type Props = {
   initialRouteName: string

@@ -13,7 +13,7 @@ type Props = {
 const Header: React.VFC<Props> = ({title, left, right}) => {
   const tailwind = useTailwind()
   return (
-    <View style={tailwind('h-16 flex-row items-center bg-primary')}>
+    <View style={tailwind('h-24 flex-row items-center bg-primary')}>
       <View style={{flex: 0.25}}>{left}</View>
       <View style={tailwind('h-full flex-1 justify-end items-center pb-1')}>
         <Text style={tailwind('text-lg text-white font-semibold')}>

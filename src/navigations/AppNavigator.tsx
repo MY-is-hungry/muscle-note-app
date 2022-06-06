@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({initialRouteName}: Props) => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
       >

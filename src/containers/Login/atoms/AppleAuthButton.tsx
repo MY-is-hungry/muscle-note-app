@@ -5,12 +5,18 @@ import { AuthCredential } from 'firebase/auth'
 import { useAppleAuthentication } from '@common/hooks/useAppleAuthentication'
 import { loginWithCredential } from '@common/utils/loginWithCredential'
 import { AUTH_ALERT } from '@common/constants/alert'
+import { useSetRecoilState } from 'recoil';
+import { initialCurrentUserId } from '@common/recoil/atoms';
 
 const AppleAuthButton = () => { 
   const [isAppleAuthAvailable, authWithApple] = useAppleAuthentication()
+  const setCurrentUserId = useSetRecoilState(initialCurrentUserId)
 
   const login = async (credential: AuthCredential, data?: any) => {
     const user = await loginWithCredential(credential, data)
+    if (user?.uid) {
+      setCurrentUserId(user.uid)
+    }
   }
 
   const loginWithApple = async () => {

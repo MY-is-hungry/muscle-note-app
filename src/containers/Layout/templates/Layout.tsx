@@ -3,7 +3,7 @@ import { initialCurrentUserId } from '@common/recoil/atoms';
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "@common/utils/firebase";
 import { useTailwind } from "tailwind-rn/dist";
-import { View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import AppNavigator from "@navigations/AppNavigator";
 import AuthNavigator from "@navigations/AuthNavigator";
@@ -36,10 +36,14 @@ const Layout: React.FC = () => {
   }, [firebaseAuth?.currentUser?.uid, firebaseAuth?.currentUser])
 
   return (
-    <View style={tailwind('flex-1')}>  
-      <StatusBar style="auto" />
-      {renderComponent}
-    </View>
+    <ImageBackground source={require('/assets/background/dumbbell-iphone.jpg')} resizeMode="cover" style={tailwind('flex-1 justify-center w-full h-full')}>
+      <View style={tailwind('flex-1 bg-black bg-opacity-60')}>
+        <View style={tailwind('flex-1')}>
+          <StatusBar style="auto" />
+          {renderComponent}
+        </View>
+      </View>
+    </ImageBackground>
   )
 }
 export default Layout

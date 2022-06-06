@@ -11,8 +11,8 @@ const Login = ({ navigation }: Props) => {
   const tailwind = useTailwind()
 
   return (
-    <View style={tailwind('flex-1 h-full justify-center items-center')}>
-      <Text style={tailwind('text-lg')}>Login</Text>
+    <View style={tailwind('flex-1 justify-center items-center bg-transparent')}>
+      <Text style={tailwind('text-lg')}>Sign upして始めましょう！</Text>
       <AppleAuthButton />
     </View>
   )

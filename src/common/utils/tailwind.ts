@@ -1,5 +1,12 @@
-import { useTailwind } from 'tailwind-rn'
+import { create, useTailwind } from 'tailwind-rn'
+import styles from 'tailwind.json'
 
-const tailwind = useTailwind();
+// const { tailwind } = create(styles, {
+//   orientation: 'landscape',
+//   colorScheme: 'light',
+//   reduceMotion: false,
+//   width: 100,
+//   height: 500,
+// })
 
-export { tailwind }
+// export default tailwind

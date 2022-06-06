@@ -11,6 +11,6 @@
       "@screens*": ["src/screens*"]
     },
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "assets/**/*"],
   "typeRoots": ["./src/types"],
 }

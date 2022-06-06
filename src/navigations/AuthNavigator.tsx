@@ -1,13 +1,15 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
 import Login from '@screens/Auth/Login';
+import { useTailwind } from 'tailwind-rn/dist';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AuthNavigator = ({initialRouteName}: Props) => {
+  const tailwind = useTailwind()
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={tailwind('flex-1 bg-transparent')}>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
       >

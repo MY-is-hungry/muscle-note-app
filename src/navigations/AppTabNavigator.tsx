@@ -1,24 +1,26 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button, useTheme } from 'react-native-paper';
-import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { useTheme } from 'react-native-paper';
+import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Home from '../screens/App/Home';
 import History from '../screens/App/History';
-import Weight from '../screens/App/Weight';
 import Setting from '../screens/App/Setting';
-
+import { useNavigationState, useRoute } from '@react-navigation/native';
+import Ranking from '../screens/App/Ranking';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
-const AppTabNavigator = () => {
+const AppTabNavigator = ({navigation}: any) => {
   const { colors } = useTheme()
   return (
     <Tab.Navigator 
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.disabled,
+        tabBarInactiveTintColor: colors.accent,
         tabBarStyle: {
-          height: 45,
+          height: 80,
+          borderTopColor: colors.background,
+          backgroundColor: colors.background
         },
         // tabBarIconStyle: {
         //   padding: 0,
@@ -50,11 +52,11 @@ const AppTabNavigator = () => {
         }}
       />
       <Tab.Screen 
-        name="Weight" 
-        component={Weight} 
+        name="Ranking" 
+        component={Ranking} 
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="scale-bathroom" size={25} color={color} />
+            <FontAwesome5 name="crown" size={24} color={color} />
           )
         }}
       />
@@ -74,7 +76,7 @@ const AppTabNavigator = () => {
 type RootTabParamList = {
   Home: undefined
   History: undefined
-  Weight: undefined
+  Ranking: undefined
   Setting: undefined
 }
 type Props = {

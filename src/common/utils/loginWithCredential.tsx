@@ -3,14 +3,11 @@ import type { AuthCredential } from '@firebase/auth'
 import { firebaseAuth } from '@common/utils/firebase';
 
 export const loginWithCredential = async (credential: AuthCredential, data?: any) => {
-  console.log('auth', firebaseAuth)
-  console.log('currenUser', firebaseAuth?.currentUser)
   console.log('credential and data', credential, data)
+  console.log('currentUser', firebaseAuth?.currentUser)
 
   const { user } = await signInWithCredential(firebaseAuth, credential)
-  console.log('AppleUser', user)
-
-  console.log('Signed in with credential. Updating profile details...')
+  console.log('firebase User', user)
 
   if (data?.email && !user.email) {
     await updateEmail(user, data.email)

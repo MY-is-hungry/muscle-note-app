@@ -31,17 +31,14 @@ const Layout: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log('currentUserId変更')
     setCurrentUserId(firebaseAuth?.currentUser?.uid)
   }, [firebaseAuth?.currentUser?.uid, firebaseAuth?.currentUser])
 
   return (
     <ImageBackground source={require('/assets/iphone/background/trainingroom-iphone.jpg')} resizeMode="cover" style={tailwind('flex-1 justify-center w-full h-full')}>
       <View style={tailwind('flex-1 bg-black bg-opacity-60')}>
-        <View style={tailwind('flex-1')}>
-          <StatusBar style="auto" />
-          {renderComponent}
-        </View>
+        <StatusBar style="auto" />
+        {renderComponent}
       </View>
     </ImageBackground>
   )

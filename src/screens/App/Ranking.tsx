@@ -5,9 +5,8 @@ import Header from '../../components/organisms/Header';
 const Ranking = ({ navigation }: any) => {
   const tailwind = useTailwind()
   return (
-    <>
-      <Header title={"ランキング"}/>
-      <View style={tailwind('flex-1 justify-center items-center')}>
+    <View style={tailwind('flex-1')}>
+      <View style={tailwind('flex-initial justify-center items-center px-6')}>
         <Text style={tailwind('text-white')}>
           これまでのトレーニング実績をランキング形式で確認できます。
         </Text>
@@ -16,7 +15,7 @@ const Ranking = ({ navigation }: any) => {
         <Text style={tailwind('text-white')}>Settingに飛べます！</Text>
         <Button title="Setting" onPress={() => navigation.navigate('Setting')}/>
       </View>
-    </>
+    </View>
   )
 }
 

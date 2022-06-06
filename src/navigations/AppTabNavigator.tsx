@@ -1,20 +1,25 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'react-native-paper';
 import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
-import Home from '../screens/App/Home';
-import History from '../screens/App/History';
-import Setting from '../screens/App/Setting';
-import { useNavigationState, useRoute } from '@react-navigation/native';
-import Ranking from '../screens/App/Ranking';
+import Home from '@screens/App/Home';
+import History from '@screens/App/History';
+import Setting from '@screens/App/Setting';
+import Ranking from '@screens/App/Ranking';
+import Header from '@components/organisms/Header';
+import { SCREEN_HEADER_NAME } from '@common/constants';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const AppTabNavigator = ({navigation}: any) => {
   const { colors } = useTheme()
+
   return (
     <Tab.Navigator 
       screenOptions={{
-        headerShown: false,
+        // headerShown: false,
+        header: ({ navigation, route, options }) => {
+          return <Header title={SCREEN_HEADER_NAME[route?.name] || 'Muscle Note'} />;
+        },
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.accent,
         tabBarStyle: {
@@ -22,15 +27,6 @@ const AppTabNavigator = ({navigation}: any) => {
           borderTopColor: colors.background,
           backgroundColor: colors.background
         },
-        // tabBarIconStyle: {
-        //   padding: 0,
-        //   margin: 0
-        // },
-        // tabBarLabelStyle: {
-        //   marginTop: 0,
-        //   paddingTop: 0,
-        //   paddingBottom: 5,
-        // }
       }}
     >
       <Tab.Screen 
@@ -61,7 +57,7 @@ const AppTabNavigator = ({navigation}: any) => {
         }}
       />
       <Tab.Screen 
-        name="Setting" 
+        name="Other" 
         component={Setting}
         options={{
           tabBarIcon: ({ color }) => (
@@ -77,7 +73,7 @@ type RootTabParamList = {
   Home: undefined
   History: undefined
   Ranking: undefined
-  Setting: undefined
+  Other: undefined
 }
 type Props = {
   initialRouteName: string

@@ -5,13 +5,10 @@ import Header from '@components/organisms/Header';
 const Setting = ({ navigation }: any) => {
   const tailwind = useTailwind()
   return (
-    <>
-      <Header title={"設定"}/>
-      <View style={tailwind('flex-1 justify-center items-center')}>
-        <Text style={tailwind('text-white')}>Homeに飛べます！</Text>
-        <Button title="Home" onPress={() => navigation.navigate('Home')}/>
-      </View>
-    </>
+    <View style={tailwind('flex-1 justify-center items-center px-6')}>
+      <Text style={tailwind('text-white')}>Homeに飛べます！</Text>
+      <Button title="Home" onPress={() => navigation.navigate('Home')}/>
+    </View>
   )
 }
 

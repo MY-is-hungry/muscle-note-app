@@ -1,34 +1,32 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button, useTheme } from 'react-native-paper';
-import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import Home from '../screens/App/Home';
-import History from '../screens/App/History';
-import Weight from '../screens/App/Weight';
-import Setting from '../screens/App/Setting';
-
+import { useTheme } from 'react-native-paper';
+import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import Home from '@screens/App/Home';
+import History from '@screens/App/History';
+import Setting from '@screens/App/Setting';
+import Ranking from '@screens/App/Ranking';
+import Header from '@components/organisms/Header';
+import { SCREEN_HEADER_NAME } from '@common/constants';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
-const AppTabNavigator = () => {
+const AppTabNavigator = ({navigation}: any) => {
   const { colors } = useTheme()
+
   return (
     <Tab.Navigator 
       screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.disabled,
-        tabBarStyle: {
-          height: 45,
+        // headerShown: false,
+        header: ({ navigation, route, options }) => {
+          return <Header title={SCREEN_HEADER_NAME[route?.name] || 'Muscle Note'} />;
         },
-        // tabBarIconStyle: {
-        //   padding: 0,
-        //   margin: 0
-        // },
-        // tabBarLabelStyle: {
-        //   marginTop: 0,
-        //   paddingTop: 0,
-        //   paddingBottom: 5,
-        // }
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.accent,
+        tabBarStyle: {
+          height: 80,
+          borderTopColor: colors.background,
+          backgroundColor: colors.background
+        },
       }}
     >
       <Tab.Screen 
@@ -50,16 +48,16 @@ const AppTabNavigator = () => {
         }}
       />
       <Tab.Screen 
-        name="Weight" 
-        component={Weight} 
+        name="Ranking" 
+        component={Ranking} 
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="scale-bathroom" size={25} color={color} />
+            <FontAwesome5 name="crown" size={24} color={color} />
           )
         }}
       />
       <Tab.Screen 
-        name="Setting" 
+        name="Other" 
         component={Setting}
         options={{
           tabBarIcon: ({ color }) => (
@@ -74,8 +72,8 @@ const AppTabNavigator = () => {
 type RootTabParamList = {
   Home: undefined
   History: undefined
-  Weight: undefined
-  Setting: undefined
+  Ranking: undefined
+  Other: undefined
 }
 type Props = {
   initialRouteName: string

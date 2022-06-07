@@ -18,6 +18,10 @@
   flex: 1 1 0%
 }
 
+.flex-initial {
+  flex: 0 1 auto
+}
+
 .flex-row {
   flex-direction: row
 }
@@ -47,6 +51,11 @@
   --tw-bg-opacity: 0.6
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem
@@ -59,9 +68,4 @@
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity))
-}
-
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity))
 }

@@ -19,14 +19,11 @@ const Home = ({ navigation }: any) => {
   }
 
   return (
-    <>
-      <Header />
-      <View style={tailwind('flex-1 items-center justify-center bg-transparent')}>
-        <Text style={tailwind('text-white')}>Historyに飛べます！</Text>
-        <Button title="History" onPress={() => navigation.navigate('History')}/>
-        <Button title="DBTest" onPress={testDB}/>
-      </View>
-    </>
+    <View style={tailwind('flex-1 items-center justify-center bg-transparent px-6')}>
+      <Text style={tailwind('text-white')}>Historyに飛べます！</Text>
+      <Button title="History" onPress={() => navigation.navigate('History')}/>
+      <Button title="DBTest" onPress={testDB}/>
+    </View>
   )
 }
 

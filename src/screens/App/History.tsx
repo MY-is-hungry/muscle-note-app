@@ -5,13 +5,10 @@ import Header from '@components/organisms/Header';
 const History = ({ navigation }: any) => {
   const tailwind = useTailwind()
   return (
-    <>
-      <Header title={"トレーニング履歴"}/>
-      <View style={tailwind('flex-1 justify-center items-center bg-transparent')}>
-        <Text style={tailwind('text-white')}>Weightに飛べます！</Text>
-        <Button title="Weight" onPress={() => navigation.navigate('Weight')}/>
-      </View>
-    </>
+    <View style={tailwind('flex-1 justify-center items-center bg-transparent px-6')}>
+      <Text style={tailwind('text-white')}>Weightに飛べます！</Text>
+      <Button title="Weight" onPress={() => navigation.navigate('Weight')}/>
+    </View>
   )
 }
 

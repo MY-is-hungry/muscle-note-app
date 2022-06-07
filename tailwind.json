@@ -26,6 +26,13 @@
 			"flexBasis": "0%"
 		}
 	},
+	"flex-initial": {
+		"style": {
+			"flexGrow": 0,
+			"flexShrink": 1,
+			"flexBasis": "auto"
+		}
+	},
 	"flex-row": {
 		"style": {
 			"flexDirection": "row"
@@ -62,6 +69,12 @@
 			"--tw-bg-opacity": 0.6
 		}
 	},
+	"px-6": {
+		"style": {
+			"paddingLeft": 24,
+			"paddingRight": 24
+		}
+	},
 	"text-lg": {
 		"style": {
 			"fontSize": 18,
@@ -77,12 +90,6 @@
 		"style": {
 			"--tw-text-opacity": 1,
 			"color": "rgb(255 255 255 / var(--tw-text-opacity))"
-		}
-	},
-	"text-black": {
-		"style": {
-			"--tw-text-opacity": 1,
-			"color": "rgb(0 0 0 / var(--tw-text-opacity))"
 		}
 	}
 }

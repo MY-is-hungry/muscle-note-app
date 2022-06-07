@@ -4,11 +4,6 @@
 			"display": "flex"
 		}
 	},
-	"h-16": {
-		"style": {
-			"height": 64
-		}
-	},
 	"h-full": {
 		"style": {
 			"height": "100%"
@@ -64,26 +59,21 @@
 			"lineHeight": 28
 		}
 	},
-	"font-medium": {
-		"style": {
-			"fontWeight": "500"
-		}
-	},
 	"font-semibold": {
 		"style": {
 			"fontWeight": "600"
-		}
-	},
-	"text-black": {
-		"style": {
-			"--tw-text-opacity": 1,
-			"color": "rgb(0 0 0 / var(--tw-text-opacity))"
 		}
 	},
 	"text-white": {
 		"style": {
 			"--tw-text-opacity": 1,
 			"color": "rgb(255 255 255 / var(--tw-text-opacity))"
+		}
+	},
+	"text-black": {
+		"style": {
+			"--tw-text-opacity": 1,
+			"color": "rgb(0 0 0 / var(--tw-text-opacity))"
 		}
 	}
 }

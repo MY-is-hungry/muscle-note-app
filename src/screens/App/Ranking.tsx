@@ -1,8 +1,7 @@
 import { View, Text, Button } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
-import Header from '../../components/organisms/Header';
 
-const Ranking = ({ navigation }: any) => {
+const Ranking: React.FC = ({ navigation }: any) => {
   const tailwind = useTailwind()
   return (
     <View style={tailwind('flex-1')}>

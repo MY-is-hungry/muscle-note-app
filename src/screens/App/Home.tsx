@@ -1,10 +1,10 @@
-import { View, Text, Button } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
-import { fetch } from '../../common/utils/axios';
-import Header from '../../components/organisms/Header';
 import { getDatabase, ref, set } from 'firebase/database';
 import { firebaseAuth } from '@common/utils/firebase';
-import { useNavigationState } from '@react-navigation/native';
+import HomeCalendar from '@containers/home/organisms/HomeCalendar';
+import HomeLabelArea from '@containers/home/organisms/HomeLabelArea';
+import HomeResultArea from '@containers/home/organisms/HomeResultArea';
+import ScrollWrapper from '@components/layout/ScrollWrapper';
 
 const Home = ({ navigation }: any) => {
   const tailwind = useTailwind()
@@ -19,11 +19,11 @@ const Home = ({ navigation }: any) => {
   }
 
   return (
-    <View style={tailwind('flex-1 items-center justify-center bg-transparent px-6')}>
-      <Text style={tailwind('text-white')}>Historyに飛べます！</Text>
-      <Button title="History" onPress={() => navigation.navigate('History')}/>
-      <Button title="DBTest" onPress={testDB}/>
-    </View>
+    <ScrollWrapper>
+      <HomeCalendar/>
+      <HomeLabelArea/>
+      <HomeResultArea/>
+    </ScrollWrapper>
   )
 }
 

@@ -1,5 +1,9 @@
-.m-auto {
-  margin: auto
+.absolute {
+  position: absolute
+}
+
+.relative {
+  position: relative
 }
 
 .my-2 {
@@ -12,8 +16,12 @@
   margin-right: auto
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem
+.ml-auto {
+  margin-left: auto
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem
 }
 
 .mt-6 {
@@ -24,12 +32,12 @@
   margin-left: 1.0rem
 }
 
-.mb-1 {
-  margin-bottom: 0.25rem
+.mb-10 {
+  margin-bottom: 2.5rem
 }
 
-.mb-20 {
-  margin-bottom: 5rem
+.inline {
+  display: inline
 }
 
 .flex {
@@ -40,20 +48,40 @@
   height: 3.5rem
 }
 
-.h-24 {
-  height: 6rem
+.h-30 {
+  height: 7.5rem
 }
 
 .h-full {
   height: 100%
 }
 
+.h-24 {
+  height: 6rem
+}
+
 .h-72 {
   height: 18rem
 }
 
-.h-auto {
-  height: auto
+.h-2 {
+  height: 0.5rem
+}
+
+.h-3 {
+  height: 0.75rem
+}
+
+.h-28 {
+  height: 7rem
+}
+
+.h-20 {
+  height: 5rem
+}
+
+.h-4 {
+  height: 1.0rem
 }
 
 .w-80 {
@@ -62,6 +90,10 @@
 
 .w-full {
   width: 100%
+}
+
+.w-38 {
+  width: 9.5rem
 }
 
 .flex-1 {
@@ -76,8 +108,8 @@
   flex-direction: row
 }
 
-.items-start {
-  align-items: flex-start
+.items-end {
+  align-items: flex-end
 }
 
 .items-center {
@@ -94,6 +126,10 @@
 
 .justify-between {
   justify-content: space-between
+}
+
+.justify-around {
+  justify-content: space-around
 }
 
 .rounded-2xl {
@@ -117,6 +153,11 @@
   background-color: rgb(0 0 0 / var(--tw-bg-opacity))
 }
 
+.bg-light-gray {
+  --tw-bg-opacity: 1;
+  background-color: rgb(179 179 179 / var(--tw-bg-opacity))
+}
+
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6
 }
@@ -126,12 +167,24 @@
   padding-right: 1.5rem
 }
 
-.pt-6 {
-  padding-top: 1.5rem
+.py-4 {
+  padding-top: 1.0rem;
+  padding-bottom: 1.0rem
 }
 
-.pt-10 {
-  padding-top: 2.5rem
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem
+}
+
+.px-4 {
+  padding-left: 1.0rem;
+  padding-right: 1.0rem
 }
 
 .pt-8 {
@@ -140,6 +193,22 @@
 
 .pb-20 {
   padding-bottom: 5rem
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem
 }
 
 .text-lg {
@@ -155,6 +224,11 @@
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem
 }
 
 .font-semibold {

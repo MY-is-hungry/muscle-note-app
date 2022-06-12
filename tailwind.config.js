@@ -5,7 +5,8 @@ module.exports = {
       primary: '#EF454A',
       black: '#000',
       white: '#fff',
-      transparent: '#00000000'
+      transparent: '#00000000',
+      'transp-gray': 'rgba(88, 88, 88, 0.9)'
     },
     spacing: {
       '1': '0.25rem',
@@ -15,12 +16,29 @@ module.exports = {
       '5': '1.25rem',
       '6': '1.5rem',
       '8': '2.0rem',
+      '10': '2.5rem',
+      '12': '3rem',
+      '14': '3.5rem',
       '20': '5rem',
       '24': '6rem',
       '28': '7rem',
       '32': '8rem',
       '36': '9rem',
       '40': '10rem',
+      '44': '11rem',
+      '72': '18rem',
+      '80': '20rem',
+    },
+    // fontSize: {
+    // },
+    borderRadius: {
+      'none': '0',
+      'sm': '.125rem',
+      'lg': '.5rem',
+      'xl': '.75rem',
+      '2xl': '1rem',
+      '3xl': '1.5rem',
+      'full': '9999px',
     },
     extend: {
       // backgroundImage: {

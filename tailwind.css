@@ -1,5 +1,43 @@
+.m-auto {
+  margin: auto
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem
+}
+
+.mt-6 {
+  margin-top: 1.5rem
+}
+
+.ml-4 {
+  margin-left: 1.0rem
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem
+}
+
+.mb-20 {
+  margin-bottom: 5rem
+}
+
 .flex {
   display: flex
+}
+
+.h-14 {
+  height: 3.5rem
 }
 
 .h-24 {
@@ -8,6 +46,18 @@
 
 .h-full {
   height: 100%
+}
+
+.h-72 {
+  height: 18rem
+}
+
+.h-auto {
+  height: auto
+}
+
+.w-80 {
+  width: 20rem
 }
 
 .w-full {
@@ -26,6 +76,10 @@
   flex-direction: row
 }
 
+.items-start {
+  align-items: flex-start
+}
+
 .items-center {
   align-items: center
 }
@@ -36,6 +90,26 @@
 
 .justify-center {
   justify-content: center
+}
+
+.justify-between {
+  justify-content: space-between
+}
+
+.rounded-2xl {
+  border-radius: 1rem
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem
+}
+
+.bg-transparent {
+  background-color: #00000000
+}
+
+.bg-transp-gray {
+  background-color: rgba(88, 88, 88, 0.9)
 }
 
 .bg-black {
@@ -52,8 +126,34 @@
   padding-right: 1.5rem
 }
 
+.pt-6 {
+  padding-top: 1.5rem
+}
+
+.pt-10 {
+  padding-top: 2.5rem
+}
+
+.pt-8 {
+  padding-top: 2.0rem
+}
+
+.pb-20 {
+  padding-bottom: 5rem
+}
+
 .text-lg {
   font-size: 1.125rem;
+  line-height: 1.75rem
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem
+}
+
+.text-xl {
+  font-size: 1.25rem;
   line-height: 1.75rem
 }
 

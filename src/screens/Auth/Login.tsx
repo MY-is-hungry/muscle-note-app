@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 import { RootStackScreenProps } from '@common/types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useTailwind } from 'tailwind-rn';
-import AppleAuthButton from '@containers/Login/atoms/AppleAuthButton';
+import AppleAuthButton from '@containers/login/atoms/AppleAuthButton';
 
 type Props = NativeStackScreenProps<RootStackScreenProps>
 

@@ -1,6 +1,5 @@
 import { View, Text, Button } from 'react-native';
 import { useTailwind } from 'tailwind-rn';
-import Header from '@components/organisms/Header';
 
 const History = ({ navigation }: any) => {
   const tailwind = useTailwind()

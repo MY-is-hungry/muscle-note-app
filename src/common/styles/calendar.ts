@@ -3,7 +3,7 @@ import { BACKGROUND_COLOR, CLEAR_COLOR, CLEAR_WHITE_COLOR, DISABLED_COLOR, PRIMA
 // TODO: 型定義
 export const homeCalendarThemes: any = {
   backgroundColor: CLEAR_COLOR,
-  calendarBackground: BACKGROUND_COLOR,
+  calendarBackground: CLEAR_COLOR,
   // textSectionTitleColor: '#b6c1cd',
   // textSectionTitleDisabledColor: '#d9e1e8',
   selectedDayBackgroundColor: PRIMARY_COLOR,

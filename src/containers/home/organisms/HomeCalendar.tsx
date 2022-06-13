@@ -13,7 +13,7 @@ const HomeCalendar: React.FC = () => {
       disableAllTouchEventsForDisabledDays
       // ヘッダー消去
       renderHeader={() => null}
-      style={tailwind('w-80 h-72 rounded-3xl')}
+      style={tailwind('w-80 h-68 rounded-3xl bg-transp-gray')}
       theme={homeCalendarThemes}
       // 最初の曜日を動かせる デザインの変更で使用する可能性あり
       // firstDay={1}

@@ -1,9 +1,4 @@
 {
-	"absolute": {
-		"style": {
-			"position": "absolute"
-		}
-	},
 	"relative": {
 		"style": {
 			"position": "relative"
@@ -41,16 +36,6 @@
 			"marginLeft": 16
 		}
 	},
-	"mb-10": {
-		"style": {
-			"marginBottom": 40
-		}
-	},
-	"inline": {
-		"style": {
-			"display": "inline"
-		}
-	},
 	"flex": {
 		"style": {
 			"display": "flex"
@@ -59,6 +44,11 @@
 	"h-14": {
 		"style": {
 			"height": 56
+		}
+	},
+	"h-3": {
+		"style": {
+			"height": 12
 		}
 	},
 	"h-30": {
@@ -76,34 +66,14 @@
 			"height": 96
 		}
 	},
-	"h-72": {
+	"h-68": {
 		"style": {
-			"height": 288
+			"height": 272
 		}
 	},
-	"h-2": {
+	"h-70": {
 		"style": {
-			"height": 8
-		}
-	},
-	"h-3": {
-		"style": {
-			"height": 12
-		}
-	},
-	"h-28": {
-		"style": {
-			"height": 112
-		}
-	},
-	"h-20": {
-		"style": {
-			"height": 80
-		}
-	},
-	"h-4": {
-		"style": {
-			"height": 16
+			"height": 280
 		}
 	},
 	"w-80": {
@@ -196,16 +166,16 @@
 			"backgroundColor": "rgba(88, 88, 88, 0.9)"
 		}
 	},
-	"bg-black": {
-		"style": {
-			"--tw-bg-opacity": 1,
-			"backgroundColor": "rgb(0 0 0 / var(--tw-bg-opacity))"
-		}
-	},
 	"bg-light-gray": {
 		"style": {
 			"--tw-bg-opacity": 1,
 			"backgroundColor": "rgb(179 179 179 / var(--tw-bg-opacity))"
+		}
+	},
+	"bg-black": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(0 0 0 / var(--tw-bg-opacity))"
 		}
 	},
 	"bg-opacity-60": {
@@ -225,18 +195,6 @@
 			"paddingBottom": 16
 		}
 	},
-	"px-5": {
-		"style": {
-			"paddingLeft": 20,
-			"paddingRight": 20
-		}
-	},
-	"py-3": {
-		"style": {
-			"paddingTop": 12,
-			"paddingBottom": 12
-		}
-	},
 	"px-4": {
 		"style": {
 			"paddingLeft": 16,
@@ -253,26 +211,6 @@
 			"paddingBottom": 80
 		}
 	},
-	"pb-1": {
-		"style": {
-			"paddingBottom": 4
-		}
-	},
-	"pb-2": {
-		"style": {
-			"paddingBottom": 8
-		}
-	},
-	"pb-3": {
-		"style": {
-			"paddingBottom": 12
-		}
-	},
-	"pb-10": {
-		"style": {
-			"paddingBottom": 40
-		}
-	},
 	"text-lg": {
 		"style": {
 			"fontSize": 18,
@@ -285,16 +223,16 @@
 			"lineHeight": 32
 		}
 	},
-	"text-xl": {
-		"style": {
-			"fontSize": 20,
-			"lineHeight": 28
-		}
-	},
 	"text-base": {
 		"style": {
 			"fontSize": 16,
 			"lineHeight": 24
+		}
+	},
+	"text-xl": {
+		"style": {
+			"fontSize": 20,
+			"lineHeight": 28
 		}
 	},
 	"font-semibold": {

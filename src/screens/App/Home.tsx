@@ -1,4 +1,3 @@
-import { useTailwind } from 'tailwind-rn';
 import { getDatabase, ref, set } from 'firebase/database';
 import { firebaseAuth } from '@common/utils/firebase';
 import HomeCalendar from '@containers/home/organisms/HomeCalendar';
@@ -7,8 +6,6 @@ import HomeResultArea from '@containers/home/organisms/HomeResultArea';
 import ScrollWrapper from '@components/layout/ScrollWrapper';
 
 const Home = ({ navigation }: any) => {
-  const tailwind = useTailwind()
-
   const testDB = () => {
     const db = getDatabase();
     // console.log('currentUser', firebaseAuth?.currentUser?.uid)

@@ -40,6 +40,7 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
+    "react-query": "^3.39.1",
     "recoil": "^0.7.3-alpha.1",
     "tailwind-rn": "^4.2.0"
   },

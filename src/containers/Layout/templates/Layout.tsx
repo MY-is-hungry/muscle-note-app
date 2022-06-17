@@ -15,6 +15,7 @@ const Layout: React.FC = () => {
   const [renderComponent, setRenderComponent] = useState<JSX.Element>(
     firebaseAuth?.currentUser ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
   )
+  console.log(firebaseAuth?.currentUser)
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {

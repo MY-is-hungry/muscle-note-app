@@ -14,6 +14,7 @@ const AppleAuthButton = () => {
 
   const login = async (credential: AuthCredential, data?: any) => {
     const user = await loginWithCredential(credential, data)
+    console.log('user', user)
     if (user?.uid) {
       setCurrentUserId(user.uid)
     }

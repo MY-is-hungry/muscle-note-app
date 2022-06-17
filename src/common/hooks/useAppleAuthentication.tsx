@@ -4,7 +4,6 @@ import { OAuthProvider } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import { Alert, Platform } from 'react-native'
 
-
 const login = async () => {
   const state = Math.random().toString(36).substring(2, 15)
   const rawNonce = nonceGen(32)
@@ -19,8 +18,6 @@ const login = async () => {
       state: state,
       nonce: digestNonce,
     })
-
-    console.log('Apple Sign In result: ', appleCredential)
     
     const { identityToken, email, fullName } = appleCredential
 

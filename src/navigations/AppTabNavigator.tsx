@@ -3,7 +3,7 @@ import { useTheme } from 'react-native-paper';
 import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Home from '@screens/App/Home';
 import History from '@screens/App/History';
-import Setting from '@screens/App/Setting';
+import Others from '@screens/App/Others';
 import Ranking from '@screens/App/Ranking';
 import Header from '@components/organisms/Header';
 import { SCREEN_HEADER_NAME } from '@common/constants';
@@ -57,8 +57,8 @@ const AppTabNavigator = ({navigation}: any) => {
         }}
       />
       <Tab.Screen 
-        name="Other" 
-        component={Setting}
+        name="Others" 
+        component={Others}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="settings" size={25} color={color} />
@@ -73,7 +73,7 @@ type RootTabParamList = {
   Home: undefined
   History: undefined
   Ranking: undefined
-  Other: undefined
+  Others: undefined
 }
 type Props = {
   initialRouteName: string

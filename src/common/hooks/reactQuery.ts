@@ -1,65 +1,14 @@
-import axios, { AxiosResponse } from "axios"
+import { AxiosResponse } from "axios"
 import { useMutation, UseMutationResult, useQuery, UseQueryResult } from "react-query"
 import { useRecoilState } from "recoil"
-import { initialErrorState, initialToastState } from "@common/recoil/atoms"
-import { parseSnakeToCamel } from "@common/utils/axios"
+import { initialErrorState } from "@common/recoil/atoms"
 import { isProduction } from "@common/utils/boolean"
-import { MutationRequestConfig, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
-import { DELETE, PATCH, POST, PUT } from "@common/constants/reactQueryKeys"
+import { RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
 import { useRefresh } from "./useRefresh"
+import { axiosInstance, genMutationAxiosRequest } from "@common/utils/axios"
+import { GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
 
 // TODO: 全体の型づけ
-
-export const api = () => {
-  const envBackendUrl = getEnvBackendUrl()
-  const resultApi = axios.create({
-    baseURL: `${envBackendUrl}api/v1/`, 
-    withCredentials: true,
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*",
-      'X-Requested-With': 'XMLHttpRequest',
-      'Authorization': `Bearer ${localStorage.customerId}`,
-    }
-  })
-  resultApi.interceptors.response.use(
-    (response) => {
-      return Promise.resolve(parseSnakeToCamel(response))
-    },
-    (error) => {
-      return Promise.reject({
-        error: parseSnakeToCamel(error.response),
-      })
-    }
-  )
-  return resultApi
-}
-
-export const getEnvBackendUrl = () => {
-  if (process.env.NEXT_PUBLIC_API_ORIGIN) return process.env.NEXT_PUBLIC_API_ORIGIN
-  return process.env.NODE_ENV === 'development' ? '/rails/' : null
-}
-
-export const genMutationAxiosRequest = <T>({
-  method,
-  url,
-  params,
-  config
-}: MutationRequestConfig & any): Promise<AxiosResponse<T>> | null => {
-  switch(method){
-    case POST:
-      return api().post(url, params, config)
-    case PATCH:
-      return api().patch(url, params, config)
-    case PUT:
-      return api().put(url, params, config)
-    case DELETE:
-      return api().delete(url)
-    default:
-      return null
-  }
-}
 
 /**
  * react queryを使う際にWrapする関数。アラートの登録など共通処理を書いておく
@@ -81,7 +30,7 @@ export const useQueryWrapper = <T>({
     queryKeyName,
     async () => {
       try {
-        const res = await api().get(requestConfig.url)
+        const res = await axiosInstance().get(requestConfig.url)
         isProduction || console.log(res)
         // genMutationAxiosRequest({...requestConfig});
         return res.data
@@ -150,6 +99,30 @@ export const useMutationWrapper = <T>({
       }
     }
   )
-
   return resultUseMutation
 }
+
+export const useUserQuery = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<RailsResponse<any>> => {
+  return useQueryWrapper<RailsResponse<any>>({
+    queryKey: GET_USER,
+    deps,
+    options,
+    requestConfig: {
+      url: `users/${urlParams.id}`,
+    },
+  })
+}
+
+export const useSignUpMutation = ({ deps, options, urlParams }: TUseMutationOptions): UseMutationResult<RailsResponse<any>> => {
+  return useMutationWrapper<RailsResponse<any>>({
+    queryKey: POST_USER,
+    deps,
+    options,
+    requestConfig: {
+      method: POST,
+      url: `users`
+    }
+  })
+}
+
+

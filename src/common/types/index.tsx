@@ -43,7 +43,7 @@ export type ErrorResponse = {
 export type UseQueryProps<T> = {
   queryKey?: string
   deps?: QueryKey
-  options?: Omit<UseQueryOptions<unknown, unknown, unknown, any[]>, "queryKey" | "queryFn">
+  options?: Omit<UseQueryOptions<unknown, unknown, unknown, any[]>, "queryKey" | "queryFn"> | undefined
   requestConfig: QueryRequestConfig
 }
 
@@ -55,7 +55,7 @@ export type QueryRequestConfig = {
 export type MutationRequestConfig = {
   method: string
   url: string
-  config: AxiosRequestConfig
+  config?: AxiosRequestConfig
 }
 
 export type UseMutationProps<T> = {
@@ -69,7 +69,7 @@ export type UseMutationProps<T> = {
 // TODO: 型定義
 export type TUseQueryOptions = Partial<{
   deps: QueryKey
-  options: UseQueryOptions
+  options: Omit<UseQueryOptions<unknown, unknown, unknown, any[]>, "queryKey" | "queryFn"> | undefined
   urlParams: any
 }>;
 

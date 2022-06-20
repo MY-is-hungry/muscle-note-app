@@ -1,5 +1,6 @@
-import { RailsErrorResponseData } from '@common/types'
-import axios, { CancelToken } from 'axios'
+import { DELETE, PATCH, POST, PUT } from '@common/constants/reactQueryKeys'
+import { MutationRequestConfig, RailsErrorResponseData } from '@common/types'
+import axios, { AxiosResponse, CancelToken } from 'axios'
 import humps from 'humps'
 
 interface Options {
@@ -7,12 +8,13 @@ interface Options {
   cancelToken?: CancelToken
 }
 
-export const parseSnakeToCamel = (obj: object): object => {
+const parseSnakeToCamel = (obj: object): object => {
   return humps.camelizeKeys(obj)
 }
 
 const getBackendUrl = () => {
-  return process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : ''
+  // return process.env.NODE_ENV === 'development' ? 'http://192.168.24.16:3000/' : ''
+  return process.env.NODE_ENV === 'development' ? 'http://172.20.10.8:3000/' : ''
 }
 
 const getApiConfig = () => {
@@ -31,6 +33,7 @@ const getApiConfig = () => {
     },
   }
 }
+
 const getAuthApiConfig = () => {
   const backendUrl = getBackendUrl()
   return {
@@ -48,25 +51,46 @@ const getAuthApiConfig = () => {
   }
 }
 
-const axiosInstance = (options?: Options) => {
+export const axiosInstance = (options?: Options) => {
   const isAuth = options ? options.isAuth : false
   const apiConfig = isAuth ? getAuthApiConfig() : getApiConfig()
   const configWithCancelToken = { ...apiConfig, cancelToken: options?.cancelToken }
   const instance = axios.create(configWithCancelToken)
 
   instance.interceptors.response.use(
-    response => {
+    (response) => {
       if (process.env.NODE_ENV === 'development') {
         console.log(response)
+        console.log(parseSnakeToCamel(response))
       }
       return response
     },
-    error => {
+    (error) => {
       return Promise.reject(error)
     }
   )
 
   return instance
+}
+
+export const genMutationAxiosRequest = <T>({
+  method,
+  url,
+  params,
+  config
+}: MutationRequestConfig & any): Promise<AxiosResponse<T>> | null => {
+  switch(method){
+    case POST:
+      return axiosInstance().post(url, params, config)
+    case PATCH:
+      return axiosInstance().patch(url, params, config)
+    case PUT:
+      return axiosInstance().put(url, params, config)
+    case DELETE:
+      return axiosInstance().delete(url)
+    default:
+      return null
+  }
 }
 
 export const fetch = async (

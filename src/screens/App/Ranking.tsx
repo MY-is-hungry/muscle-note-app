@@ -11,8 +11,8 @@ const Ranking: React.FC = ({ navigation }: any) => {
         </Text>
       </View>
       <View style={tailwind('flex-1 justify-center items-center')}>
-        <Text style={tailwind('text-white')}>Settingに飛べます！</Text>
-        <Button title="Setting" onPress={() => navigation.navigate('Setting')}/>
+        <Text style={tailwind('text-white')}>Othersに飛べます！</Text>
+        <Button title="Others" onPress={() => navigation.navigate('Others')}/>
       </View>
     </View>
   )

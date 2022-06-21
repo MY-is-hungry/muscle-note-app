@@ -15,21 +15,26 @@ const Layout: React.FC = () => {
   const [renderComponent, setRenderComponent] = useState<JSX.Element>(
     firebaseAuth?.currentUser ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
   )
-  console.log(firebaseAuth?.currentUser)
 
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) {
-        // サインイン中
-        console.log('ログイン済み')
-        setRenderComponent(<AppNavigator initialRouteName='Home' />)
-      } else {
-        // サインアウト中
-        console.log('非ログイン')
-        setRenderComponent(<AuthNavigator initialRouteName='Login' />)
-      }
-    })
-  }, [])
+    if (currentUserId) {
+      onAuthStateChanged(firebaseAuth, (user) => {
+        if (user) {
+          // サインイン中
+          console.log('ログイン済み')
+          setRenderComponent(<AppNavigator initialRouteName='Home' />)
+        } else {
+          // サインアウト中
+          console.log('非ログイン')
+          setRenderComponent(<AuthNavigator initialRouteName='Login' />)
+        }
+      })
+    } else{
+      // サインアウト中
+      console.log('非ログイン')
+      setRenderComponent(<AuthNavigator initialRouteName='Login' />)
+    }
+  }, [currentUserId])
 
   useEffect(() => {
     setCurrentUserId(firebaseAuth?.currentUser?.uid)

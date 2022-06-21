@@ -3,7 +3,7 @@ import React from 'react'
 import { Alert } from 'react-native'
 import { AuthCredential } from 'firebase/auth'
 import { useAppleAuthentication } from '@common/hooks/useAppleAuthentication'
-import { loginWithCredential } from '@common/utils/auth'
+import { loginWithCredential, logout } from '@common/utils/auth'
 import { AUTH_ALERT } from '@common/constants/alert'
 import { useSetRecoilState } from 'recoil';
 import { initialCurrentUserId } from '@common/recoil/atoms';
@@ -12,14 +12,24 @@ import { useSignUpMutation } from '@common/hooks/reactQuery'
 const AppleAuthButton = () => { 
   const [isAppleAuthAvailable, authWithApple] = useAppleAuthentication()
   const setCurrentUserId = useSetRecoilState(initialCurrentUserId)
-  const userSignupMutation = useSignUpMutation({})
+  const userSignupMutation = useSignUpMutation({
+    options: {
+      onSuccess: (res: any) => { 
+        console.log(res.data)
+        setCurrentUserId(res.data.user.fb_uid)
+      },
+      onError: () => {
+        logout()
+        Alert.alert(AUTH_ALERT.title, AUTH_ALERT.msg)
+      }
+    }
+  })
 
   const login = async (credential: AuthCredential, data?: any) => {
     const user = await loginWithCredential(credential, data)
     console.log('user', user)
     if (user?.uid) {
-      setCurrentUserId(user.uid)
-      userSignupMutation.mutate({user: { name: user.displayName, email: user.email }})
+      userSignupMutation.mutate({user: { name: user.displayName, email: user.email, fb_uid: user.uid }})
     }
   }
 

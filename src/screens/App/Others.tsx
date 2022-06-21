@@ -11,7 +11,6 @@ const Others = ({ navigation }: any) => {
   const [currentUserId, setCurrentUserId] = useRecoilState(initialCurrentUserId)
 
   const onPressLogout = () => {
-    console.log("ログアウト！")
     logout()
     currentUserId && setCurrentUserId('')
   }

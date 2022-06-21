@@ -7,7 +7,7 @@ export const homeCalendarThemes: any = {
   // textSectionTitleColor: '#b6c1cd',
   // textSectionTitleDisabledColor: '#d9e1e8',
   selectedDayBackgroundColor: PRIMARY_COLOR,
-  // selectedDayTextColor: '#ffffff',
+  selectedDayTextColor: DISABLED_COLOR,
   // todayTextColor: '#00adf5',
   dayTextColor: CLEAR_WHITE_COLOR,
   textDisabledColor: DISABLED_COLOR,

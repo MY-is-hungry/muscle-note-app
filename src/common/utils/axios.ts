@@ -14,7 +14,7 @@ const parseSnakeToCamel = (obj: object): object => {
 }
 
 const getBackendUrl = () => {
-  return process.env.NODE_ENV === 'development' ? `http://${LOCAL_IP_ADDR}/` : ''
+  return process.env.NODE_ENV === 'development' ? `http://${LOCAL_IP_ADDR}:3000/` : ''
 }
 
 const getApiConfig = () => {
@@ -66,7 +66,11 @@ export const axiosInstance = (options?: Options) => {
       return response
     },
     (error) => {
-      return Promise.reject(error.response)
+      if (process.env.NODE_ENV === 'development') {
+        console.log(error)
+        console.log(parseSnakeToCamel(error))
+      }
+      return Promise.reject(error)
     }
   )
 

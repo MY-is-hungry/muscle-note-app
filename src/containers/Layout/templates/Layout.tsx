@@ -17,28 +17,22 @@ const Layout: React.FC = () => {
   )
 
   useEffect(() => {
-    if (currentUserId) {
-      onAuthStateChanged(firebaseAuth, (user) => {
-        if (user) {
-          // サインイン中
-          console.log('ログイン済み')
-          setRenderComponent(<AppNavigator initialRouteName='Home' />)
-        } else {
-          // サインアウト中
-          console.log('非ログイン')
-          setRenderComponent(<AuthNavigator initialRouteName='Login' />)
-        }
-      })
-    } else{
-      // サインアウト中
-      console.log('非ログイン')
-      setRenderComponent(<AuthNavigator initialRouteName='Login' />)
-    }
-  }, [currentUserId])
+    onAuthStateChanged(firebaseAuth, (user) => {
+      if (user) {
+        // サインイン中
+        console.log('ログイン済み')
+        setRenderComponent(<AppNavigator initialRouteName='Home' />)
+      } else {
+        // サインアウト中
+        console.log('非ログイン')
+        setRenderComponent(<AuthNavigator initialRouteName='Login' />)
+      }
+    })
+  }, [])
 
   useEffect(() => {
     setCurrentUserId(firebaseAuth?.currentUser?.uid)
-  }, [firebaseAuth?.currentUser?.uid, firebaseAuth?.currentUser])
+  }, [firebaseAuth])
 
   return (
     <ImageBackground source={require('/assets/iphone/background/trainingroom-iphone.jpg')} resizeMode="cover" style={tailwind('flex-1 justify-center w-full h-full')}>

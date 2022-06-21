@@ -15,7 +15,6 @@ const AppleAuthButton = () => {
   const userSignupMutation = useSignUpMutation({
     options: {
       onSuccess: (res: any) => { 
-        console.log(res.data)
         setCurrentUserId(res.data.user.fb_uid)
       },
       onError: () => {
@@ -27,7 +26,6 @@ const AppleAuthButton = () => {
 
   const login = async (credential: AuthCredential, data?: any) => {
     const user = await loginWithCredential(credential, data)
-    console.log('user', user)
     if (user?.uid) {
       userSignupMutation.mutate({user: { name: user.displayName, email: user.email, fb_uid: user.uid }})
     }

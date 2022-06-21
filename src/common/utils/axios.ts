@@ -13,8 +13,8 @@ const parseSnakeToCamel = (obj: object): object => {
 }
 
 const getBackendUrl = () => {
-  // return process.env.NODE_ENV === 'development' ? 'http://192.168.24.16:3000/' : ''
-  return process.env.NODE_ENV === 'development' ? 'http://172.20.10.8:3000/' : ''
+  return process.env.NODE_ENV === 'development' ? 'http://192.168.24.16:3000/' : ''
+  // return process.env.NODE_ENV === 'development' ? 'http://172.20.10.8:3000/' : ''
 }
 
 const getApiConfig = () => {
@@ -66,7 +66,7 @@ export const axiosInstance = (options?: Options) => {
       return response
     },
     (error) => {
-      return Promise.reject(error)
+      return Promise.reject(error.response)
     }
   )
 

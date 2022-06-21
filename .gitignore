@@ -16,3 +16,6 @@ web-build/
 .env
 .env.development
 .env.production
+
+Makefile
+get-local-ip.sh

@@ -9,7 +9,6 @@ const Home = ({ navigation }: any) => {
 
   const testDB = () => {
     const db = getDatabase();
-    // console.log('currentUser', firebaseAuth?.currentUser?.uid)
     const reference = ref(db, 'users/' + firebaseAuth?.currentUser?.uid);
     set(reference, {
       highscore: 'score',

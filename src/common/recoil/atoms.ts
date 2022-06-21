@@ -5,11 +5,11 @@ export const initialCurrentUserId = atom<string | null | undefined>({
   default: ''
 })
 
-export const initialToastState = atom({
-  key: "toastState",
-  default: []
+// バックエンド処理のフラグ
+export const initialIsProcessing = atom<boolean>({
+  key: "isProcessing",
+  default: false
 })
-
 
 export const initialErrorState = atom({
   key: "errorState",

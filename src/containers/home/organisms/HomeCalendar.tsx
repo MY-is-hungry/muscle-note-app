@@ -17,6 +17,10 @@ const HomeCalendar: React.FC = () => {
       theme={homeCalendarThemes}
       // 最初の曜日を動かせる デザインの変更で使用する可能性あり
       // firstDay={1}
+      markedDates={{
+        '2022-06-16': {selected: true},
+        '2022-06-18': {selected: true, activeOpacity: 0},
+      }}
     />
   )
 }

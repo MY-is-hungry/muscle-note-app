@@ -2,6 +2,7 @@ import { DELETE, PATCH, POST, PUT } from '@common/constants/reactQueryKeys'
 import { MutationRequestConfig, RailsErrorResponseData } from '@common/types'
 import axios, { AxiosResponse, CancelToken } from 'axios'
 import humps from 'humps'
+import { LOCAL_IP_ADDR } from '@env';
 
 interface Options {
   isAuth?: boolean
@@ -13,8 +14,7 @@ const parseSnakeToCamel = (obj: object): object => {
 }
 
 const getBackendUrl = () => {
-  return process.env.NODE_ENV === 'development' ? 'http://192.168.24.16:3000/' : ''
-  // return process.env.NODE_ENV === 'development' ? 'http://172.20.10.8:3000/' : ''
+  return process.env.NODE_ENV === 'development' ? `http://${LOCAL_IP_ADDR}/` : ''
 }
 
 const getApiConfig = () => {

@@ -6,11 +6,6 @@ export type RootStackScreenProps = {
   Home: undefined
 }
 
-export type ProgressType = {
-  goal: number
-  current: number
-}
-
 // Railsのレスポンス
 export type RailsResponse<T> = {
   data: T,
@@ -79,3 +74,34 @@ export type TUseMutationOptions = Partial<{
   options: UseMutationOptions
   urlParams: any
 }>
+
+// --------------------------
+// 汎用Type
+type ModelBaseType = {
+  id: number
+  createdAt: string
+  updatedAt: string
+}
+
+type RecordBaseType = {
+  note: string
+  recordedOn: string
+}
+// --------------------------
+
+
+export type ProgressType = {
+  goal: number
+  current: number
+}
+
+export type EventRecordType = ModelBaseType & RecordBaseType & { 
+  volume: number
+}
+
+export type DailyRecordType = ModelBaseType & RecordBaseType & { 
+  eventRecords: EventRecordType[]
+}
+
+
+export type MonthlyRecordType = DailyRecordType[]

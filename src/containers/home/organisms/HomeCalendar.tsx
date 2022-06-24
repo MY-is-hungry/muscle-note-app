@@ -1,10 +1,16 @@
 import { homeCalendarThemes } from "@common/styles/calendar";
+import { MonthlyRecordType } from "@common/types";
 import { Calendar, LocaleConfig } from "react-native-calendars"
 import { useTailwind } from "tailwind-rn/dist";
 
-const HomeCalendar: React.FC = () => { 
+const HomeCalendar: React.FC<Props> = ({monthlyRecord}) => { 
   const tailwind = useTailwind()
+  console.log(monthlyRecord)
+  const markedDates = monthlyRecord.reduce((prevObj, record) => (
+    {...prevObj, [record.recordedOn]: {selected: true}}
+  ), {})
 
+  console.log(markedDates)
   return (
     <Calendar
       hideArrows
@@ -17,10 +23,7 @@ const HomeCalendar: React.FC = () => {
       theme={homeCalendarThemes}
       // 最初の曜日を動かせる デザインの変更で使用する可能性あり
       // firstDay={1}
-      markedDates={{
-        '2022-06-16': {selected: true},
-        '2022-06-18': {selected: true, activeOpacity: 0},
-      }}
+      markedDates={markedDates}
     />
   )
 }
@@ -32,5 +35,9 @@ const HomeCalendar: React.FC = () => {
 //   dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
 // };
 // LocaleConfig.defaultLocale = 'jp';
+
+type Props = {
+  monthlyRecord: MonthlyRecordType
+}
 
 export default HomeCalendar

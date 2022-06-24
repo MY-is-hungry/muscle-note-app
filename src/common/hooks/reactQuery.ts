@@ -3,10 +3,10 @@ import { useMutation, UseMutationResult, useQuery, UseQueryResult } from "react-
 import { useRecoilState } from "recoil"
 import { initialErrorState } from "@common/recoil/atoms"
 import { isProduction } from "@common/utils/boolean"
-import { RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
+import { MonthlyRecordType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
 import { useRefresh } from "./useRefresh"
 import { axiosInstance, genMutationAxiosRequest } from "@common/utils/axios"
-import { GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
+import { GET_MONTHLY_RECORD, GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
 
 // TODO: 全体の型づけ
 
@@ -31,12 +31,10 @@ export const useQueryWrapper = <T>({
     async () => {
       try {
         const res = await axiosInstance().get(requestConfig.url)
-        isProduction || console.log(res)
         // genMutationAxiosRequest({...requestConfig});
         return res.data
       } catch (err: any) {
         const railsError: RailsErrorResponseData = err.error
-        isProduction || console.log(err)
         options?.onError && options.onError(err)
         // setErrorState(railsError?.data?.errors ? getErrorList(railsError) : [])
       }
@@ -125,4 +123,14 @@ export const useSignUpMutation = ({ deps, options, urlParams }: TUseMutationOpti
   })
 }
 
+export const useMonthlyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<RailsResponse<MonthlyRecordType>> => {
+  return useQueryWrapper<RailsResponse<MonthlyRecordType>>({
+    queryKey: GET_MONTHLY_RECORD,
+    deps,
+    options,
+    requestConfig: {
+      url: `monthly_records`,
+    },
+  })
+}
 

@@ -60,14 +60,12 @@ export const axiosInstance = (options?: Options) => {
   instance.interceptors.response.use(
     (response) => {
       if (process.env.NODE_ENV === 'development') {
-        console.log(response)
         console.log(parseSnakeToCamel(response))
       }
-      return response
+      return parseSnakeToCamel(response)
     },
     (error) => {
       if (process.env.NODE_ENV === 'development') {
-        console.log(error)
         console.log(parseSnakeToCamel(error))
       }
       return Promise.reject(error)

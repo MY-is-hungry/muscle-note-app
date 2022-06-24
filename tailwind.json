@@ -10,22 +10,21 @@
 			"marginBottom": 8
 		}
 	},
+	"mx-10": {
+		"style": {
+			"marginLeft": 40,
+			"marginRight": 40
+		}
+	},
 	"mx-auto": {
 		"style": {
 			"marginLeft": "auto",
 			"marginRight": "auto"
 		}
 	},
-	"mx-6": {
+	"mr-auto": {
 		"style": {
-			"marginLeft": 24,
-			"marginRight": 24
-		}
-	},
-	"mx-10": {
-		"style": {
-			"marginLeft": 40,
-			"marginRight": 40
+			"marginRight": "auto"
 		}
 	},
 	"ml-auto": {
@@ -48,11 +47,6 @@
 			"marginLeft": 16
 		}
 	},
-	"mr-auto": {
-		"style": {
-			"marginRight": "auto"
-		}
-	},
 	"flex": {
 		"style": {
 			"display": "flex"
@@ -61,6 +55,11 @@
 	"h-14": {
 		"style": {
 			"height": 56
+		}
+	},
+	"h-full": {
+		"style": {
+			"height": "100%"
 		}
 	},
 	"h-3": {
@@ -73,11 +72,6 @@
 			"height": 120
 		}
 	},
-	"h-full": {
-		"style": {
-			"height": "100%"
-		}
-	},
 	"h-24": {
 		"style": {
 			"height": 96
@@ -86,11 +80,6 @@
 	"h-68": {
 		"style": {
 			"height": 272
-		}
-	},
-	"h-20": {
-		"style": {
-			"height": 80
 		}
 	},
 	"w-80": {
@@ -108,14 +97,9 @@
 			"width": 152
 		}
 	},
-	"w-20": {
+	"max-w-full": {
 		"style": {
-			"width": 80
-		}
-	},
-	"w-40": {
-		"style": {
-			"width": 160
+			"maxWidth": "100%"
 		}
 	},
 	"flex-1": {
@@ -221,10 +205,10 @@
 			"paddingRight": 24
 		}
 	},
-	"px-5": {
+	"px-3": {
 		"style": {
-			"paddingLeft": 20,
-			"paddingRight": 20
+			"paddingLeft": 12,
+			"paddingRight": 12
 		}
 	},
 	"py-4": {
@@ -239,12 +223,6 @@
 			"paddingRight": 16
 		}
 	},
-	"px-3": {
-		"style": {
-			"paddingLeft": 12,
-			"paddingRight": 12
-		}
-	},
 	"pt-8": {
 		"style": {
 			"paddingTop": 32
@@ -255,21 +233,10 @@
 			"paddingBottom": 80
 		}
 	},
-	"text-left": {
-		"style": {
-			"textAlign": "left"
-		}
-	},
 	"text-lg": {
 		"style": {
 			"fontSize": 18,
 			"lineHeight": 28
-		}
-	},
-	"text-2xl": {
-		"style": {
-			"fontSize": 24,
-			"lineHeight": 32
 		}
 	},
 	"text-base": {
@@ -278,20 +245,16 @@
 			"lineHeight": 24
 		}
 	},
+	"text-2xl": {
+		"style": {
+			"fontSize": 24,
+			"lineHeight": 32
+		}
+	},
 	"text-xl": {
 		"style": {
 			"fontSize": 20,
 			"lineHeight": 28
-		}
-	},
-	"font-semibold": {
-		"style": {
-			"fontWeight": "600"
-		}
-	},
-	"font-light": {
-		"style": {
-			"fontWeight": "300"
 		}
 	},
 	"font-normal": {
@@ -299,9 +262,9 @@
 			"fontWeight": "400"
 		}
 	},
-	"font-medium": {
+	"font-semibold": {
 		"style": {
-			"fontWeight": "500"
+			"fontWeight": "600"
 		}
 	},
 	"text-white": {

@@ -7,6 +7,7 @@ const ProgressBar: React.FC<Props> = ({progress}) => {
   const tailwind = useTailwind()
   const currentBarStyles = {
     width: `${Math.round(progress.current / progress.goal * 100)}%`,
+    maxWidth: '100%',
     height: 12,
     backgroundColor: SECONDARY_COLOR,
     borderRadius: 12

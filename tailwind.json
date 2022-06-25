@@ -52,6 +52,11 @@
 			"display": "flex"
 		}
 	},
+	"hidden": {
+		"style": {
+			"display": "none"
+		}
+	},
 	"h-14": {
 		"style": {
 			"height": 56
@@ -95,11 +100,6 @@
 	"w-38": {
 		"style": {
 			"width": 152
-		}
-	},
-	"max-w-full": {
-		"style": {
-			"maxWidth": "100%"
 		}
 	},
 	"flex-1": {
@@ -162,6 +162,14 @@
 			"borderTopRightRadius": 16,
 			"borderBottomRightRadius": 16,
 			"borderBottomLeftRadius": 16
+		}
+	},
+	"rounded-md": {
+		"style": {
+			"borderTopLeftRadius": 6,
+			"borderTopRightRadius": 6,
+			"borderBottomRightRadius": 6,
+			"borderBottomLeftRadius": 6
 		}
 	},
 	"rounded-3xl": {

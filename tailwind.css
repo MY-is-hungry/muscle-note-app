@@ -41,6 +41,10 @@
   display: flex
 }
 
+.hidden {
+  display: none
+}
+
 .h-14 {
   height: 3.5rem
 }
@@ -75,10 +79,6 @@
 
 .w-38 {
   width: 9.5rem
-}
-
-.max-w-full {
-  max-width: 100%
 }
 
 .flex-1 {
@@ -123,6 +123,10 @@
 
 .rounded-2xl {
   border-radius: 1rem
+}
+
+.rounded-md {
+  border-radius: .375rem
 }
 
 .rounded-3xl {

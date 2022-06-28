@@ -18,6 +18,7 @@ const Others = ({ navigation }: any) => {
   return (
     <ScrollWrapper>
       <ButtonLabel name="ログアウト" onPressFn={onPressLogout}/>
+      <ButtonLabel name="アプリ背景変更" onPressFn={() => navigation.navigate('Background')} isArrow={true}/>
     </ScrollWrapper>
   )
 }

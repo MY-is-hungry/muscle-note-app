@@ -123,8 +123,8 @@ export const useSignUpMutation = ({ deps, options, urlParams }: TUseMutationOpti
   })
 }
 
-export const useMonthlyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<RailsResponse<MonthlyRecordType>> => {
-  return useQueryWrapper<RailsResponse<MonthlyRecordType>>({
+export const useMonthlyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<MonthlyRecordType> => {
+  return useQueryWrapper<MonthlyRecordType>({
     queryKey: GET_MONTHLY_RECORD,
     deps,
     options,

@@ -151,6 +151,10 @@
   background-color: rgb(0 0 0 / var(--tw-bg-opacity))
 }
 
+.bg-selected {
+  background-color: rgba(144, 144, 144, 0.9)
+}
+
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6
 }

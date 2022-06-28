@@ -15,3 +15,8 @@ export const initialErrorState = atom({
   key: "errorState",
   default: []
 })
+
+export const initialBgImage = atom({
+  key: "bgImage",
+  default: 'trainingroom'
+})

@@ -202,6 +202,11 @@
 			"backgroundColor": "rgb(0 0 0 / var(--tw-bg-opacity))"
 		}
 	},
+	"bg-selected": {
+		"style": {
+			"backgroundColor": "rgba(144, 144, 144, 0.9)"
+		}
+	},
 	"bg-opacity-60": {
 		"style": {
 			"--tw-bg-opacity": 0.6

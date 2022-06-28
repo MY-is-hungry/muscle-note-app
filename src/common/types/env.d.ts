@@ -1,6 +1,5 @@
 declare module '@env' {
   export const LOCAL_IP_ADDR: string
-  export const REACT_NATIVE_PACKAGER_HOSTNAME: string
 
   export const FB_API_KEY: string
   export const FB_AUTH_DOMAIN: string

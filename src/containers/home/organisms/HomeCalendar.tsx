@@ -5,12 +5,10 @@ import { useTailwind } from "tailwind-rn/dist";
 
 const HomeCalendar: React.FC<Props> = ({monthlyRecord}) => { 
   const tailwind = useTailwind()
-  console.log(monthlyRecord)
   const markedDates = monthlyRecord.reduce((prevObj, record) => (
     {...prevObj, [record.recordedOn]: {selected: true}}
   ), {})
 
-  console.log(markedDates)
   return (
     <Calendar
       hideArrows

@@ -21,6 +21,8 @@ const firebaseConfig = {
   measurementId: FB_MEASUREMENT_ID,
 };
 
+console.log(firebaseConfig)
+
 
 export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp)

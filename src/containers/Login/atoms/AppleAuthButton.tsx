@@ -15,7 +15,8 @@ const AppleAuthButton = () => {
   const userSignupMutation = useSignUpMutation({
     options: {
       onSuccess: (res: any) => { 
-        setCurrentUserId(res.data.user.fb_uid)
+        console.log(res)
+        setCurrentUserId(res.data.fbUid)
       },
       onError: () => {
         logout()

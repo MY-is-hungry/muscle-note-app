@@ -7,6 +7,7 @@ import Others from '@screens/App/Others';
 import Ranking from '@screens/App/Ranking';
 import Header from '@components/organisms/Header';
 import { SCREEN_HEADER_NAME } from '@common/constants';
+import OthersNavigator from './OthersNavigator';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -58,7 +59,7 @@ const AppTabNavigator = ({navigation}: any) => {
       />
       <Tab.Screen 
         name="Others" 
-        component={Others}
+        component={OthersNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="settings" size={25} color={color} />

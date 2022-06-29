@@ -33,6 +33,7 @@ const AppTabNavigator = ({navigation}: any) => {
         name="HomeNavigator" 
         component={HomeNavigator} 
         options={{
+          tabBarLabel: 'ホーム',
           tabBarIcon: ({ color }) => (
             <Entypo name='home' size={25} color={color} />
           )
@@ -42,6 +43,7 @@ const AppTabNavigator = ({navigation}: any) => {
         name="History" 
         component={History} 
         options={{
+          tabBarLabel: 'トレ履歴',
           tabBarIcon: ({ color }) => (
             <Entypo name='calendar' size={25} color={color} />
           )
@@ -51,6 +53,7 @@ const AppTabNavigator = ({navigation}: any) => {
         name="Ranking" 
         component={Ranking} 
         options={{
+          tabBarLabel: 'ランキング',
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="crown" size={24} color={color} />
           )
@@ -60,6 +63,7 @@ const AppTabNavigator = ({navigation}: any) => {
         name="OthersNavigator" 
         component={OthersNavigator}
         options={{
+          tabBarLabel: 'その他',
           tabBarIcon: ({ color }) => (
             <Feather name="settings" size={25} color={color} />
           )

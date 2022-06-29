@@ -1,13 +1,17 @@
 import { homeCalendarThemes } from "@common/styles/calendar";
 import { MonthlyRecordType } from "@common/types";
-import { Calendar, LocaleConfig } from "react-native-calendars"
+import { Calendar, DateData, LocaleConfig } from "react-native-calendars"
 import { useTailwind } from "tailwind-rn/dist";
 
-const HomeCalendar: React.FC<Props> = ({monthlyRecord}) => { 
+const HomeCalendar: React.FC<Props> = ({monthlyRecord, navigation}) => { 
   const tailwind = useTailwind()
   const markedDates = monthlyRecord.reduce((prevObj, record) => (
     {...prevObj, [record.recordedOn]: {selected: true}}
   ), {})
+
+  const handleClickDate = (date: DateData) => { 
+    navigation.navigate('TrainingDetail', { date: date.dateString })
+  }
 
   return (
     <Calendar
@@ -22,6 +26,8 @@ const HomeCalendar: React.FC<Props> = ({monthlyRecord}) => {
       // 最初の曜日を動かせる デザインの変更で使用する可能性あり
       // firstDay={1}
       markedDates={markedDates}
+      // Handler which gets executed on day press. Default = undefined
+      onDayPress={handleClickDate}
     />
   )
 }
@@ -36,6 +42,7 @@ const HomeCalendar: React.FC<Props> = ({monthlyRecord}) => {
 
 type Props = {
   monthlyRecord: MonthlyRecordType
+  navigation: any
 }
 
 export default HomeCalendar

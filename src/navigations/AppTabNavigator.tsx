@@ -1,13 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'react-native-paper';
-import { AntDesign, Entypo, Feather, MaterialCommunityIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
-import Home from '@screens/App/Home';
-import History from '@screens/App/History';
-import Others from '@screens/App/Others';
-import Ranking from '@screens/App/Ranking';
+import { Entypo, Feather, FontAwesome5 } from '@expo/vector-icons';
+import History from '@screens/History/History';
+import Ranking from '@screens/Ranking/Ranking';
 import Header from '@components/organisms/Header';
 import { SCREEN_HEADER_NAME } from '@common/constants';
 import OthersNavigator from './OthersNavigator';
+import HomeNavigator from './HomeNavigator';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -31,8 +30,8 @@ const AppTabNavigator = ({navigation}: any) => {
       }}
     >
       <Tab.Screen 
-        name="Home" 
-        component={Home} 
+        name="HomeNavigator" 
+        component={HomeNavigator} 
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name='home' size={25} color={color} />
@@ -58,7 +57,7 @@ const AppTabNavigator = ({navigation}: any) => {
         }}
       />
       <Tab.Screen 
-        name="Others" 
+        name="OthersNavigator" 
         component={OthersNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -71,10 +70,10 @@ const AppTabNavigator = ({navigation}: any) => {
 }
 
 type RootTabParamList = {
-  Home: undefined
+  HomeNavigator: undefined
   History: undefined
   Ranking: undefined
-  Others: undefined
+  OthersNavigator: undefined
 }
 type Props = {
   initialRouteName: string

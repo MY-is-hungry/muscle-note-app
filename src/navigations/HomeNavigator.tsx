@@ -1,12 +1,13 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Others from '@screens/Others/Others';
+import Home from '@screens/Home/Home';
 import BackgroundImage from '@screens/Others/BackgroundImage';
+import TrainingDetail from '@screens/Shared/TrainingDetail';
 import { Text, View } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const OthersNavigator = ({initialRouteName}: Props) => {
+const HomeNavigator = ({initialRouteName}: Props) => {
   const tailwind = useTailwind()
 
   return (
@@ -14,19 +15,19 @@ const OthersNavigator = ({initialRouteName}: Props) => {
       <Stack.Navigator
         screenOptions={{headerShown: false}}
       >
-        <Stack.Screen name="Index" component={Others} />
-        <Stack.Screen name="Background" component={BackgroundImage} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="TrainingDetail" component={TrainingDetail} />
       </Stack.Navigator>
     </View>
   )
 }
 
 type RootStackParamList = {
-  Index: undefined
-  Background: undefined
+  Home: undefined
+  TrainingDetail: undefined
 }
 type Props = {
   initialRouteName: string
 }
 
-export default OthersNavigator
+export default HomeNavigator

@@ -3,10 +3,10 @@ import { useMutation, UseMutationResult, useQuery, UseQueryResult } from "react-
 import { useRecoilState } from "recoil"
 import { initialErrorState } from "@common/recoil/atoms"
 import { isProduction } from "@common/utils/boolean"
-import { MonthlyRecordType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
+import { DailyRecordType, MonthlyRecordType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
 import { useRefresh } from "./useRefresh"
 import { axiosInstance, genMutationAxiosRequest } from "@common/utils/axios"
-import { GET_MONTHLY_RECORD, GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
+import { GET_DAILY_RECORD, GET_MONTHLY_RECORD, GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
 
 // TODO: 全体の型づけ
 
@@ -130,6 +130,17 @@ export const useMonthlyRecord = ({ deps, options, urlParams }: TUseQueryOptions)
     options,
     requestConfig: {
       url: `monthly_records`,
+    },
+  })
+}
+
+export const useDailyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<DailyRecordType> => {
+  return useQueryWrapper<DailyRecordType>({
+    queryKey: GET_DAILY_RECORD,
+    deps,
+    options,
+    requestConfig: {
+      url: `daily_records?date=${urlParams.date}`,
     },
   })
 }

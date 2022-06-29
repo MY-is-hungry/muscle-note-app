@@ -95,13 +95,30 @@ export type ProgressType = {
   current: number
 }
 
+export type EventType = ModelBaseType & {
+  name: string
+  categoryId: number
+  order?: number
+  generalOrder?: number
+  userId: number
+}
+
+export type TrainingSetType = ModelBaseType & {
+  note: string
+  weight: number
+  reps: number
+  volume: number
+  eventRecordId: number
+}
+
 export type EventRecordType = ModelBaseType & RecordBaseType & { 
   volume: number
+  trainingSets?: TrainingSetType[]
+  event: EventType
 }
 
 export type DailyRecordType = ModelBaseType & RecordBaseType & { 
   eventRecords: EventRecordType[]
 }
-
 
 export type MonthlyRecordType = DailyRecordType[]

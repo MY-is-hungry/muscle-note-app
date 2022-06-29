@@ -22,7 +22,7 @@ const Home = ({ navigation }: any) => {
 
   return (
     <ScrollWrapper>
-      <HomeCalendar monthlyRecord={monthlyRecord || []}/>
+      <HomeCalendar monthlyRecord={monthlyRecord || []} navigation={navigation}/>
       <HomeLabelArea totalDate={totalDate} totalVolume={totalVolume}/>
       <HomeResultArea totalDate={totalDate} totalVolume={totalVolume}/>
     </ScrollWrapper>

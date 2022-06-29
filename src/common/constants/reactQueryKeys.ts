@@ -9,3 +9,6 @@ export const POST_USER = 'postUser'
 
 // MonthlyRecordController
 export const GET_MONTHLY_RECORD = 'getMonthlyRecord'
+
+// DailyRecordController
+export const GET_DAILY_RECORD = 'getDailyRecord'

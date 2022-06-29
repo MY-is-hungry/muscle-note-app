@@ -2,7 +2,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors: {
-      primary: '#EF454A',
+      primary: '#4456B7',
       secondary: '#CCF74A',
       black: '#000',
       white: '#fff',
@@ -12,6 +12,7 @@ module.exports = {
       'selected': 'rgba(144, 144, 144, 0.9)',
     },
     spacing: {
+      '0': '0rem',
       '1': '0.25rem',
       '2': '0.5rem',
       '3': '0.75rem',
@@ -31,6 +32,9 @@ module.exports = {
       '38': '9.5rem',
       '40': '10rem',
       '44': '11rem',
+      '56': '14rem',
+      '60': '15rem',
+      '64': '16rem',
       '68': '17rem',
       '70': '17.5rem',
       '72': '18rem',
@@ -45,8 +49,15 @@ module.exports = {
       // '13/20': '65%',
       // '14/20': '65%',
     },
-    // fontSize: {
-    // },
+    minWidth: {
+      '0': '0rem',
+      '1': '0.25rem',
+      '2': '0.5rem',
+      '3': '0.75rem',
+      '4': '1.0rem',
+      '5': '1.25rem',
+      '6': '1.5rem',
+    },
     borderRadius: {
       'none': '0',
       'sm': '.125rem',
@@ -71,6 +82,9 @@ module.exports = {
       //   'water2@iphone': "url('/assets/background/water2@iphone.jpg')",
       // },
     },
+  },
+  variants: {
+    margin: ['last'],
   },
   plugins: [],
   corePlugins: require('tailwind-rn/unsupported-core-plugins'),

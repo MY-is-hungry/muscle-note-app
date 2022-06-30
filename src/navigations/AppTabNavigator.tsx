@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 import { Entypo, Feather, FontAwesome5 } from '@expo/vector-icons';
 import History from '@screens/History/History';
 import Ranking from '@screens/Ranking/Ranking';
@@ -7,7 +7,10 @@ import Header from '@components/organisms/Header';
 import { SCREEN_HEADER_NAME } from '@common/constants';
 import OthersNavigator from './OthersNavigator';
 import HomeNavigator from './HomeNavigator';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import SelectEventModal from '../containers/event/templates/SelectEventModal';
 
+const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const AppTabNavigator = ({navigation}: any) => {
@@ -49,6 +52,12 @@ const AppTabNavigator = ({navigation}: any) => {
           )
         }}
       />
+      <Drawer.Navigator>
+        <Drawer.Screen 
+          name="SelectEvent" 
+          component={SelectEventModal} 
+        />
+      </Drawer.Navigator>
       <Tab.Screen 
         name="Ranking" 
         component={Ranking} 

@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 import { Entypo, Feather, FontAwesome5 } from '@expo/vector-icons';
 import History from '@screens/History/History';
 import Ranking from '@screens/Ranking/Ranking';

@@ -1,31 +1,22 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button, useTheme } from 'react-native-paper';
-import { Entypo, Feather, FontAwesome5 } from '@expo/vector-icons';
 import History from '@screens/History/History';
 import Ranking from '@screens/Ranking/Ranking';
 import Header from '@components/organisms/Header';
 import { SCREEN_HEADER_NAME } from '@common/constants';
 import OthersNavigator from './OthersNavigator';
 import HomeNavigator from './HomeNavigator';
+import TabBar from '@containers/layout/organisms/TabBar';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const AppTabNavigator = ({navigation}: any) => {
-  const { colors } = useTheme()
 
   return (
     <Tab.Navigator 
+      tabBar={props => <TabBar {...props} />}
       screenOptions={{
-        // headerShown: false,
         header: ({ navigation, route, options }) => {
           return <Header title={SCREEN_HEADER_NAME[route?.name] || 'Muscle Note'} />;
-        },
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.accent,
-        tabBarStyle: {
-          height: 80,
-          borderTopColor: colors.background,
-          backgroundColor: colors.background
         },
       }}
     >
@@ -34,9 +25,6 @@ const AppTabNavigator = ({navigation}: any) => {
         component={HomeNavigator} 
         options={{
           tabBarLabel: 'ホーム',
-          tabBarIcon: ({ color }) => (
-            <Entypo name='home' size={25} color={color} />
-          )
         }}
       />
       <Tab.Screen
@@ -44,19 +32,17 @@ const AppTabNavigator = ({navigation}: any) => {
         component={History} 
         options={{
           tabBarLabel: 'トレ履歴',
-          tabBarIcon: ({ color }) => (
-            <Entypo name='calendar' size={25} color={color} />
-          )
         }}
+      />
+      <Tab.Screen
+        name="PlaceholderScreen" 
+        component={HomeNavigator} 
       />
       <Tab.Screen 
         name="Ranking" 
         component={Ranking} 
         options={{
           tabBarLabel: 'ランキング',
-          tabBarIcon: ({ color }) => (
-            <FontAwesome5 name="crown" size={24} color={color} />
-          )
         }}
       />
       <Tab.Screen 
@@ -64,9 +50,6 @@ const AppTabNavigator = ({navigation}: any) => {
         component={OthersNavigator}
         options={{
           tabBarLabel: 'その他',
-          tabBarIcon: ({ color }) => (
-            <Feather name="settings" size={25} color={color} />
-          )
         }}
       />
     </Tab.Navigator>
@@ -76,6 +59,7 @@ const AppTabNavigator = ({navigation}: any) => {
 type RootTabParamList = {
   HomeNavigator: undefined
   History: undefined
+  PlaceholderScreen: undefined
   Ranking: undefined
   OthersNavigator: undefined
 }

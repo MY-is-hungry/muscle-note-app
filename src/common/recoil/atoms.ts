@@ -20,3 +20,9 @@ export const initialBgImage = atom({
   key: "bgImage",
   default: 'trainingroom'
 })
+
+// 種目選択ドロワートリガー
+export const initialIsOpenEventDrawer = atom<boolean>({
+  key: "isOpenEventDrawer",
+  default: false
+})

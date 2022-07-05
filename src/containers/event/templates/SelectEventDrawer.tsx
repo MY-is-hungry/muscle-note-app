@@ -11,18 +11,18 @@ const SelectEventDrawer: React.FC = () => {
   const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
 
   // TODO: 横画面になった際に不具合があるので対処 https://zenn.dev/tasugi/articles/0814f06b514eed
-  const { height } = Dimensions.get('window');
+  const { height } = Dimensions.get('window')
   // const { height } = useWindowDimensions()  
-  const y = useRef(new Animated.Value(isOpenEventDrawer ? DrawerState.Open : DrawerState.Closed)).current
+  const y = useRef<Animated.Value>(new Animated.Value(DrawerState.Closed)).current
   // タブ追跡用
-  const state = useRef(new Animated.Value(isOpenEventDrawer ? DrawerState.Open : DrawerState.Closed)).current
-  const margin = 0.05 * height;
-  const movementValue = (moveY: number) => height - moveY;
+  const state = useRef<Animated.Value>(new Animated.Value(DrawerState.Closed)).current
+  const margin = 0.05 * height
+  const movementValue = (moveY: number) => height - moveY
 
+  // 
   useEffect (() => { 
     if(isOpenEventDrawer) {
       state.setValue(DrawerState.Open)
-      console.log(y)
       animateMove(y, DrawerState.Open)
     }
   }, [isOpenEventDrawer])
@@ -32,26 +32,29 @@ const SelectEventDrawer: React.FC = () => {
     _: GestureResponderEvent,
     { moveY }: PanResponderGestureState,
   ) => {
-    const val = movementValue(moveY);
-    animateMove(y, val);
-  };
+    const val = movementValue(moveY)
+    animateMove(y, val)
+  }
 
   // 放した時のイベント
   const onPanResponderRelease = (
     _: GestureResponderEvent,
     { moveY }: PanResponderGestureState,
   ) => {
-    const valueToMove = movementValue(moveY);
+    const valueToMove = movementValue(moveY)
+    // TODO: Typeerror解消 _valueが未定義
+    // @ts-ignore
     const nextState = getNextState(state._value, valueToMove, margin)
     state.setValue(nextState)
+    nextState === DrawerState.Closed && setIsOpenEventDrawer(false)
     animateMove(y, nextState)
-  };
+  }
 
   // レスポンダーに何かさせるか判定 今だと、10以上 -10以下
   // const onMoveShouldSetPanResponder = (
   //   _: GestureResponderEvent,
   //   { dy }: PanResponderGestureState,
-  // ) => Math.abs(dy) >= 10;
+  // ) => Math.abs(dy) >= 10
 
   // イベントハンドラーを割り当て
   const panResponder = useRef(
@@ -61,7 +64,7 @@ const SelectEventDrawer: React.FC = () => {
       onPanResponderMove,
       onPanResponderRelease,
     }),
-  ).current;
+  ).current
 
   const animateMove = (y: Animated.Value, toValue: number | Animated.Value, callback?: any) => {
     Animated.spring(y, {
@@ -69,9 +72,9 @@ const SelectEventDrawer: React.FC = () => {
       tension: 20,
       useNativeDriver: false,
     }).start((finished) => {
-      finished && callback && callback();
-    });
-  };
+      finished && callback && callback()
+    })
+  }
 
   const getNextState = (
     currentState: DrawerState,
@@ -88,9 +91,9 @@ const SelectEventDrawer: React.FC = () => {
           ? DrawerState.Open
           : DrawerState.Closed
       default:
-        return currentState;
+        return currentState
     }
-  };
+  }
 
   return (
     <Animated.View

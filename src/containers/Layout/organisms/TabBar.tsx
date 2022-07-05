@@ -21,7 +21,7 @@ const TabBar = ({ state, descriptors, navigation }: any) =>{
             <View key={index} style={tailwind('flex justify-center items-center')}>
               <IconButton 
                 icon='plus-circle'
-                color={isOpenEventDrawer ? PRIMARY_COLOR : CLEAR_WHITE_COLOR}
+                color={PRIMARY_COLOR}
                 size={40}
                 onPress={() => setIsOpenEventDrawer(!isOpenEventDrawer)}
                 style={tailwind('mb-5')}

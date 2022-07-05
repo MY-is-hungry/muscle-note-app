@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
 const { height } = Dimensions.get('window');
 
 export enum DrawerState {
-  Open = height - 230,
+  Open = height - 100,
   // Peek = 230,
   Closed = 0,
 }

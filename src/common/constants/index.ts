@@ -34,7 +34,7 @@ export const REQUIRE_BG_IMAGES = {
   water: require('/assets/iphone/background/water-iphone.jpg'),
   water2: require('/assets/iphone/background/water2-iphone.jpg'),
   sea: require('/assets/iphone/background/sea-iphone.jpg'),
-  lake: require('/assets/iphone/background/leaf-iphone.jpg'),
+  lake: require('/assets/iphone/background/lake-iphone.jpg'),
   starrysky: require('/assets/iphone/background/starrysky-iphone.jpg'),
 }
 // export const REQUIRE_BG_IMAGES = {

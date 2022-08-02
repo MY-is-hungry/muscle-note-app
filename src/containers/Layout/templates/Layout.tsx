@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react"
-import { initialBgImage, initialCurrentUserId } from '@common/recoil/atoms';
+import { initialBgImage, initialCurrentUser } from '@common/recoil/atoms';
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "@common/utils/firebase";
 import { useTailwind } from "tailwind-rn/dist";
@@ -13,7 +13,7 @@ import { REQUIRE_BG_IMAGES } from "@common/constants";
 
 const Layout: React.FC = () => { 
   const tailwind = useTailwind()
-  const [currentUserId, setCurrentUserId] = useRecoilState(initialCurrentUserId)
+  const [currentUser, setCurrentUser] = useRecoilState(initialCurrentUser)
   const [bgImage, setBgImage] = useRecoilState(initialBgImage)
   type OnlyKeys = keyof typeof bgImage
   const [renderComponent, setRenderComponent] = useState<JSX.Element>(
@@ -31,21 +31,18 @@ const Layout: React.FC = () => {
     })
   }, [])
 
-  useEffect(() => {
-    setCurrentUserId(firebaseAuth?.currentUser?.uid)
-  }, [firebaseAuth])
-
   // 背景画像読み込み
   // TODO: 呼び出し回数が多すぎるから、確認
   useEffect(() => {
     const db = getDatabase()
     onValue(ref(db, '/users/' + firebaseAuth?.currentUser?.uid), (snapshot) => {
-      const image = (snapshot.val() && snapshot.val().backgroundImage) || 'trainingroom';
-      setBgImage(image)
+      const user = (snapshot.val() && snapshot.val()) || {}
+      setCurrentUser(user)
+      setBgImage(user.backgroundImage || 'trainingroom')
     }, {
       onlyOnce: true
     })
-  }, [bgImage])
+  }, [firebaseAuth?.currentUser])
 
   return (
     <ImageBackground source={REQUIRE_BG_IMAGES[bgImage as keyof OnlyKeys] as ImageSourcePropType} resizeMode="cover" style={tailwind('flex-1 justify-center w-full h-full')}>

@@ -14,7 +14,7 @@ const TabBar = ({ state, descriptors, navigation }: any) =>{
   const tailwind = useTailwind()
 
   return (
-    <View style={tailwind('flex-row absolute bottom-0 bg-tab px-2')}>
+    <View style={tailwind('flex-row absolute bottom-0 bg-navy px-2')}>
       {state.routes.map((route: any , index: number) => {
         if(route.name == "PlaceholderScreen"){
           return (

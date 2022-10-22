@@ -8,6 +8,7 @@ import { Animated, Dimensions, GestureResponderEvent, PanResponder, PanResponder
 import { useRecoilState } from "recoil"
 import { useTailwind } from "tailwind-rn/dist"
 import CategoryList from "../molecules/CategoryList"
+import EventList from "../organisms/EventList"
 
 
 const SelectEventDrawer: React.FC = () => {
@@ -23,8 +24,7 @@ const SelectEventDrawer: React.FC = () => {
   const margin = 0.05 * height
   const movementValue = (moveY: number) => height - moveY
 
-  // 
-  useEffect (() => { 
+  useEffect (() => {
     if(isOpenEventDrawer) {
       state.setValue(DrawerState.Open)
       animateMove(y, DrawerState.Open)
@@ -118,6 +118,7 @@ const SelectEventDrawer: React.FC = () => {
       <DrawerTopBar/>
       <BaseWrapper>
         <CategoryList/>
+        <EventList/>
       </BaseWrapper>
     </Animated.View>
   )

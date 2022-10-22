@@ -6,6 +6,7 @@ import HomeResultArea from '@containers/home/organisms/HomeResultArea';
 import ScrollWrapper from '@components/layout/ScrollWrapper';
 import { useMonthlyRecord } from '@common/hooks/reactQuery';
 import { getTotalVolume } from "@common/utils/number"
+import StartTrainingButton from '@containers/home/atoms/StartTrainingButton';
 
 const Home = ({ navigation }: any) => {
   const { data: monthlyRecord, isLoading: isMonthlyRecordLoading } = useMonthlyRecord({})
@@ -25,6 +26,7 @@ const Home = ({ navigation }: any) => {
       <HomeCalendar monthlyRecord={monthlyRecord || []} navigation={navigation}/>
       <HomeLabelArea totalDate={totalDate} totalVolume={totalVolume}/>
       <HomeResultArea totalDate={totalDate} totalVolume={totalVolume}/>
+      <StartTrainingButton/>
     </ScrollWrapper>
   )
 }

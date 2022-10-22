@@ -15,11 +15,11 @@ const CategoryList = () => {
     console.log(eventName)
     setSelectedEvent(eventName)
   }
-  
+
   return (
     <View style={tailwind('flex flex-row flex-wrap justify-start items-center')}>
-      {eventList.map ((eventName) => {
-        return <EventButton key={eventName} name={eventName} isSelected={eventName === selectedEvent} onPressFn={handleChangeSelectedEvent}/>
+      {eventList.map ((eventName, i) => {
+        return <EventButton key={i} name={eventName} isSelected={eventName === selectedEvent} onPressFn={handleChangeSelectedEvent}/>
       })}
     </View>
   )

@@ -8,7 +8,7 @@ export const initialCurrentUserId = atom<string | null | undefined>({
 
 export const initialCurrentUser = atom<CurrentUserType>({
   key: "currentUser",
-  default: { backgroundImage: '', events: [] }
+  default: { events: [] }
 })
 
 // バックエンド処理のフラグ

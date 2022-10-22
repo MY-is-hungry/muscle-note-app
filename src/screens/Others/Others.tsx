@@ -4,15 +4,15 @@ import ButtonLabel from '@components/atoms/ButtonLabel';
 import ScrollWrapper from '@components/layout/ScrollWrapper';
 import { logout } from '@common/utils/auth';
 import { useRecoilState } from 'recoil';
-import { initialCurrentUserId } from '@common/recoil/atoms';
+import { initialCurrentUser } from '@common/recoil/atoms';
 
 const Others = ({ navigation }: any) => {
   const tailwind = useTailwind()
-  const [currentUserId, setCurrentUserId] = useRecoilState(initialCurrentUserId)
+  const [currentUser, setCurrentUser] = useRecoilState(initialCurrentUser)
 
   const onPressLogout = () => {
     logout()
-    currentUserId && setCurrentUserId('')
+    currentUser && setCurrentUser({ events: [] })
   }
 
   return (

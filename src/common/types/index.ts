@@ -90,7 +90,6 @@ type RecordBaseType = {
 // --------------------------
 
 export type CurrentUserType = {
-  backgroundImage: string
   events: string[]
 }
 

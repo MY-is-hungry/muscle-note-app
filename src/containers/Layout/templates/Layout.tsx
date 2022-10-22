@@ -11,7 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { getDatabase, onValue, ref } from "firebase/database";
 import { REQUIRE_BG_IMAGES } from "@common/constants";
 
-const Layout: React.FC = () => { 
+const Layout: React.FC = () => {
   const tailwind = useTailwind()
   const [currentUser, setCurrentUser] = useRecoilState(initialCurrentUser)
   const [bgImage, setBgImage] = useRecoilState(initialBgImage)
@@ -32,7 +32,7 @@ const Layout: React.FC = () => {
   }, [])
 
   // 背景画像読み込み
-  // TODO: 呼び出し回数が多すぎるから、確認
+  // TODO: 呼び出し回数が多すぎるから削減できるか確認
   useEffect(() => {
     const db = getDatabase()
     onValue(ref(db, '/users/' + firebaseAuth?.currentUser?.uid), (snapshot) => {
@@ -45,8 +45,8 @@ const Layout: React.FC = () => {
   }, [firebaseAuth?.currentUser])
 
   return (
-    <ImageBackground source={REQUIRE_BG_IMAGES[bgImage as keyof OnlyKeys] as ImageSourcePropType} resizeMode="cover" style={tailwind('flex-1 justify-center w-full h-full')}>
-      <View style={tailwind('flex-1 bg-black bg-opacity-60')}>
+    <ImageBackground source={REQUIRE_BG_IMAGES[bgImage as keyof OnlyKeys] as ImageSourcePropType} resizeMode="cover" style={tailwind('flex-1 w-full h-full')}>
+      <View style={tailwind('flex-1 bg-black bg-opacity-50')}>
         <StatusBar style="auto" />
         {renderComponent}
       </View>

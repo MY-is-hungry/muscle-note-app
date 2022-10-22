@@ -6,7 +6,7 @@ const EventButton: React.FC<Props> = ({name, isSelected, onPressFn}) => {
   const tailwind = useTailwind()
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       onPress={() => onPressFn(name)}
       style={tailwind(`flex justify-center items-center min-w-14 h-6 ml-3 mb-3 border border-solid border-white rounded-md ${isSelected ? 'bg-white' : ''}`)}
     >

@@ -57,6 +57,16 @@
 			"marginBottom": 4
 		}
 	},
+	"ml-3": {
+		"style": {
+			"marginLeft": 12
+		}
+	},
+	"mb-3": {
+		"style": {
+			"marginBottom": 12
+		}
+	},
 	"mt-6": {
 		"style": {
 			"marginTop": 24
@@ -97,44 +107,14 @@
 			"marginBottom": 32
 		}
 	},
-	"ml-1": {
+	"mb-10": {
 		"style": {
-			"marginLeft": 4
-		}
-	},
-	"ml-2": {
-		"style": {
-			"marginLeft": 8
-		}
-	},
-	"ml-3": {
-		"style": {
-			"marginLeft": 12
-		}
-	},
-	"mb-3": {
-		"style": {
-			"marginBottom": 12
-		}
-	},
-	"inline-block": {
-		"style": {
-			"display": "inline-block"
-		}
-	},
-	"inline": {
-		"style": {
-			"display": "inline"
+			"marginBottom": 40
 		}
 	},
 	"flex": {
 		"style": {
 			"display": "flex"
-		}
-	},
-	"inline-flex": {
-		"style": {
-			"display": "inline-flex"
 		}
 	},
 	"hidden": {
@@ -172,6 +152,11 @@
 			"height": 96
 		}
 	},
+	"h-6": {
+		"style": {
+			"height": 24
+		}
+	},
 	"h-68": {
 		"style": {
 			"height": 272
@@ -182,9 +167,9 @@
 			"height": 72
 		}
 	},
-	"h-6": {
+	"h-16": {
 		"style": {
-			"height": 24
+			"height": 64
 		}
 	},
 	"w-80": {
@@ -212,34 +197,19 @@
 			"width": 240
 		}
 	},
-	"w-14": {
+	"w-64": {
 		"style": {
-			"width": 56
-		}
-	},
-	"w-min": {
-		"style": {
-			"width": "min-content"
-		}
-	},
-	"w-max": {
-		"style": {
-			"width": "max-content"
-		}
-	},
-	"w-fit": {
-		"style": {
-			"width": "fit-content"
-		}
-	},
-	"min-w-6": {
-		"style": {
-			"minWidth": 24
+			"width": 256
 		}
 	},
 	"min-w-14": {
 		"style": {
 			"minWidth": 56
+		}
+	},
+	"min-w-6": {
+		"style": {
+			"minWidth": 24
 		}
 	},
 	"flex-1": {
@@ -256,6 +226,11 @@
 			"flexBasis": "auto"
 		}
 	},
+	"flex-grow": {
+		"style": {
+			"flexGrow": 1
+		}
+	},
 	"flex-row": {
 		"style": {
 			"flexDirection": "row"
@@ -264,11 +239,6 @@
 	"flex-wrap": {
 		"style": {
 			"flexWrap": "wrap"
-		}
-	},
-	"items-start": {
-		"style": {
-			"alignItems": "flex-start"
 		}
 	},
 	"items-end": {
@@ -351,14 +321,6 @@
 			"borderBottomLeftRadius": 8
 		}
 	},
-	"rounded-sm": {
-		"style": {
-			"borderTopLeftRadius": 2,
-			"borderTopRightRadius": 2,
-			"borderBottomRightRadius": 2,
-			"borderBottomLeftRadius": 2
-		}
-	},
 	"border": {
 		"style": {
 			"borderTopWidth": 1,
@@ -432,17 +394,29 @@
 			"backgroundColor": "rgb(68 86 183 / var(--tw-bg-opacity))"
 		}
 	},
-	"bg-opacity-60": {
+	"bg-opacity-40": {
 		"style": {
-			"--tw-bg-opacity": 0.6
+			"--tw-bg-opacity": 0.4
 		}
 	},
-	"p-2": {
+	"bg-opacity-30": {
 		"style": {
-			"paddingTop": 8,
-			"paddingRight": 8,
-			"paddingBottom": 8,
-			"paddingLeft": 8
+			"--tw-bg-opacity": 0.3
+		}
+	},
+	"bg-opacity-10": {
+		"style": {
+			"--tw-bg-opacity": 0.1
+		}
+	},
+	"bg-opacity-20": {
+		"style": {
+			"--tw-bg-opacity": 0.2
+		}
+	},
+	"bg-opacity-50": {
+		"style": {
+			"--tw-bg-opacity": 0.5
 		}
 	},
 	"p-6": {
@@ -451,6 +425,22 @@
 			"paddingRight": 24,
 			"paddingBottom": 24,
 			"paddingLeft": 24
+		}
+	},
+	"p-5": {
+		"style": {
+			"paddingTop": 20,
+			"paddingRight": 20,
+			"paddingBottom": 20,
+			"paddingLeft": 20
+		}
+	},
+	"p-3": {
+		"style": {
+			"paddingTop": 12,
+			"paddingRight": 12,
+			"paddingBottom": 12,
+			"paddingLeft": 12
 		}
 	},
 	"px-6": {
@@ -489,6 +479,54 @@
 			"paddingBottom": 12
 		}
 	},
+	"py-2": {
+		"style": {
+			"paddingTop": 8,
+			"paddingBottom": 8
+		}
+	},
+	"px-5": {
+		"style": {
+			"paddingLeft": 20,
+			"paddingRight": 20
+		}
+	},
+	"px-8": {
+		"style": {
+			"paddingLeft": 32,
+			"paddingRight": 32
+		}
+	},
+	"px-10": {
+		"style": {
+			"paddingLeft": 40,
+			"paddingRight": 40
+		}
+	},
+	"px-12": {
+		"style": {
+			"paddingLeft": 48,
+			"paddingRight": 48
+		}
+	},
+	"px-14": {
+		"style": {
+			"paddingLeft": 56,
+			"paddingRight": 56
+		}
+	},
+	"px-16": {
+		"style": {
+			"paddingLeft": 64,
+			"paddingRight": 64
+		}
+	},
+	"py-1": {
+		"style": {
+			"paddingTop": 4,
+			"paddingBottom": 4
+		}
+	},
 	"pt-8": {
 		"style": {
 			"paddingTop": 32
@@ -497,6 +535,11 @@
 	"pb-20": {
 		"style": {
 			"paddingBottom": 80
+		}
+	},
+	"pb-30": {
+		"style": {
+			"paddingBottom": 120
 		}
 	},
 	"text-lg": {

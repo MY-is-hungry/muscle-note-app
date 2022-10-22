@@ -5,7 +5,7 @@ const ScrollWrapper: React.FC<Props> = ({children}) => {
   const tailwind = useTailwind()
 
   return (
-    <ScrollView style={tailwind('pt-8 pb-20 px-6 mx-auto')}>
+    <ScrollView contentContainerStyle={tailwind('flex-grow pt-8 pb-30 px-6 mx-auto')}>
       {children}
     </ScrollView>
   )

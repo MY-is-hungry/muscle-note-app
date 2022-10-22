@@ -7,6 +7,7 @@ export const SECONDARY_COLOR = '#CCF74A'
 export const DISABLED_COLOR = 'rgba(255, 255, 255, 0.3)'
 export const CLEAR_WHITE_COLOR = '#FFFFFF'
 export const CLEAR_COLOR = 'transparent'
+export const NAVY_BLUE =  '#182028'
 const BLACK = '#000000'
 
 export const BACKGROUND_COLOR = 'rgba(88, 88, 88, 0.9)'

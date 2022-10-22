@@ -8,8 +8,8 @@ import { initialBgImage } from '@common/recoil/atoms';
 
 const BackgroundImageList: React.FC = () => {
   const [bgImage, setBgImage] = useRecoilState(initialBgImage)
-  const db = getDatabase();
-  const reference = ref(db, `users/${firebaseAuth?.currentUser?.uid}`);
+  const db = getDatabase()
+  const reference = ref(db, `users/${firebaseAuth?.currentUser?.uid}`)
 
   const handleChangeBackgroundImage = (imageName: string) => {
     update(reference, { backgroundImage: imageName })

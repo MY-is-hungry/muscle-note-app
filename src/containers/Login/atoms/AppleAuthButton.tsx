@@ -6,17 +6,17 @@ import { useAppleAuthentication } from '@common/hooks/useAppleAuthentication'
 import { loginWithCredential, logout } from '@common/utils/auth'
 import { AUTH_ALERT } from '@common/constants/alert'
 import { useSetRecoilState } from 'recoil';
-import { initialCurrentUserId } from '@common/recoil/atoms';
+import { initialCurrentUser } from '@common/recoil/atoms';
 import { useSignUpMutation } from '@common/hooks/reactQuery'
 
 const AppleAuthButton = () => { 
   const [isAppleAuthAvailable, authWithApple] = useAppleAuthentication()
-  const setCurrentUserId = useSetRecoilState(initialCurrentUserId)
+  const setCurrentUser = useSetRecoilState(initialCurrentUser)
   const userSignupMutation = useSignUpMutation({
     options: {
       onSuccess: (res: any) => { 
-        console.log(res)
-        setCurrentUserId(res.data.fbUid)
+        console.log(res.data)
+        setCurrentUser(res.data)
       },
       onError: () => {
         logout()

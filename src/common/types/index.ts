@@ -76,7 +76,7 @@ export type TUseMutationOptions = Partial<{
 }>
 
 // --------------------------
-// 汎用Type
+// APIレスポンス汎用Type
 type ModelBaseType = {
   id: number
   createdAt: string
@@ -88,6 +88,10 @@ type RecordBaseType = {
   recordedOn: string
 }
 // --------------------------
+
+export type CurrentUserType = {
+  events: string[]
+}
 
 
 export type ProgressType = {

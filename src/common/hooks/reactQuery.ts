@@ -3,10 +3,10 @@ import { useMutation, UseMutationResult, useQuery, UseQueryResult } from "react-
 import { useRecoilState } from "recoil"
 import { initialErrorState } from "@common/recoil/atoms"
 import { isProduction } from "@common/utils/boolean"
-import { DailyRecordType, MonthlyRecordType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
+import { CurrentUser, DailyRecordType, MonthlyRecordType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
 import { useRefresh } from "./useRefresh"
 import { axiosInstance, genMutationAxiosRequest } from "@common/utils/axios"
-import { GET_DAILY_RECORD, GET_MONTHLY_RECORD, GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
+import { GET_CURRENT_USER, GET_DAILY_RECORD, GET_EVENTS, GET_MONTHLY_RECORD, GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
 
 // TODO: 全体の型づけ
 
@@ -66,8 +66,8 @@ export const useMutationWrapper = <T>({
   // mutationが呼ばれた時に実行されるAPIリクエスト(axios)
   const mutationFunc = async (formValue: any): Promise<AxiosResponse<any, any> | any> => {
     return genMutationAxiosRequest({
-      method: requestConfig.method, 
-      url: requestConfig.url, 
+      method: requestConfig.method,
+      url: requestConfig.url,
       params: formValue,
       config: requestConfig.config
     })
@@ -90,7 +90,7 @@ export const useMutationWrapper = <T>({
         const railsError: RailsErrorResponseData = err.error
         isProduction || console.log(err)
        options?.onError && await options.onError(err, undefined, null)
-        // setErrorState(railsError?.data?.errors ? getErrorList(railsError) : []) 
+        // setErrorState(railsError?.data?.errors ? getErrorList(railsError) : [])
       },
       onSettled: () => {
         options?.onSettled
@@ -141,6 +141,17 @@ export const useDailyRecord = ({ deps, options, urlParams }: TUseQueryOptions): 
     options,
     requestConfig: {
       url: `daily_records?date=${urlParams.date}`,
+    },
+  })
+}
+
+export const useEvents = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<DailyRecordType> => {
+  return useQueryWrapper<DailyRecordType>({
+    queryKey: GET_EVENTS,
+    deps,
+    options,
+    requestConfig: {
+      url: `events`,
     },
   })
 }

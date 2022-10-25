@@ -3,6 +3,7 @@ import { MutationRequestConfig, RailsErrorResponseData } from '@common/types'
 import axios, { AxiosResponse, CancelToken } from 'axios'
 import humps from 'humps'
 import { LOCAL_IP_ADDR } from '@env';
+import { firebaseAuth } from './firebase';
 
 interface Options {
   isAuth?: boolean
@@ -22,14 +23,13 @@ const getApiConfig = () => {
   return {
     baseURL: `${backendUrl}api/v1/`,
     timeout: 5000,
-    // mode: 'cors',
-    // credentials: 'include',
     withCredentials: true,
     headers: {
       "ContentType": 'application/json',
       "Accept": 'application/json',
       "Access-Control-Allow-Origin": "*",
       'X-Requested-With': 'XMLHttpRequest',
+      'Authorization': `Bearer ${firebaseAuth?.currentUser?.uid}`,
     },
   }
 }
@@ -39,8 +39,6 @@ const getAuthApiConfig = () => {
   return {
     baseURL: backendUrl,
     timeout: 5000,
-    // mode: 'cors',
-    // credentials: 'include',
     headers: {
       ContentType: 'application/json',
       Accept: 'application/json',

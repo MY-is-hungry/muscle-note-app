@@ -89,6 +89,13 @@ type RecordBaseType = {
 }
 // --------------------------
 
+export type CurrentUser = {
+  id: number
+  name: string,
+  email: string,
+  password: string,
+}
+
 export type CurrentUserType = {
   events: string[]
 }

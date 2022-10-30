@@ -11,7 +11,7 @@ import StartTrainingButton from '@containers/home/atoms/StartTrainingButton';
 const Home = ({ navigation }: any) => {
   const { data: monthlyRecord, isLoading: isMonthlyRecordLoading } = useMonthlyRecord({})
   const totalDate = monthlyRecord?.length
-  const totalVolume = monthlyRecord?.reduce((total, record) => total + getTotalVolume(record.eventRecords), 0)
+  const totalVolume = monthlyRecord?.reduce((total, eventRecord) => total + getTotalVolume(eventRecord?.records || []), 0)
 
   const testDB = () => {
     const db = getDatabase();
@@ -25,8 +25,8 @@ const Home = ({ navigation }: any) => {
     <ScrollWrapper>
       <HomeCalendar monthlyRecord={monthlyRecord || []} navigation={navigation}/>
       <HomeLabelArea totalDate={totalDate} totalVolume={totalVolume}/>
-      <HomeResultArea totalDate={totalDate} totalVolume={totalVolume}/>
       <StartTrainingButton/>
+      <HomeResultArea totalDate={totalDate} totalVolume={totalVolume}/>
     </ScrollWrapper>
   )
 }

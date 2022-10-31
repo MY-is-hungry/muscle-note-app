@@ -79,8 +79,8 @@ export type TUseMutationOptions = Partial<{
 // APIレスポンス汎用Type
 type ModelBaseType = {
   id: number
-  createdAt: string
-  updatedAt: string
+  // createdAt: string
+  // updatedAt: string
 }
 
 type RecordBaseType = {
@@ -94,12 +94,17 @@ export type ProgressType = {
   current: number
 }
 
+export type CategoryType = ModelBaseType & {
+  name: string
+  eventId?: number
+  events?: EventType[]
+}
+
 export type EventType = ModelBaseType & {
   name: string
   categoryId: number
   order?: number
   generalOrder?: number
-  userId: number
 }
 
 export type RecordType = ModelBaseType & {
@@ -112,10 +117,7 @@ export type RecordType = ModelBaseType & {
 
 export type EventRecordType = ModelBaseType & RecordBaseType & {
   records?: RecordType[]
-}
-
-export type DailyRecordType = ModelBaseType & RecordBaseType & {
-  eventRecords: EventRecordType[]
+  event?: EventType
 }
 
 

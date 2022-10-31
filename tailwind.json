@@ -67,11 +67,6 @@
 			"marginBottom": 12
 		}
 	},
-	"mt-4": {
-		"style": {
-			"marginTop": 16
-		}
-	},
 	"mt-6": {
 		"style": {
 			"marginTop": 24
@@ -90,6 +85,11 @@
 	"mb-5": {
 		"style": {
 			"marginBottom": 20
+		}
+	},
+	"mt-4": {
+		"style": {
+			"marginTop": 16
 		}
 	},
 	"mb-2": {
@@ -147,6 +147,11 @@
 			"height": 96
 		}
 	},
+	"h-10": {
+		"style": {
+			"height": 40
+		}
+	},
 	"h-6": {
 		"style": {
 			"height": 24
@@ -157,24 +162,14 @@
 			"height": 64
 		}
 	},
-	"h-68": {
+	"h-80": {
 		"style": {
-			"height": 272
+			"height": 320
 		}
 	},
 	"h-18": {
 		"style": {
 			"height": 72
-		}
-	},
-	"h-72": {
-		"style": {
-			"height": 288
-		}
-	},
-	"h-80": {
-		"style": {
-			"height": 320
 		}
 	},
 	"w-80": {
@@ -456,6 +451,11 @@
 	"pb-30": {
 		"style": {
 			"paddingBottom": 120
+		}
+	},
+	"pl-4": {
+		"style": {
+			"paddingLeft": 16
 		}
 	},
 	"text-lg": {

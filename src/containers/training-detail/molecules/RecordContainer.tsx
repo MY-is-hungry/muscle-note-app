@@ -1,4 +1,5 @@
 import { EventRecordType } from "@common/types"
+import { getTotalVolume } from "@common/utils/number"
 import { Text, View } from "react-native"
 import { useTailwind } from "tailwind-rn/dist"
 import RecordLine from "../atoms/RecordLine"
@@ -9,11 +10,11 @@ const RecordContainer: React.FC<Props> = ({eventRecord}) => {
 
   return (
     <View style={tailwind('w-80 p-6 mb-8 rounded-3xl bg-transp-gray')}>
-      <Text style={tailwind('mb-2 text-white text-lg')}>{eventRecord?.event.name}</Text>
-      { eventRecord?.trainingSets?.map ((trainingSet, i) => {
-        return <RecordLine key={`trainingSet${trainingSet.id}`} trainingSet={trainingSet} number={i+1}/>
+      <Text style={tailwind('mb-2 text-white text-lg')}>{eventRecord?.event?.name}</Text>
+      { eventRecord?.records?.map ((record, i) => {
+        return <RecordLine key={`record${record.id}`} record={record} number={i+1}/>
       })}
-      <TotalVolumeLine volume={eventRecord?.volume}/>
+      <TotalVolumeLine volume={getTotalVolume(eventRecord?.records || [])}/>
     </View>
   )
 }

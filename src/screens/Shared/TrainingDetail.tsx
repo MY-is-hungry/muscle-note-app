@@ -2,18 +2,24 @@ import { useDailyRecord } from "@common/hooks/reactQuery"
 import ScrollWrapper from "@components/layout/ScrollWrapper"
 import AddTrainingButton from "@containers/training-detail/atoms/AddTrainingButton"
 import RecordArea from "@containers/training-detail/organisms/RecordArea"
+import { useEffect } from "react"
 
 const TrainingDetail: React.FC<Props> = ({navigation, route}) => { 
-  const { date } = route.params
+  const { date, eventId } = route.params
   const { data: dailyRecord, isLoading: isDailyRecordLoading } = useDailyRecord({
-    deps: date,
+    deps: [date],
     urlParams: { date: date }
   })
-  console.log(dailyRecord)
 
   const handlePressFn = () => {
     console.log('a')
   }
+
+  useEffect(() => {
+    if(!!eventId) {
+      navigation.navigate('TrainingInput', { date: date, eventId: eventId })
+    }
+  }, [eventId])
 
   return (
     <ScrollWrapper>

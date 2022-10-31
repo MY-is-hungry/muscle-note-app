@@ -53,10 +53,6 @@
   margin-bottom: 0.75rem
 }
 
-.mt-4 {
-  margin-top: 1.0rem
-}
-
 .mt-6 {
   margin-top: 1.5rem
 }
@@ -71,6 +67,10 @@
 
 .mb-5 {
   margin-bottom: 1.25rem
+}
+
+.mt-4 {
+  margin-top: 1.0rem
 }
 
 .mb-2 {
@@ -117,6 +117,10 @@
   height: 6rem
 }
 
+.h-10 {
+  height: 2.5rem
+}
+
 .h-6 {
   height: 1.5rem
 }
@@ -125,20 +129,12 @@
   height: 4rem
 }
 
-.h-68 {
-  height: 17rem
+.h-80 {
+  height: 20rem
 }
 
 .h-18 {
   height: 4.5rem
-}
-
-.h-72 {
-  height: 18rem
-}
-
-.h-80 {
-  height: 20rem
 }
 
 .w-80 {
@@ -344,6 +340,10 @@
 
 .pb-30 {
   padding-bottom: 7.5rem
+}
+
+.pl-4 {
+  padding-left: 1.0rem
 }
 
 .text-lg {

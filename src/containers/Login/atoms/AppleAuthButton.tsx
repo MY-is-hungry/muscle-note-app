@@ -7,29 +7,28 @@ import { loginWithCredential, logout } from '@common/utils/auth'
 import { AUTH_ALERT } from '@common/constants/alert'
 import { useSetRecoilState } from 'recoil';
 import { initialCurrentUser } from '@common/recoil/atoms';
-import { useSignUpMutation } from '@common/hooks/reactQuery'
 
 const AppleAuthButton = () => { 
   const [isAppleAuthAvailable, authWithApple] = useAppleAuthentication()
   const setCurrentUser = useSetRecoilState(initialCurrentUser)
-  const userSignupMutation = useSignUpMutation({
-    options: {
-      onSuccess: (res: any) => { 
-        console.log(res.data)
-        setCurrentUser(res.data)
-      },
-      onError: () => {
-        logout()
-        Alert.alert(AUTH_ALERT.title, AUTH_ALERT.msg)
-      }
-    }
-  })
+  // const userSignupMutation = useSignUpMutation({
+  //   options: {
+  //     onSuccess: (res: any) => { 
+  //       console.log(res.data)
+  //       setCurrentUser(res.data)
+  //     },
+  //     onError: () => {
+  //       logout()
+  //       Alert.alert(AUTH_ALERT.title, AUTH_ALERT.msg)
+  //     }
+  //   }
+  // })
 
   const login = async (credential: AuthCredential, data?: any) => {
     const user = await loginWithCredential(credential, data)
-    if (user?.uid) {
-      userSignupMutation.mutate({user: { name: user.displayName, email: user.email, fb_uid: user.uid }})
-    }
+    // if (user?.uid) {
+    //   userSignupMutation.mutate({user: { name: user.displayName, email: user.email, fb_uid: user.uid }})
+    // }
   }
 
   const loginWithApple = async () => {

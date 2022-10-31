@@ -1,4 +1,3 @@
-import { CurrentUserType } from '@common/types'
 import { atom } from 'recoil'
 
 export const initialCurrentUserId = atom<string | null | undefined>({
@@ -6,9 +5,9 @@ export const initialCurrentUserId = atom<string | null | undefined>({
   default: ''
 })
 
-export const initialCurrentUser = atom<CurrentUserType>({
+export const initialCurrentUser = atom<any>({
   key: "currentUser",
-  default: { events: [] }
+  default: { categories: [] }
 })
 
 // バックエンド処理のフラグ
@@ -31,4 +30,9 @@ export const initialBgImage = atom({
 export const initialIsOpenEventDrawer = atom<boolean>({
   key: "isOpenEventDrawer",
   default: false
+})
+
+export const initialSelectEventName = atom<string>({
+  key: "selectEventName",
+  default: "全て"
 })

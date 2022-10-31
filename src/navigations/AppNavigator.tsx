@@ -1,8 +1,7 @@
-import SelectEventDrawer from '@containers/event/templates/SelectEventDrawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
-import AppTabNavigator from './AppTabNavigator';
+import TabNavigator from './TabNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,9 +13,8 @@ const AppNavigator = ({initialRouteName}: Props) => {
       <Stack.Navigator
         screenOptions={{headerShown: false}}
       >
-        <Stack.Screen name="Tab" component={AppTabNavigator} />
+        <Stack.Screen name="Tab" component={TabNavigator} />
       </Stack.Navigator>
-      <SelectEventDrawer/>
     </View>
   )
 }

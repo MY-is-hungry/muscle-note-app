@@ -9,7 +9,7 @@ import TabBar from '@containers/layout/organisms/TabBar';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
-const AppTabNavigator = ({navigation}: any) => {
+const TabNavigator = ({navigation}: any) => {
 
   return (
     <Tab.Navigator 
@@ -67,4 +67,4 @@ type Props = {
   initialRouteName: string
 }
 
-export default AppTabNavigator
+export default TabNavigator

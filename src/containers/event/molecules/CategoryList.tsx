@@ -1,25 +1,26 @@
-import { initialCurrentUser } from '@common/recoil/atoms';
-import { useState } from 'react';
+import { initialCurrentUser, initialSelectEventName } from '@common/recoil/atoms';
+import ScrollWrapper from '@components/layout/ScrollWrapper';
 import { Button, View } from 'react-native';
 import { useRecoilState } from 'recoil';
 import { useTailwind } from 'tailwind-rn/dist';
 import EventButton from '../atoms/EventButton';
 
-const CategoryList = () => {
+export const ALL_CATEGORY_OBJ = {id: "0", name: '全て'}
+
+const CategoryList: React.FC = ()=> {
   const tailwind = useTailwind()
   const [currentUser, setCurrentUser] = useRecoilState(initialCurrentUser)
-  const eventList = ['全て'].concat(currentUser.events)
-  const [selectedEvent, setSelectedEvent] = useState('全て')
+  const categoryList = [ALL_CATEGORY_OBJ, ...currentUser.categories]
+  const [selectedEvent, setSelectedEvent] = useRecoilState(initialSelectEventName)
 
-  const handleChangeSelectedEvent = (eventName: string) => {
-    console.log(eventName)
-    setSelectedEvent(eventName)
+  const handleChangeSelectedEvent = (name: string) => {
+    setSelectedEvent(name)
   }
 
   return (
     <View style={tailwind('flex flex-row flex-wrap justify-start items-center')}>
-      {eventList.map ((eventName, i) => {
-        return <EventButton key={i} name={eventName} isSelected={eventName === selectedEvent} onPressFn={handleChangeSelectedEvent}/>
+      {categoryList.map ((category) => {
+        return <EventButton key={category.id} name={category.name} isSelected={category.name === selectedEvent} onPressFn={handleChangeSelectedEvent}/>
       })}
     </View>
   )

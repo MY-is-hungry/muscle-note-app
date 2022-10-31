@@ -1,8 +1,9 @@
 import { initialIsOpenEventDrawer } from "@common/recoil/atoms"
-import { NAVY_BLUE } from "@common/styles/themes"
+import { NAVY_BLUE, TRANSP_BLACK } from "@common/styles/themes"
 import { DrawerState } from "@common/types/drawer"
 import DrawerTopBar from "@components/atoms/DrawerTopBar"
 import BaseWrapper from "@components/layout/BaseWrapper"
+import ScrollWrapper from "@components/layout/ScrollWrapper"
 import { useEffect, useRef } from "react"
 import { Animated, Dimensions, GestureResponderEvent, PanResponder, PanResponderGestureState, Text, useWindowDimensions, View } from "react-native"
 import { useRecoilState } from "recoil"
@@ -11,7 +12,7 @@ import CategoryList from "../molecules/CategoryList"
 import EventList from "../organisms/EventList"
 
 
-const SelectEventDrawer: React.FC = () => {
+const SelectEventDrawer: React.FC<Props> = ({navigation}) => {
   const tailwind = useTailwind()
   const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
 
@@ -103,10 +104,11 @@ const SelectEventDrawer: React.FC = () => {
     <Animated.View
       style={[
         {
+          zIndex: 9999,
           width: '100%',
           // 画面外まで引っ張れてしまうため、画面より少し高めに設定
           height: height+200,
-          backgroundColor: NAVY_BLUE,
+          backgroundColor: TRANSP_BLACK,
           borderRadius: 25,
           position: 'absolute',
           bottom: -height-200,
@@ -116,12 +118,16 @@ const SelectEventDrawer: React.FC = () => {
       {...panResponder.panHandlers}
     >
       <DrawerTopBar/>
-      <BaseWrapper>
+      <ScrollWrapper>
         <CategoryList/>
-        <EventList/>
-      </BaseWrapper>
+        <EventList navigation={navigation}/>
+      </ScrollWrapper>
     </Animated.View>
   )
+}
+
+type Props = {
+  navigation: any
 }
 
 export default SelectEventDrawer

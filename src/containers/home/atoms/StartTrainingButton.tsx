@@ -14,7 +14,7 @@ const StartTrainingButton: React.FC = () => {
       onPress={() => setIsOpenEventDrawer(!isOpenEventDrawer)}
       contentStyle={tailwind('w-full h-full')}
       labelStyle={tailwind('text-base')}
-      style={tailwind('w-64 h-16 mx-auto mt-4 bg-primary rounded-lg')}
+      style={tailwind('w-64 h-16 mx-auto mt-6 bg-primary rounded-lg')}
     >
       <Text>トレーニングを開始</Text>
     </Button>

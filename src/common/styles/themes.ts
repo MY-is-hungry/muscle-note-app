@@ -11,6 +11,7 @@ export const NAVY_BLUE =  '#182028'
 const BLACK = '#000000'
 
 export const BACKGROUND_COLOR = 'rgba(88, 88, 88, 0.9)'
+export const TRANSP_BLACK = 'rgba(33, 33, 33, 0.98)'
 
 type PaperThemes = {
   colors: {

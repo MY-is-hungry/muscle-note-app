@@ -23,7 +23,7 @@ const ButtonLabel: React.FC<Props> = ({name, value, onPressFn, isArrow}) => {
 type Props = { 
   name: string
   value?: string
-  onPressFn: () => void
+  onPressFn: (e?: any) => any | void
   isArrow?: boolean
 }
 

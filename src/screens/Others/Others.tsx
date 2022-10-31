@@ -12,7 +12,7 @@ const Others = ({ navigation }: any) => {
 
   const onPressLogout = () => {
     logout()
-    currentUser && setCurrentUser({ events: [] })
+    currentUser && setCurrentUser({ categories: [] })
   }
 
   return (

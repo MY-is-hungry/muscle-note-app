@@ -3,10 +3,10 @@ import { useMutation, UseMutationResult, useQuery, UseQueryResult } from "react-
 import { useRecoilState } from "recoil"
 import { initialErrorState } from "@common/recoil/atoms"
 import { isProduction } from "@common/utils/boolean"
-import { CurrentUser, DailyRecordType, MonthlyRecordType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
+import { CategoryType, EventRecordType, EventType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
 import { useRefresh } from "./useRefresh"
 import { axiosInstance, genMutationAxiosRequest } from "@common/utils/axios"
-import { GET_CURRENT_USER, GET_DAILY_RECORD, GET_EVENTS, GET_MONTHLY_RECORD, GET_USER, POST, POST_USER } from "@common/constants/reactQueryKeys"
+import { GET_CATEGORIES, GET_DAILY_RECORD, GET_EVENTS, GET_MONTHLY_RECORD } from "@common/constants/reactQueryKeys"
 
 // TODO: 全体の型づけ
 
@@ -100,53 +100,41 @@ export const useMutationWrapper = <T>({
   return resultUseMutation
 }
 
-export const useUserQuery = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<RailsResponse<any>> => {
-  return useQueryWrapper<RailsResponse<any>>({
-    queryKey: GET_USER,
-    deps,
-    options,
-    requestConfig: {
-      url: `users/${urlParams.id}`,
-    },
-  })
-}
-
-export const useSignUpMutation = ({ deps, options, urlParams }: TUseMutationOptions): UseMutationResult<RailsResponse<any>> => {
-  return useMutationWrapper<RailsResponse<any>>({
-    queryKey: POST_USER,
-    deps,
-    options,
-    requestConfig: {
-      method: POST,
-      url: `users`
-    }
-  })
-}
-
-export const useMonthlyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<MonthlyRecordType> => {
-  return useQueryWrapper<MonthlyRecordType>({
+export const useMonthlyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<EventRecordType[]> => {
+  return useQueryWrapper<EventRecordType[]>({
     queryKey: GET_MONTHLY_RECORD,
     deps,
     options,
     requestConfig: {
-      url: `monthly_records`,
+      url: `event_records/monthly`,
     },
   })
 }
 
-export const useDailyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<DailyRecordType> => {
-  return useQueryWrapper<DailyRecordType>({
+export const useDailyRecord = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<EventRecordType[]> => {
+  return useQueryWrapper<EventRecordType[]>({
     queryKey: GET_DAILY_RECORD,
     deps,
     options,
     requestConfig: {
-      url: `daily_records?date=${urlParams.date}`,
+      url: `event_records/daily?date=${urlParams.date}`,
     },
   })
 }
 
-export const useEvents = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<DailyRecordType> => {
-  return useQueryWrapper<DailyRecordType>({
+export const useCategories = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<CategoryType[]> => {
+  return useQueryWrapper<CategoryType[]>({
+    queryKey: GET_CATEGORIES,
+    deps,
+    options,
+    requestConfig: {
+      url: `categories?serialize_type=${urlParams?.serializeType}`,
+    },
+  })
+}
+
+export const useEvents = ({ deps, options, urlParams }: TUseQueryOptions): UseQueryResult<EventType[]> => {
+  return useQueryWrapper<EventType[]>({
     queryKey: GET_EVENTS,
     deps,
     options,

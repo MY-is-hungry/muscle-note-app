@@ -12,7 +12,7 @@ const BaseLabel: React.FC<Props> = ({name, value}) => {
   )
 }
 
-type Props = { 
+type Props = {
   name: string
   value: string
 }

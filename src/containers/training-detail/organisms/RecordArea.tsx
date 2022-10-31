@@ -1,4 +1,4 @@
-import { DailyRecordType } from "@common/types"
+import { EventRecordType } from "@common/types"
 import { View } from "react-native"
 import { useTailwind } from "tailwind-rn/dist"
 import RecordContainer from "../molecules/RecordContainer"
@@ -8,15 +8,15 @@ const RecordArea: React.FC<Props> = ({dailyRecord}) => {
 
   return (
     <View style={tailwind('flex-1')}>
-      { dailyRecord?.eventRecords.map ((eventRecord) => {
+      { dailyRecord?.map ((eventRecord) => {
         return <RecordContainer key={`event${eventRecord.id}`} eventRecord={eventRecord}/>
-      })} 
+      })}
     </View>
   )
 }
 
 type Props = {
-  dailyRecord?: DailyRecordType
+  dailyRecord?: EventRecordType[]
 }
 
 export default RecordArea

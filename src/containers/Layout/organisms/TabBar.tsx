@@ -6,6 +6,8 @@ import { useTailwind } from 'tailwind-rn/dist';
 import { Button, IconButton } from 'react-native-paper';
 import { useRecoilState } from 'recoil';
 import { initialIsOpenEventDrawer } from '@common/recoil/atoms';
+import SelectEventDrawer from '@containers/event/templates/SelectEventDrawer';
+import { isAuth } from '@common/utils/firebase';
 
 const {width} = Dimensions.get('window')
 
@@ -14,22 +16,26 @@ const TabBar = ({ state, descriptors, navigation }: any) =>{
   const tailwind = useTailwind()
 
   return (
-    <View style={tailwind('flex-row absolute bottom-0 bg-navy px-2')}>
+    <View style={tailwind('flex-row absolute bottom-0 bg-navy')}>
       {state.routes.map((route: any , index: number) => {
         if(route.name == "PlaceholderScreen"){
           return (
-            <View key={index} style={tailwind('flex justify-center items-center')}>
-              <IconButton 
-                icon='plus-circle'
-                color={PRIMARY_COLOR}
-                size={40}
-                onPress={() => setIsOpenEventDrawer(!isOpenEventDrawer)}
-                style={tailwind('mb-5')}
-              />
-            </View>
+            <React.Fragment key={index}>
+              <View style={tailwind('flex justify-center items-center')}>
+                <IconButton
+                  icon='plus-circle'
+                  color={PRIMARY_COLOR}
+                  size={40}
+                  onPress={() => setIsOpenEventDrawer(!isOpenEventDrawer)}
+                  style={tailwind('mb-5')}
+                />
+              </View>
+              {isOpenEventDrawer && <SelectEventDrawer navigation={navigation}/>}
+            </React.Fragment>
+
           )
         }
-        
+
         const { options } = descriptors[route.key]
         const label =
           options.tabBarLabel !== undefined

@@ -9,6 +9,7 @@ module.exports = {
       transparent: '#00000000',
       'light-gray': '#B3B3B3',
       'transp-gray': 'rgba(88, 88, 88, 0.9)',
+      'transp-black': 'rgba(33, 33, 33, 0.98)',
       'selected': 'rgba(144, 144, 144, 0.9)',
       'selected2': "#030D16",
       'navy': '#182028',

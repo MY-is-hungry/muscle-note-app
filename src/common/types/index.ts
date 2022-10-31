@@ -79,31 +79,25 @@ export type TUseMutationOptions = Partial<{
 // APIレスポンス汎用Type
 type ModelBaseType = {
   id: number
-  createdAt: string
-  updatedAt: string
+  // createdAt: string
+  // updatedAt: string
 }
 
 type RecordBaseType = {
   note: string
-  recordedOn: string
+  recordedAt: string
 }
 // --------------------------
-
-export type CurrentUser = {
-  id: number
-  name: string,
-  email: string,
-  password: string,
-}
-
-export type CurrentUserType = {
-  events: string[]
-}
-
 
 export type ProgressType = {
   goal: number
   current: number
+}
+
+export type CategoryType = ModelBaseType & {
+  name: string
+  eventId?: number
+  events?: EventType[]
 }
 
 export type EventType = ModelBaseType & {
@@ -111,10 +105,9 @@ export type EventType = ModelBaseType & {
   categoryId: number
   order?: number
   generalOrder?: number
-  userId: number
 }
 
-export type TrainingSetType = ModelBaseType & {
+export type RecordType = ModelBaseType & {
   note: string
   weight: number
   reps: number
@@ -122,14 +115,12 @@ export type TrainingSetType = ModelBaseType & {
   eventRecordId: number
 }
 
-export type EventRecordType = ModelBaseType & RecordBaseType & { 
-  volume: number
-  trainingSets?: TrainingSetType[]
-  event: EventType
+export type EventRecordType = ModelBaseType & RecordBaseType & {
+  records?: RecordType[]
+  event?: EventType
 }
 
-export type DailyRecordType = ModelBaseType & RecordBaseType & { 
-  eventRecords: EventRecordType[]
-}
 
-export type MonthlyRecordType = DailyRecordType[]
+
+// Time
+export type TimeFormat = 'yyyy-MM-dd' | 'yyyy-MM-ddThh:mm' | 'yyyy年MM月dd日' | 'yyyy/MM/dd hh:mm' | 'yyyy/MM/dd hh:mm:ss'

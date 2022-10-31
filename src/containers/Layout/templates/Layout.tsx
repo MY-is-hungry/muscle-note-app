@@ -1,15 +1,16 @@
 import { ReactNode, useEffect, useState } from "react"
 import { initialBgImage, initialCurrentUser } from '@common/recoil/atoms';
 import { useRecoilState } from "recoil";
-import { firebaseAuth } from "@common/utils/firebase";
+import { firebaseAuth, isAuth } from "@common/utils/firebase";
 import { useTailwind } from "tailwind-rn/dist";
 import { ImageBackground, ImageSourcePropType, View } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import AppNavigator from "@navigations/AppNavigator";
 import AuthNavigator from "@navigations/AuthNavigator";
 import { onAuthStateChanged } from "firebase/auth";
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getDatabase, onValue, ref, update } from "firebase/database";
 import { REQUIRE_BG_IMAGES } from "@common/constants";
+// import { useCategories } from "@common/hooks/reactQuery";
 
 const Layout: React.FC = () => {
   const tailwind = useTailwind()
@@ -17,8 +18,9 @@ const Layout: React.FC = () => {
   const [bgImage, setBgImage] = useRecoilState(initialBgImage)
   type OnlyKeys = keyof typeof bgImage
   const [renderComponent, setRenderComponent] = useState<JSX.Element>(
-    firebaseAuth?.currentUser ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
+    isAuth ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
   )
+  // const { data: categories, isLoading: isCategoryLoading } = useCategories({})
 
   // ログイン状態確認
   useEffect(() => {
@@ -43,6 +45,14 @@ const Layout: React.FC = () => {
       onlyOnce: true
     })
   }, [firebaseAuth?.currentUser])
+
+  // useEffect(() => {
+  //   if(firebaseAuth?.currentUser?.uid && !isCategoryLoading) {
+  //     const db = getDatabase()
+  //     const reference = ref(db, `users/${firebaseAuth.currentUser.uid}`)
+  //     update(reference, { categories: categories })
+  //   }
+  // }, [categories])
 
   return (
     <ImageBackground source={REQUIRE_BG_IMAGES[bgImage as keyof OnlyKeys] as ImageSourcePropType} resizeMode="cover" style={tailwind('flex-1 w-full h-full')}>

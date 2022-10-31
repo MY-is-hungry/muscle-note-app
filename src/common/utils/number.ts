@@ -1,5 +1,5 @@
-import { EventRecordType } from "@common/types"
+import { RecordType } from "@common/types"
 
-export const getTotalVolume = (eventRecords: EventRecordType[]): number => {
-  return eventRecords.reduce((totalVolume, record) => totalVolume + record.volume, 0)
+export const getTotalVolume = (records: RecordType[]): number => {
+  return records.reduce((totalVolume, record) => totalVolume + record.volume, 0)
 }

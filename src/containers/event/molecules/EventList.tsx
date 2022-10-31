@@ -5,14 +5,14 @@ import { getSplitTime } from "@common/utils/time"
 import ButtonLabel from "@components/atoms/ButtonLabel"
 import React, { useEffect, useState } from "react"
 import { View } from "react-native"
-import { useRecoilState, useRecoilValue } from "recoil"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { useTailwind } from "tailwind-rn/dist"
 import SimpleText from "../atoms/CategoryName"
-import { ALL_CATEGORY_OBJ } from "../molecules/CategoryList"
+import { ALL_CATEGORY_OBJ } from "./CategoryList"
 
 const EventList: React.FC<Props> = ({navigation}) => {
   const tailwind = useTailwind()
-  const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
+  const setIsOpenEventDrawer = useSetRecoilState(initialIsOpenEventDrawer)
 
   const { data: categories, isLoading: isCategoryLoading } = useCategories({})
   const currentUser = useRecoilValue(initialCurrentUser)
@@ -20,7 +20,8 @@ const EventList: React.FC<Props> = ({navigation}) => {
   const existCategories: CategoryType[] = categories?.length ? categories : currentUser?.categories
   const [displayCategories, setDisplayCateogories] = useState<CategoryType[]>(existCategories)
 
-  const renderTodayTrainingDetail = (eventId: number) => {
+  const renderTodayTrainingDetail = (e:any, eventId: number) => {
+    e.stopPropagation();
     const formatDate = getSplitTime(String(new Date()), 'yyyy-MM-dd')
     setIsOpenEventDrawer(false)
     navigation.navigate('TrainingDetail', { date: formatDate, eventId: eventId })
@@ -42,7 +43,7 @@ const EventList: React.FC<Props> = ({navigation}) => {
               <SimpleText text={category.name} color="white" size="xl"/>
             </View>
             { category.events?.map(event => {
-              return <ButtonLabel key={`event${event.id}`} name={event.name} onPressFn={() => renderTodayTrainingDetail(event.id)}/>
+              return <ButtonLabel key={`event${event.id}`} name={event.name} onPressFn={(e) => renderTodayTrainingDetail(e, event.id)}/>
             })}
           </View>
         )

@@ -431,12 +431,6 @@
 			"paddingRight": 16
 		}
 	},
-	"px-2": {
-		"style": {
-			"paddingLeft": 8,
-			"paddingRight": 8
-		}
-	},
 	"py-3": {
 		"style": {
 			"paddingTop": 12,

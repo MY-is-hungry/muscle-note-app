@@ -1,19 +1,12 @@
 import { initialIsOpenEventDrawer } from "@common/recoil/atoms"
 import { NAVY_BLUE, TRANSP_BLACK } from "@common/styles/themes"
-import { DrawerState } from "@common/types/drawer"
-import DrawerTopBar from "@components/atoms/DrawerTopBar"
-import BaseWrapper from "@components/layout/BaseWrapper"
-import ScrollWrapper from "@components/layout/ScrollWrapper"
+import { animateMove, DrawerState, getNextState } from "@common/utils/drawer"
+import DrawerHorizontalLine from "@components/atoms/DrawerHorizontalLine"
 import { useEffect, useRef } from "react"
-import { Animated, Dimensions, GestureResponderEvent, PanResponder, PanResponderGestureState, Text, useWindowDimensions, View } from "react-native"
+import { Animated, Dimensions, GestureResponderEvent, PanResponder, PanResponderGestureState } from "react-native"
 import { useRecoilState } from "recoil"
-import { useTailwind } from "tailwind-rn/dist"
-import CategoryList from "../molecules/CategoryList"
-import EventList from "../organisms/EventList"
 
-
-const SelectEventDrawer: React.FC<Props> = ({navigation}) => {
-  const tailwind = useTailwind()
+const SelectEventDrawer: React.FC<Props> = ({children, onDrawerStateChange}) => {
   const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
 
   // TODO: 横画面になった際に不具合があるので対処 https://zenn.dev/tasugi/articles/0814f06b514eed
@@ -33,72 +26,37 @@ const SelectEventDrawer: React.FC<Props> = ({navigation}) => {
   }, [isOpenEventDrawer])
 
   // 操作中のイベント
-  const onPanResponderMove = (
-    _: GestureResponderEvent,
-    { moveY }: PanResponderGestureState,
-  ) => {
+  const onPanResponderMove = (_: GestureResponderEvent, { moveY }: PanResponderGestureState) => {
     const val = movementValue(moveY)
     animateMove(y, val)
   }
 
   // 放した時のイベント
-  const onPanResponderRelease = (
-    _: GestureResponderEvent,
-    { moveY }: PanResponderGestureState,
-  ) => {
+  const onPanResponderRelease = (_: GestureResponderEvent, { moveY }: PanResponderGestureState) => {
     const valueToMove = movementValue(moveY)
     // TODO: Typeerror解消 _valueが未定義
     // @ts-ignore
     const nextState = getNextState(state._value, valueToMove, margin)
     state.setValue(nextState)
     nextState === DrawerState.Closed && setIsOpenEventDrawer(false)
-    animateMove(y, nextState)
+    animateMove(y, nextState, onDrawerStateChange(nextState))
   }
 
   // レスポンダーに何かさせるか判定 今だと、10以上 -10以下
-  // const onMoveShouldSetPanResponder = (
-  //   _: GestureResponderEvent,
-  //   { dy }: PanResponderGestureState,
-  // ) => Math.abs(dy) >= 10
+  const onMoveShouldSetPanResponder = (
+    _: GestureResponderEvent,
+    { dy }: PanResponderGestureState,
+  ) => Math.abs(dy) >= 10
 
   // イベントハンドラーを割り当て
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      // onStartShouldSetPanResponderCapture: onMoveShouldSetPanResponder,
+      onStartShouldSetPanResponderCapture: onMoveShouldSetPanResponder,
       onPanResponderMove,
       onPanResponderRelease,
     }),
   ).current
-
-  const animateMove = (y: Animated.Value, toValue: number | Animated.Value, callback?: any) => {
-    Animated.spring(y, {
-      toValue: -toValue,
-      tension: 20,
-      useNativeDriver: false,
-    }).start((finished) => {
-      finished && callback && callback()
-    })
-  }
-
-  const getNextState = (
-    currentState: DrawerState,
-    val: number,
-    margin: number,
-  ): DrawerState => {
-    switch (currentState) {
-      case DrawerState.Open:
-        return val >= currentState
-          ? DrawerState.Open
-          : DrawerState.Closed
-      case DrawerState.Closed:
-        return val >= currentState + margin
-          ? DrawerState.Open
-          : DrawerState.Closed
-      default:
-        return currentState
-    }
-  }
 
   return (
     <Animated.View
@@ -117,17 +75,14 @@ const SelectEventDrawer: React.FC<Props> = ({navigation}) => {
       ]}
       {...panResponder.panHandlers}
     >
-      <DrawerTopBar/>
-      <ScrollWrapper>
-        <CategoryList/>
-        <EventList navigation={navigation}/>
-      </ScrollWrapper>
+      <DrawerHorizontalLine/>
+      {children}
     </Animated.View>
   )
 }
 
 type Props = {
-  navigation: any
+  onDrawerStateChange: (nextState: DrawerState) => void;
 }
 
 export default SelectEventDrawer

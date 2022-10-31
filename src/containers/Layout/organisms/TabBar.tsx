@@ -6,8 +6,7 @@ import { useTailwind } from 'tailwind-rn/dist';
 import { Button, IconButton } from 'react-native-paper';
 import { useRecoilState } from 'recoil';
 import { initialIsOpenEventDrawer } from '@common/recoil/atoms';
-import SelectEventDrawer from '@containers/event/templates/SelectEventDrawer';
-import { isAuth } from '@common/utils/firebase';
+import SelectEvent from '@containers/event/templates/SelectEvent';
 
 const {width} = Dimensions.get('window')
 
@@ -30,7 +29,7 @@ const TabBar = ({ state, descriptors, navigation }: any) =>{
                   style={tailwind('mb-5')}
                 />
               </View>
-              {isOpenEventDrawer && <SelectEventDrawer navigation={navigation}/>}
+              {isOpenEventDrawer && <SelectEvent navigation={navigation}/>}
             </React.Fragment>
 
           )

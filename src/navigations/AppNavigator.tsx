@@ -1,27 +1,26 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
-import AppTabNavigator from './AppTabNavigator';
+import { useTailwind } from 'tailwind-rn/dist';
+import TabNavigator from './TabNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = ({initialRouteName}: Props) => {
+  const tailwind = useTailwind()
+
   return (
-    <View style={{ flex: 1 }}>
+    <View style={tailwind('flex-1')}>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
       >
-        <Stack.Screen name="Tab" component={AppTabNavigator} />
+        <Stack.Screen name="Tab" component={TabNavigator} />
       </Stack.Navigator>
     </View>
   )
 }
 
 type RootStackParamList = {
-  Main: undefined
   Tab: undefined
-  App: undefined
-  Home: undefined
-  Test: undefined
 }
 type Props = {
   initialRouteName: string

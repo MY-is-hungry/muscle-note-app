@@ -1,38 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { LogBox, StyleSheet, View } from 'react-native';
+import React from 'react'
 import { TailwindProvider } from 'tailwind-rn';
 import utilities from './tailwind.json';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
-import AppNavigator from './src/navigations/AppNavigator';
+import { customPaperTheme, customNavTheme } from './src/common/styles/themes';
+import Layout from './src/containers/layout/templates/Layout'
+import { LogBox } from 'react-native';
+import { QueryClientProvider, QueryClient } from 'react-query'
 
 LogBox.ignoreLogs(['Remote debugger']);
 
 const App = () => {
-  let renderComponent = <AppNavigator initialRouteName='Test' />
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        refetchOnWindowFocus: false,
+        staleTime: 300000,
+      },
+    },
+  });
 
   return (
-    <RecoilRoot>
-      <PaperProvider>
-        <NavigationContainer>
-          <TailwindProvider utilities={utilities}>
-            <View style={styles.container}>
-              <StatusBar style="auto" />
-              {renderComponent}
-              {/* <Test/> */}
-            </View>
-          </TailwindProvider>
-        </NavigationContainer>
-      </PaperProvider>
-    </RecoilRoot>
-  );
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <PaperProvider theme={customPaperTheme}>
+          <NavigationContainer theme={customNavTheme}>
+            <TailwindProvider utilities={utilities}>
+              <Layout/>
+            </TailwindProvider>
+          </NavigationContainer>
+        </PaperProvider>
+      </RecoilRoot>
+    </QueryClientProvider>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-});
-
 export default App

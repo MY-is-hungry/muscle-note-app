@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react"
-import { initialBgImage, initialCurrentUser } from '@common/recoil/atoms';
+import { initialBgImage, initialCurrentUser, initialIsOpenEventDrawer } from '@common/recoil/atoms';
 import { useRecoilState } from "recoil";
 import { firebaseAuth, isAuth } from "@common/utils/firebase";
 import { useTailwind } from "tailwind-rn/dist";
@@ -10,19 +10,20 @@ import AuthNavigator from "@navigations/AuthNavigator";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDatabase, onValue, ref, update } from "firebase/database";
 import { REQUIRE_BG_IMAGES } from "@common/constants";
+import CloseButton from "@components/atoms/CloseButton";
 // import { useCategories } from "@common/hooks/reactQuery";
 
 const Layout: React.FC = () => {
   const tailwind = useTailwind()
   const [currentUser, setCurrentUser] = useRecoilState(initialCurrentUser)
   const [bgImage, setBgImage] = useRecoilState(initialBgImage)
+  const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
   type OnlyKeys = keyof typeof bgImage
   const [renderComponent, setRenderComponent] = useState<JSX.Element>(
     isAuth ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
   )
   // const { data: categories, isLoading: isCategoryLoading } = useCategories({})
 
-  // ログイン状態確認
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
@@ -59,6 +60,7 @@ const Layout: React.FC = () => {
       <View style={tailwind('flex-1 bg-black bg-opacity-50')}>
         <StatusBar style="auto" />
         {renderComponent}
+        { isOpenEventDrawer && <CloseButton onPressFn={() => setIsOpenEventDrawer(false)}/>}
       </View>
     </ImageBackground>
   )

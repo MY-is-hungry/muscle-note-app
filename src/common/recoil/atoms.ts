@@ -26,13 +26,21 @@ export const initialBgImage = atom({
   default: 'trainingroom'
 })
 
-// 種目選択ドロワートリガー
+
+// 種目選択ドロワー
+//----------------------------------
 export const initialIsOpenEventDrawer = atom<boolean>({
   key: "isOpenEventDrawer",
   default: false
+})
+
+export const initialDrawerScroll = atom<boolean>({
+  key: "drawerScroll",
+  default: true
 })
 
 export const initialSelectEventName = atom<string>({
   key: "selectEventName",
   default: "全て"
 })
+//----------------------------------

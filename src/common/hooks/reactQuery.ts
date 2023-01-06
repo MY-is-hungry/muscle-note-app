@@ -5,7 +5,7 @@ import { initialErrorState } from "@common/recoil/atoms"
 import { isProduction } from "@common/utils/boolean"
 import { CategoryType, EventRecordType, EventType, RailsErrorResponseData, RailsResponse, TUseMutationOptions, TUseQueryOptions, UseMutationProps, UseQueryProps } from '@common/types'
 import { useRefresh } from "./useRefresh"
-import { axiosInstance, genMutationAxiosRequest } from "@common/utils/axios"
+import { createAxiosInstance, genMutationAxiosRequest } from "@common/utils/axios"
 import { GET_CATEGORIES, GET_DAILY_RECORD, GET_EVENTS, GET_MONTHLY_RECORD } from "@common/constants/reactQueryKeys"
 
 // TODO: 全体の型づけ
@@ -30,7 +30,7 @@ export const useQueryWrapper = <T>({
     queryKeyName,
     async () => {
       try {
-        const res = await axiosInstance().get(requestConfig.url)
+        const res = await createAxiosInstance().get(requestConfig.url)
         // genMutationAxiosRequest({...requestConfig});
         return res.data
       } catch (err: any) {

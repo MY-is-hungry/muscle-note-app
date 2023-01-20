@@ -1,4 +1,4 @@
-import { useCategories } from "@common/hooks/reactQuery"
+import { useCategories } from "@common/hooks/useCategory"
 import { initialCurrentUser, initialIsOpenEventDrawer, initialSelectEventName } from "@common/recoil/atoms"
 import { CategoryType } from "@common/types"
 import { getSplitTime } from "@common/utils/time"
@@ -14,7 +14,7 @@ const EventList: React.FC<Props> = ({navigation}) => {
   const tailwind = useTailwind()
   const setIsOpenEventDrawer = useSetRecoilState(initialIsOpenEventDrawer)
 
-  const { data: categories, isLoading: isCategoryLoading } = useCategories({})
+  const { data: categories } = useCategories()
   const currentUser = useRecoilValue(initialCurrentUser)
   const [selectedCategoryName, setselectedCategoryName] = useRecoilState(initialSelectEventName)
   const existCategories: CategoryType[] = categories?.length ? categories : currentUser?.categories

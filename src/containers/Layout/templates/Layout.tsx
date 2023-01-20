@@ -1,17 +1,16 @@
-import { ReactNode, useEffect, useState } from "react"
+import { REQUIRE_BG_IMAGES } from "@common/constants";
 import { initialBgImage, initialCurrentUser, initialIsOpenEventDrawer } from '@common/recoil/atoms';
-import { useRecoilState } from "recoil";
 import { firebaseAuth, isAuth } from "@common/utils/firebase";
-import { useTailwind } from "tailwind-rn/dist";
-import { ImageBackground, ImageSourcePropType, View } from "react-native";
-import { StatusBar } from 'expo-status-bar';
+import CloseButton from "@components/atoms/CloseButton";
 import AppNavigator from "@navigations/AppNavigator";
 import AuthNavigator from "@navigations/AuthNavigator";
+import { StatusBar } from 'expo-status-bar';
 import { onAuthStateChanged } from "firebase/auth";
-import { getDatabase, onValue, ref, update } from "firebase/database";
-import { REQUIRE_BG_IMAGES } from "@common/constants";
-import CloseButton from "@components/atoms/CloseButton";
-// import { useCategories } from "@common/hooks/reactQuery";
+import { getDatabase, onValue, ref } from "firebase/database";
+import { useEffect, useState } from "react";
+import { ImageBackground, ImageSourcePropType, View } from "react-native";
+import { useRecoilState } from "recoil";
+import { useTailwind } from "tailwind-rn/dist";
 
 const Layout: React.FC = () => {
   const tailwind = useTailwind()
@@ -22,11 +21,10 @@ const Layout: React.FC = () => {
   const [renderComponent, setRenderComponent] = useState<JSX.Element>(
     isAuth ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
   )
-  // const { data: categories, isLoading: isCategoryLoading } = useCategories({})
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) {
+      if (!!user?.uid) {
         setRenderComponent(<AppNavigator initialRouteName='Home' />)
       } else {
         setRenderComponent(<AuthNavigator initialRouteName='Login' />)

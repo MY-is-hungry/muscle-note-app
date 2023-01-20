@@ -1,8 +1,8 @@
-import { DELETE, PATCH, POST, PUT } from '@common/constants/reactQueryKeys'
-import { MutationRequestConfig, RailsErrorResponseData } from '@common/types'
-import axios, { AxiosResponse, CancelToken } from 'axios'
-import humps from 'humps'
+import { DELETE, PATCH, POST, PUT } from '@common/constants/reactQueryKeys';
+import { MutationRequestConfig } from '@common/types';
 import { LOCAL_IP_ADDR } from '@env';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import humps from 'humps';
 import { firebaseAuth } from './firebase';
 
 interface Options {
@@ -70,6 +70,11 @@ export const createAxiosInstance = (options?: Options) => {
   )
 
   return instance
+}
+
+export const getRequest = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+  const axiosInstance = createAxiosInstance()
+  return axiosInstance.get(url, config).then((res) => res.data)
 }
 
 export const genMutationAxiosRequest = <T>({

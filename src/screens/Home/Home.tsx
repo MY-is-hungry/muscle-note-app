@@ -1,15 +1,15 @@
-import { getDatabase, ref, set } from 'firebase/database';
+import { useMonthlyRecord } from '@common/hooks/useRecord';
 import { firebaseAuth } from '@common/utils/firebase';
+import { getTotalVolume } from "@common/utils/number";
+import ScrollWrapper from '@components/layout/ScrollWrapper';
+import StartTrainingButton from '@containers/home/atoms/StartTrainingButton';
 import HomeCalendar from '@containers/home/organisms/HomeCalendar';
 import HomeLabelArea from '@containers/home/organisms/HomeLabelArea';
 import HomeResultArea from '@containers/home/organisms/HomeResultArea';
-import ScrollWrapper from '@components/layout/ScrollWrapper';
-import { useMonthlyRecord } from '@common/hooks/reactQuery';
-import { getTotalVolume } from "@common/utils/number"
-import StartTrainingButton from '@containers/home/atoms/StartTrainingButton';
+import { getDatabase, ref, set } from 'firebase/database';
 
 const Home = ({ navigation }: any) => {
-  const { data: monthlyRecord, isLoading: isMonthlyRecordLoading } = useMonthlyRecord({})
+  const { data: monthlyRecord, isError, isLoading } = useMonthlyRecord();
   const totalDate = monthlyRecord?.length
   const totalVolume = monthlyRecord?.reduce((total, eventRecord) => total + getTotalVolume(eventRecord?.records || []), 0)
 

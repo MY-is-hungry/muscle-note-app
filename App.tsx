@@ -1,13 +1,13 @@
-import React from 'react'
-import { TailwindProvider } from 'tailwind-rn';
-import utilities from './tailwind.json';
 import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import { LogBox } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { RecoilRoot } from 'recoil';
-import { customPaperTheme, customNavTheme } from './src/common/styles/themes';
-import Layout from './src/containers/layout/templates/Layout'
-import { LogBox } from 'react-native';
-import { QueryClientProvider, QueryClient } from 'react-query'
+import { TailwindProvider } from 'tailwind-rn';
+import { customNavTheme, customPaperTheme } from './src/common/styles/themes';
+import Layout from './src/containers/layout/templates/Layout';
+import utilities from './tailwind.json';
 
 LogBox.ignoreLogs(['Remote debugger']);
 

@@ -1,4 +1,4 @@
-import { useDailyRecord } from "@common/hooks/reactQuery"
+import { useDailyRecord } from "@common/hooks/useRecord"
 import ScrollWrapper from "@components/layout/ScrollWrapper"
 import AddTrainingButton from "@containers/training-detail/atoms/AddTrainingButton"
 import RecordArea from "@containers/training-detail/organisms/RecordArea"
@@ -6,10 +6,7 @@ import { useEffect } from "react"
 
 const TrainingDetail: React.FC<Props> = ({navigation, route}) => { 
   const { date, eventId } = route.params
-  const { data: dailyRecord, isLoading: isDailyRecordLoading } = useDailyRecord({
-    deps: [date],
-    urlParams: { date: date }
-  })
+  const { data: dailyRecord, isLoading: isDailyRecordLoading } = useDailyRecord(date)
 
   const handlePressFn = () => {
     console.log('a')

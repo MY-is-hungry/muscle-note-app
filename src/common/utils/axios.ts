@@ -1,24 +1,24 @@
-import { DELETE, PATCH, POST, PUT } from '@common/constants/reactQueryKeys'
-import { MutationRequestConfig, RailsErrorResponseData } from '@common/types'
-import axios, { AxiosResponse, CancelToken } from 'axios'
-import humps from 'humps'
+import { DELETE, PATCH, POST, PUT } from '@common/constants/reactQueryKeys';
+import { MutationRequestConfig } from '@common/types';
 import { LOCAL_IP_ADDR } from '@env';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import humps from 'humps';
 import { firebaseAuth } from './firebase';
 
 interface Options {
   isAuth?: boolean
-  cancelToken?: CancelToken
 }
 
-const parseSnakeToCamel = (obj: object): object => {
+export const parseSnakeToCamel = (obj: object): object => {
   return humps.camelizeKeys(obj)
 }
 
+// TODO: 開発環境以外のURL設定
 const getBackendUrl = () => {
   return process.env.NODE_ENV === 'development' ? `http://${LOCAL_IP_ADDR}:3000/` : ''
 }
 
-const getApiConfig = () => {
+export const getApiConfig = () => {
   const backendUrl = getBackendUrl()
   return {
     baseURL: `${backendUrl}api/v1/`,
@@ -49,11 +49,10 @@ const getAuthApiConfig = () => {
   }
 }
 
-export const axiosInstance = (options?: Options) => {
+export const createAxiosInstance = (options?: Options) => {
   const isAuth = options ? options.isAuth : false
   const apiConfig = isAuth ? getAuthApiConfig() : getApiConfig()
-  const configWithCancelToken = { ...apiConfig, cancelToken: options?.cancelToken }
-  const instance = axios.create(configWithCancelToken)
+  const instance = axios.create(apiConfig)
 
   instance.interceptors.response.use(
     (response) => {
@@ -73,6 +72,11 @@ export const axiosInstance = (options?: Options) => {
   return instance
 }
 
+export const getRequest = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+  const axiosInstance = createAxiosInstance()
+  return axiosInstance.get(url, config).then((res) => res.data)
+}
+
 export const genMutationAxiosRequest = <T>({
   method,
   url,
@@ -81,13 +85,13 @@ export const genMutationAxiosRequest = <T>({
 }: MutationRequestConfig & any): Promise<AxiosResponse<T>> | null => {
   switch(method){
     case POST:
-      return axiosInstance().post(url, params, config)
+      return createAxiosInstance().post(url, params, config)
     case PATCH:
-      return axiosInstance().patch(url, params, config)
+      return createAxiosInstance().patch(url, params, config)
     case PUT:
-      return axiosInstance().put(url, params, config)
+      return createAxiosInstance().put(url, params, config)
     case DELETE:
-      return axiosInstance().delete(url)
+      return createAxiosInstance().delete(url)
     default:
       return null
   }
@@ -99,7 +103,7 @@ export const fetch = async (
   query?: Object,
   options?: Options
 ) => {
-  const instance = axiosInstance(options)
+  const instance = createAxiosInstance(options)
 
   try {
     const res = await instance.get(path, { params: query })

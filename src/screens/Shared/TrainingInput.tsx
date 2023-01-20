@@ -1,4 +1,3 @@
-import { useDailyRecord } from "@common/hooks/reactQuery"
 import ScrollWrapper from "@components/layout/ScrollWrapper"
 import { Text } from "react-native"
 

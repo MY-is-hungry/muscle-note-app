@@ -1,5 +1,5 @@
 import { useCategories } from "@common/hooks/useCategory"
-import { initialCurrentUser, initialIsOpenEventDrawer, initialSelectEventName } from "@common/recoil/atoms"
+import { initialCurrentUser, initialIsOpenExerciseDrawer, initialSelectExerciseName } from "@common/recoil/atoms"
 import { CategoryType } from "@common/types"
 import { getSplitTime } from "@common/utils/time"
 import ButtonLabel from "@components/atoms/ButtonLabel"
@@ -10,21 +10,21 @@ import { useTailwind } from "tailwind-rn/dist"
 import SimpleText from "../atoms/CategoryName"
 import { ALL_CATEGORY_OBJ } from "./CategoryList"
 
-const EventList: React.FC<Props> = ({navigation}) => {
+const ExerciseList: React.FC<Props> = ({navigation}) => {
   const tailwind = useTailwind()
-  const setIsOpenEventDrawer = useSetRecoilState(initialIsOpenEventDrawer)
+  const setIsOpenExerciseDrawer = useSetRecoilState(initialIsOpenExerciseDrawer)
 
   const { data: categories } = useCategories()
   const currentUser = useRecoilValue(initialCurrentUser)
-  const [selectedCategoryName, setselectedCategoryName] = useRecoilState(initialSelectEventName)
+  const [selectedCategoryName, setSelectedCategoryName] = useRecoilState(initialSelectExerciseName)
   const existCategories: CategoryType[] = categories?.length ? categories : currentUser?.categories
   const [displayCategories, setDisplayCateogories] = useState<CategoryType[]>(existCategories)
 
-  const renderTodayTrainingDetail = (e:any, eventId: number) => {
+  const renderTodayTrainingDetail = (e:any, exerciseId: number) => {
     e.stopPropagation();
     const formatDate = getSplitTime(String(new Date()), 'yyyy-MM-dd')
-    setIsOpenEventDrawer(false)
-    navigation.navigate('TrainingDetail', { date: formatDate, eventId: eventId })
+    setIsOpenExerciseDrawer(false)
+    navigation.navigate('TrainingDetail', { date: formatDate, exerciseId: exerciseId })
   }
 
   useEffect(() => {
@@ -42,8 +42,8 @@ const EventList: React.FC<Props> = ({navigation}) => {
             <View style={tailwind('mt-6 pl-4')}>
               <SimpleText text={category.name} color="white" size="xl"/>
             </View>
-            { category.events?.map(event => {
-              return <ButtonLabel key={`event${event.id}`} name={event.name} onPressFn={(e) => renderTodayTrainingDetail(e, event.id)}/>
+            { category.exercises?.map(exercise => {
+              return <ButtonLabel key={`exercise${exercise.id}`} name={exercise.name} onPressFn={(e) => renderTodayTrainingDetail(e, exercise.id)}/>
             })}
           </View>
         )
@@ -56,4 +56,4 @@ type Props = {
   navigation: any
 }
 
-export default EventList
+export default ExerciseList

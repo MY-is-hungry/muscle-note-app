@@ -1,6 +1,5 @@
-import { useMonthlyRecord } from '@common/hooks/useRecord';
+import { useRecords } from '@common/hooks/useRecord';
 import { firebaseAuth } from '@common/utils/firebase';
-import { getTotalVolume } from "@common/utils/number";
 import ScrollWrapper from '@components/layout/ScrollWrapper';
 import StartTrainingButton from '@containers/home/atoms/StartTrainingButton';
 import HomeCalendar from '@containers/home/organisms/HomeCalendar';
@@ -9,9 +8,8 @@ import HomeResultArea from '@containers/home/organisms/HomeResultArea';
 import { getDatabase, ref, set } from 'firebase/database';
 
 const Home = ({ navigation }: any) => {
-  const { data: monthlyRecord, isError, isLoading } = useMonthlyRecord();
-  const totalDate = monthlyRecord?.length
-  const totalVolume = monthlyRecord?.reduce((total, eventRecord) => total + getTotalVolume(eventRecord?.records || []), 0)
+  const { data: monthlyData, isError, isLoading } = useRecords('monthly')
+  console.log(monthlyData)
 
   const testDB = () => {
     const db = getDatabase();
@@ -23,10 +21,10 @@ const Home = ({ navigation }: any) => {
 
   return (
     <ScrollWrapper>
-      <HomeCalendar monthlyRecord={monthlyRecord || []} navigation={navigation}/>
-      <HomeLabelArea totalDate={totalDate} totalVolume={totalVolume}/>
+      <HomeCalendar monthlyRecord={monthlyData?.data || []} navigation={navigation}/>
+      <HomeLabelArea totalDate={monthlyData?.daysCount} totalVolume={monthlyData?.volume}/>
       <StartTrainingButton/>
-      <HomeResultArea totalDate={totalDate} totalVolume={totalVolume}/>
+      <HomeResultArea totalDate={monthlyData?.daysCount} totalVolume={monthlyData?.volume}/>
     </ScrollWrapper>
   )
 }

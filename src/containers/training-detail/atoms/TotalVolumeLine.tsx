@@ -1,4 +1,3 @@
-import { TrainingSetType } from "@common/types"
 import { Text, View } from "react-native"
 import { useTailwind } from "tailwind-rn/dist"
 

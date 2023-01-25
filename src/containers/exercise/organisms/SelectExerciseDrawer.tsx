@@ -1,13 +1,12 @@
-import { initialIsOpenEventDrawer } from "@common/recoil/atoms"
-import { NAVY_BLUE, TRANSP_BLACK } from "@common/styles/themes"
-import { animateMove, DrawerState, getNextState } from "@common/utils/drawer"
-import DrawerHorizontalLineArea from "@components/atoms/DrawerHorizontalLineArea"
+import { initialIsOpenExerciseDrawer } from "@common/recoil/atoms"
+import { TRANSP_BLACK } from "@common/styles/themes"
+import { animateMove, DrawerState } from "@common/utils/drawer"
 import { useEffect, useRef } from "react"
-import { Animated, Dimensions, GestureResponderEvent, PanResponder, PanResponderGestureState } from "react-native"
+import { Animated, Dimensions } from "react-native"
 import { useRecoilState } from "recoil"
 
-const SelectEventDrawer: React.FC<Props> = ({children, onDrawerStateChange}) => {
-  const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
+const SelectExerciseDrawer: React.FC<Props> = ({children, onDrawerStateChange}) => {
+  const [isOpenExerciseDrawer, setIsOpenExerciseDrawer] = useRecoilState(initialIsOpenExerciseDrawer)
 
   // TODO: 横画面になった際に不具合があるので対処 https://zenn.dev/tasugi/articles/0814f06b514eed
   const { height } = Dimensions.get('window')
@@ -17,14 +16,14 @@ const SelectEventDrawer: React.FC<Props> = ({children, onDrawerStateChange}) => 
   // const movementValue = (moveY: number) => height - moveY
 
   useEffect (() => {
-    if(isOpenEventDrawer) {
+    if(isOpenExerciseDrawer) {
       state.setValue(DrawerState.Open)
       animateMove(y, DrawerState.Open)
     }
-  }, [isOpenEventDrawer])
+  }, [isOpenExerciseDrawer])
 
   // // 操作中のイベント
-  // const onPanResponderMove = (_: GestureResponderEvent, { moveY }: PanResponderGestureState) => {
+  // const onPanResponderMove = (_: GestureResponderExercise, { moveY }: PanResponderGestureState) => {
   //   console.log('onPanResponderMove')
   //   const val = movementValue(moveY)
   //   animateMove(y, val)
@@ -40,8 +39,8 @@ const SelectEventDrawer: React.FC<Props> = ({children, onDrawerStateChange}) => 
   //   const nextState = getNextState(state._value, valueToMove, margin)
   //   state.setValue(nextState)
   //   // console.log('nextState', nextState)
-  //   // console.log('関数ないどろわー', isOpenEventDrawer)
-  //   if(nextState === DrawerState.Closed) setIsOpenEventDrawer(false)
+  //   // console.log('関数ないどろわー', isOpenExerciseDrawer)
+  //   if(nextState === DrawerState.Closed) setIsOpenExerciseDrawer(false)
   //   // setScroll(true)
   //   animateMove(y, nextState, onDrawerStateChange(nextState))
   // }
@@ -108,4 +107,4 @@ type Props = {
   onDrawerStateChange: (nextState: DrawerState) => void;
 }
 
-export default SelectEventDrawer
+export default SelectExerciseDrawer

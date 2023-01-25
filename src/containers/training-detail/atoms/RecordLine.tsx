@@ -11,7 +11,7 @@ const RecordLine: React.FC<Props> = ({record, number}) => {
         <Text style={tailwind('min-w-6 text-white text-lg')}>{number}.</Text>
         <Text style={tailwind('text-white text-lg')}>  {record?.weight}kg</Text>
         <Text style={tailwind('text-white text-xl')}>  ×  </Text>
-        <Text style={tailwind('text-white text-lg')}>{record?.reps}reps</Text>
+        <Text style={tailwind('text-white text-lg')}>{record?.rep}reps</Text>
       </View>
     </View>
   )

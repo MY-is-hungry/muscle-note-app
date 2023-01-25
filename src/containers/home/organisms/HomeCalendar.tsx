@@ -1,13 +1,13 @@
 import { homeCalendarThemes } from "@common/styles/calendar";
-import { EventRecordType } from "@common/types";
+import { RecordType } from "@common/types";
 import { getSplitTime } from "@common/utils/time";
-import { Calendar, DateData, LocaleConfig } from "react-native-calendars"
+import { Calendar, DateData, LocaleConfig } from "react-native-calendars";
 import { useTailwind } from "tailwind-rn/dist";
 
 const HomeCalendar: React.FC<Props> = ({monthlyRecord, navigation}) => {
   const tailwind = useTailwind()
   const markedDates = monthlyRecord.reduce((prevObj, record) => (
-    {...prevObj, [getSplitTime(record.recordedAt, 'yyyy-MM-dd')]: {selected: true}}
+    {...prevObj, [getSplitTime(record.startAt, 'yyyy-MM-dd')]: {selected: true}}
   ), {})
 
   const handleClickDate = (date: DateData) => {
@@ -44,7 +44,7 @@ LocaleConfig.locales.jp = {
 LocaleConfig.defaultLocale = 'jp';
 
 type Props = {
-  monthlyRecord: EventRecordType[]
+  monthlyRecord: RecordType[]
   navigation: any
 }
 

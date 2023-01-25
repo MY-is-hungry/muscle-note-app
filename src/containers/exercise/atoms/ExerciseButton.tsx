@@ -1,8 +1,7 @@
-import { Text, TouchableOpacity, View } from "react-native"
-import { Button } from "react-native-paper"
+import { Text, TouchableOpacity } from "react-native"
 import { useTailwind } from "tailwind-rn/dist"
 
-const EventButton: React.FC<Props> = ({name, isSelected, onPressFn}) => {
+const ExerciseButton: React.FC<Props> = ({name, isSelected, onPressFn}) => {
   const tailwind = useTailwind()
 
   return (
@@ -20,7 +19,7 @@ const EventButton: React.FC<Props> = ({name, isSelected, onPressFn}) => {
 type Props = {
   name: string
   isSelected: boolean
-  onPressFn: (eventName: string) => void
+  onPressFn: (exerciseName: string) => void
 }
 
-export default EventButton
+export default ExerciseButton

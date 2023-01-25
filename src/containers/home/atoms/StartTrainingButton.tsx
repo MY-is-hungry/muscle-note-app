@@ -1,17 +1,17 @@
-import { Text, View } from "react-native"
-import { useTailwind } from "tailwind-rn/dist"
+import { initialIsOpenExerciseDrawer } from "@common/recoil/atoms"
+import { Text } from "react-native"
 import { Button } from "react-native-paper"
 import { useRecoilState } from "recoil"
-import { initialIsOpenEventDrawer } from "@common/recoil/atoms"
+import { useTailwind } from "tailwind-rn/dist"
 
 const StartTrainingButton: React.FC = () => {
   const tailwind = useTailwind()
-  const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
+  const [isOpenExerciseDrawer, setIsOpenExerciseDrawer] = useRecoilState(initialIsOpenExerciseDrawer)
 
   return (
     <Button
       mode='contained'
-      onPress={() => setIsOpenEventDrawer(!isOpenEventDrawer)}
+      onPress={() => setIsOpenExerciseDrawer(!isOpenExerciseDrawer)}
       contentStyle={tailwind('w-full h-full')}
       labelStyle={tailwind('text-base')}
       style={tailwind('w-64 h-16 mx-auto mt-6 bg-primary rounded-lg')}

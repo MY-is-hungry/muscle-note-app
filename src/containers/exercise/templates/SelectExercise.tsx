@@ -3,19 +3,19 @@ import ScrollWrapper from "@components/layout/ScrollWrapper"
 import React from "react"
 import { useRecoilState } from "recoil"
 import CategoryList from "../molecules/CategoryList"
-import EventList from "../molecules/ExerciseList"
-import SelectEventDrawer from "../organisms/SelectExerciseDrawer"
+import ExerciseList from "../molecules/ExerciseList"
+import SelectExerciseDrawer from "../organisms/SelectExerciseDrawer"
 
-const SelectEvent: React.FC<Props> = ({navigation}) => {
+const SelectExercise: React.FC<Props> = ({navigation}) => {
   const [scroll, setScroll] = useRecoilState<boolean>(initialDrawerScroll)
 
   return (
-    <SelectEventDrawer onDrawerStateChange={() => {}}>
+    <SelectExerciseDrawer onDrawerStateChange={() => {}}>
       <ScrollWrapper scrollEnabled={scroll}>
         <CategoryList/>
-        <EventList navigation={navigation}/>
+        <ExerciseList navigation={navigation}/>
       </ScrollWrapper>
-    </SelectEventDrawer>
+    </SelectExerciseDrawer>
   )
 }
 
@@ -23,4 +23,4 @@ type Props = {
   navigation: any
 }
 
-export default SelectEvent
+export default SelectExercise

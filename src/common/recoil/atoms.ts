@@ -29,8 +29,8 @@ export const initialBgImage = atom({
 
 // 種目選択ドロワー
 //----------------------------------
-export const initialIsOpenEventDrawer = atom<boolean>({
-  key: "isOpenEventDrawer",
+export const initialIsOpenExerciseDrawer = atom<boolean>({
+  key: "isOpenExerciseDrawer",
   default: false
 })
 
@@ -39,8 +39,8 @@ export const initialDrawerScroll = atom<boolean>({
   default: true
 })
 
-export const initialSelectEventName = atom<string>({
-  key: "selectEventName",
+export const initialSelectExerciseName = atom<string>({
+  key: "selectExerciseName",
   default: "全て"
 })
 //----------------------------------

@@ -1,6 +1,6 @@
-import { initialIsOpenEventDrawer } from '@common/recoil/atoms';
+import { initialIsOpenExerciseDrawer } from '@common/recoil/atoms';
 import { PRIMARY_COLOR } from '@common/styles/themes';
-import SelectEvent from '@containers/exercise/templates/SelectExercise';
+import SelectExercise from '@containers/exercise/templates/SelectExercise';
 import React from 'react';
 import { Dimensions, Pressable, View } from 'react-native';
 import { IconButton } from 'react-native-paper';
@@ -11,7 +11,7 @@ import NavigationIcon from '../molecules/NavigationIcon';
 const {width} = Dimensions.get('window')
 
 const TabBar = ({ state, descriptors, navigation }: any) =>{
-  const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
+  const [isOpenExerciseDrawer, setIsOpenExerciseDrawer] = useRecoilState(initialIsOpenExerciseDrawer)
   const tailwind = useTailwind()
 
   return (
@@ -25,11 +25,11 @@ const TabBar = ({ state, descriptors, navigation }: any) =>{
                   icon='plus-circle'
                   color={PRIMARY_COLOR}
                   size={40}
-                  onPress={() => setIsOpenEventDrawer(!isOpenEventDrawer)}
+                  onPress={() => setIsOpenExerciseDrawer(!isOpenExerciseDrawer)}
                   style={tailwind('mb-5')}
                 />
               </View>
-              {isOpenEventDrawer && <SelectEvent navigation={navigation}/>}
+              {isOpenExerciseDrawer && <SelectExercise navigation={navigation}/>}
             </React.Fragment>
 
           )

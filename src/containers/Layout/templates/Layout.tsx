@@ -1,5 +1,5 @@
 import { REQUIRE_BG_IMAGES } from "@common/constants";
-import { initialBgImage, initialCurrentUser, initialIsOpenEventDrawer } from '@common/recoil/atoms';
+import { initialBgImage, initialCurrentUser, initialIsOpenExerciseDrawer } from '@common/recoil/atoms';
 import { firebaseAuth, isAuth } from "@common/utils/firebase";
 import CloseButton from "@components/atoms/CloseButton";
 import AppNavigator from "@navigations/AppNavigator";
@@ -16,7 +16,7 @@ const Layout: React.FC = () => {
   const tailwind = useTailwind()
   const [currentUser, setCurrentUser] = useRecoilState(initialCurrentUser)
   const [bgImage, setBgImage] = useRecoilState(initialBgImage)
-  const [isOpenEventDrawer, setIsOpenEventDrawer] = useRecoilState(initialIsOpenEventDrawer)
+  const [isOpenExerciseDrawer, setIsOpenExerciseDrawer] = useRecoilState(initialIsOpenExerciseDrawer)
   type OnlyKeys = keyof typeof bgImage
   const [renderComponent, setRenderComponent] = useState<JSX.Element>(
     isAuth ? <AppNavigator initialRouteName='Home' /> : <AuthNavigator initialRouteName='Login' />
@@ -58,7 +58,7 @@ const Layout: React.FC = () => {
       <View style={tailwind('flex-1 bg-black bg-opacity-50')}>
         <StatusBar style="auto" />
         {renderComponent}
-        { isOpenEventDrawer && <CloseButton onPressFn={() => setIsOpenEventDrawer(false)}/>}
+        { isOpenExerciseDrawer && <CloseButton onPressFn={() => setIsOpenExerciseDrawer(false)}/>}
       </View>
     </ImageBackground>
   )

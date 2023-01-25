@@ -1,7 +1,5 @@
-import { DELETE, PATCH, POST, PUT } from '@common/constants/reactQueryKeys';
-import { MutationRequestConfig } from '@common/types';
 import { LOCAL_IP_ADDR } from '@env';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import humps from 'humps';
 import { firebaseAuth } from './firebase';
 
@@ -77,38 +75,18 @@ export const getRequest = async <T>(url: string, config?: AxiosRequestConfig): P
   return axiosInstance.get(url, config).then((res) => res.data)
 }
 
-export const genMutationAxiosRequest = <T>({
-  method,
-  url,
-  params,
-  config
-}: MutationRequestConfig & any): Promise<AxiosResponse<T>> | null => {
-  switch(method){
-    case POST:
-      return createAxiosInstance().post(url, params, config)
-    case PATCH:
-      return createAxiosInstance().patch(url, params, config)
-    case PUT:
-      return createAxiosInstance().put(url, params, config)
-    case DELETE:
-      return createAxiosInstance().delete(url)
-    default:
-      return null
-  }
-}
+// export const fetch = async (
+//   // '例: /api/v1/~'
+//   path: string,
+//   query?: Object,
+//   options?: Options
+// ) => {
+//   const instance = createAxiosInstance(options)
 
-export const fetch = async (
-  // '例: /api/v1/~'
-  path: string,
-  query?: Object,
-  options?: Options
-) => {
-  const instance = createAxiosInstance(options)
-
-  try {
-    const res = await instance.get(path, { params: query })
-    return res
-  } catch (error) {
-    return error
-  }
-}
+//   try {
+//     const res = await instance.get(path, { params: query })
+//     return res
+//   } catch (error) {
+//     return error
+//   }
+// }

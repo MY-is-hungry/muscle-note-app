@@ -1,5 +1,5 @@
+import { QueryKey, UseMutationOptions, UseQueryOptions } from "@tanstack/react-query"
 import { AxiosRequestConfig } from "axios"
-import { QueryKey, UseMutationOptions, UseQueryOptions } from "react-query"
 
 export type RootStackScreenProps = {
   Login: undefined
@@ -7,31 +7,31 @@ export type RootStackScreenProps = {
 }
 
 // Railsのレスポンス
-export type RailsResponse<T> = {
-  data: T,
-  msg: string,
-  state: string
-  redirectUrl?: string
-  jwt?: string
-  status: number
-}
+// export type RailsResponse<T> = {
+//   data: T,
+//   msg: string,
+//   state: string
+//   redirectUrl?: string
+//   jwt?: string
+//   status: number
+// }
 
-export type RailsErrorResponseData = {
-  data: {
-    errors?: any[]
-    msg?: string
-    redirectUrl?: string
-  }
-  status: number
-}
+// export type RailsErrorResponseData = {
+//   data: {
+//     errors?: any[]
+//     msg?: string
+//     redirectUrl?: string
+//   }
+//   status: number
+// }
 
-export type ErrorResponse = {
-  error: {
-    data: {
-      msg: string
-    }
-  }
-}
+// export type ErrorResponse = {
+//   error: {
+//     data: {
+//       msg: string
+//     }
+//   }
+// }
 
 // React Queryのhooks 
 // TODO: optionsの型を確認
@@ -96,31 +96,35 @@ export type ProgressType = {
 
 export type CategoryType = ModelBaseType & {
   name: string
-  eventId?: number
-  events?: EventType[]
+  exerciseId?: number
+  exercises?: ExerciseType[]
 }
 
-export type EventType = ModelBaseType & {
+export type ExerciseType = ModelBaseType & {
   name: string
   categoryId: number
-  order?: number
-  generalOrder?: number
 }
 
 export type RecordType = ModelBaseType & {
   note: string
   weight: number
-  reps: number
+  rep: number
   volume: number
-  eventRecordId: number
+  daysCount: number
+  startAt: string
 }
 
-export type EventRecordType = ModelBaseType & RecordBaseType & {
-  records?: RecordType[]
-  event?: EventType
+export type DetailRecordType = {
+  data: RecordType[]
+  volume: number
+  daysCount: number
 }
 
+export type ExerciseWithRecordType = ExerciseType & {
+  records: RecordType[]
+}
 
+export type DateType = 'monthly' | 'daily'
 
 // Time
 export type TimeFormat = 'yyyy-MM-dd' | 'yyyy-MM-ddThh:mm' | 'yyyy年MM月dd日' | 'yyyy/MM/dd hh:mm' | 'yyyy/MM/dd hh:mm:ss'

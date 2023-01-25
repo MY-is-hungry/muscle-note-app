@@ -1,12 +1,12 @@
-import React from 'react' 
-import {View, Pressable, Dimensions, StyleSheet} from 'react-native'
-import NavigationIcon from '../molecules/NavigationIcon'
-import { CLEAR_WHITE_COLOR, PRIMARY_COLOR } from '@common/styles/themes';
-import { useTailwind } from 'tailwind-rn/dist';
-import { Button, IconButton } from 'react-native-paper';
-import { useRecoilState } from 'recoil';
 import { initialIsOpenEventDrawer } from '@common/recoil/atoms';
-import SelectEvent from '@containers/event/templates/SelectEvent';
+import { PRIMARY_COLOR } from '@common/styles/themes';
+import SelectEvent from '@containers/exercise/templates/SelectExercise';
+import React from 'react';
+import { Dimensions, Pressable, View } from 'react-native';
+import { IconButton } from 'react-native-paper';
+import { useRecoilState } from 'recoil';
+import { useTailwind } from 'tailwind-rn/dist';
+import NavigationIcon from '../molecules/NavigationIcon';
 
 const {width} = Dimensions.get('window')
 

@@ -112,13 +112,3 @@ export const fetch = async (
     return error
   }
 }
-
-// TODO: 引き継いだが、必要か要検討
-// export const getErrorList = (errorsData: RailsErrorResponseData) => {
-//   const railsErrors = errorsData.data.errors
-//   const attributes = Object.keys(railsErrors)
-//   const attributesErrors = attributes.map((attribute) => {
-//     return {attribute: attribute, msgParts: railsErrors[0]}
-//   })
-//   return attributesErrors
-// }

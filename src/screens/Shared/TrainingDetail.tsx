@@ -1,26 +1,27 @@
-import { useDailyRecord } from "@common/hooks/useRecord"
+import { useExercisesWithRecords } from "@common/hooks/useExercise"
 import ScrollWrapper from "@components/layout/ScrollWrapper"
 import AddTrainingButton from "@containers/training-detail/atoms/AddTrainingButton"
 import RecordArea from "@containers/training-detail/organisms/RecordArea"
 import { useEffect } from "react"
 
 const TrainingDetail: React.FC<Props> = ({navigation, route}) => { 
-  const { date, eventId } = route.params
-  const { data: dailyRecord, isLoading: isDailyRecordLoading } = useDailyRecord(date)
+  const { date, exerciseId } = route.params
+  const { data: exercises, isLoading: isExercisesLoading } = useExercisesWithRecords('daily', date)
+  console.log(exercises)
 
   const handlePressFn = () => {
     console.log('a')
   }
 
   useEffect(() => {
-    if(!!eventId) {
-      navigation.navigate('TrainingInput', { date: date, eventId: eventId })
+    if(!!exerciseId) {
+      navigation.navigate('TrainingInput', { date: date, exerciseId: exerciseId })
     }
-  }, [eventId])
+  }, [exerciseId])
 
   return (
     <ScrollWrapper>
-      <RecordArea dailyRecord={dailyRecord}/>
+      { exercises?.length ? <RecordArea exercises={exercises}/> : null }
       <AddTrainingButton onPressFn={handlePressFn}/>
     </ScrollWrapper>
   )

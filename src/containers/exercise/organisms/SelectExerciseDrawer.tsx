@@ -1,9 +1,8 @@
 import { initialIsOpenEventDrawer } from "@common/recoil/atoms"
-import { NAVY_BLUE, TRANSP_BLACK } from "@common/styles/themes"
-import { animateMove, DrawerState, getNextState } from "@common/utils/drawer"
-import DrawerHorizontalLineArea from "@components/atoms/DrawerHorizontalLineArea"
+import { TRANSP_BLACK } from "@common/styles/themes"
+import { animateMove, DrawerState } from "@common/utils/drawer"
 import { useEffect, useRef } from "react"
-import { Animated, Dimensions, GestureResponderEvent, PanResponder, PanResponderGestureState } from "react-native"
+import { Animated, Dimensions } from "react-native"
 import { useRecoilState } from "recoil"
 
 const SelectEventDrawer: React.FC<Props> = ({children, onDrawerStateChange}) => {

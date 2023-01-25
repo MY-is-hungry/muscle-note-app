@@ -1,4 +1,5 @@
-import { Text, TouchableOpacity } from "react-native"
+import { Text, TouchableOpacity, View } from "react-native"
+import { Button } from "react-native-paper"
 import { useTailwind } from "tailwind-rn/dist"
 
 const EventButton: React.FC<Props> = ({name, isSelected, onPressFn}) => {

@@ -20,11 +20,11 @@ const EventList: React.FC<Props> = ({navigation}) => {
   const existCategories: CategoryType[] = categories?.length ? categories : currentUser?.categories
   const [displayCategories, setDisplayCateogories] = useState<CategoryType[]>(existCategories)
 
-  const renderTodayTrainingDetail = (e:any, eventId: number) => {
+  const renderTodayTrainingDetail = (e:any, exerciseId: number) => {
     e.stopPropagation();
     const formatDate = getSplitTime(String(new Date()), 'yyyy-MM-dd')
     setIsOpenEventDrawer(false)
-    navigation.navigate('TrainingDetail', { date: formatDate, eventId: eventId })
+    navigation.navigate('TrainingDetail', { date: formatDate, exerciseId: exerciseId })
   }
 
   useEffect(() => {
@@ -42,8 +42,8 @@ const EventList: React.FC<Props> = ({navigation}) => {
             <View style={tailwind('mt-6 pl-4')}>
               <SimpleText text={category.name} color="white" size="xl"/>
             </View>
-            { category.events?.map(event => {
-              return <ButtonLabel key={`event${event.id}`} name={event.name} onPressFn={(e) => renderTodayTrainingDetail(e, event.id)}/>
+            { category.exercises?.map(exercise => {
+              return <ButtonLabel key={`exercise${exercise.id}`} name={exercise.name} onPressFn={(e) => renderTodayTrainingDetail(e, exercise.id)}/>
             })}
           </View>
         )

@@ -1,12 +1,10 @@
 import { initialDrawerScroll } from "@common/recoil/atoms"
-import CloseButton from "@components/atoms/CloseButton"
 import ScrollWrapper from "@components/layout/ScrollWrapper"
-import React, { useState } from "react"
+import React from "react"
 import { useRecoilState } from "recoil"
 import CategoryList from "../molecules/CategoryList"
-import EventList from "../molecules/EventList"
-import SelectEventDrawer from "../organisms/SelectEventDrawer"
-import { useEffect } from 'react';
+import EventList from "../molecules/ExerciseList"
+import SelectEventDrawer from "../organisms/SelectExerciseDrawer"
 
 const SelectEvent: React.FC<Props> = ({navigation}) => {
   const [scroll, setScroll] = useRecoilState<boolean>(initialDrawerScroll)

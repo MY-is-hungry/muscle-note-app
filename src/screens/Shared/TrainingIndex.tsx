@@ -1,10 +1,10 @@
 import { useExercisesWithRecords } from "@common/hooks/useExercise"
 import ScrollWrapper from "@components/layout/ScrollWrapper"
-import AddTrainingButton from "@containers/training-detail/atoms/AddTrainingButton"
-import RecordArea from "@containers/training-detail/organisms/RecordArea"
+import AddTrainingButton from "@containers/training/index/atoms/AddTrainingButton"
+import RecordArea from "@containers/training/index/organisms/RecordArea"
 import { useEffect } from "react"
 
-const TrainingDetail: React.FC<Props> = ({navigation, route}) => { 
+const TrainingIndex: React.FC<Props> = ({navigation, route}) => { 
   const { date, exerciseId } = route.params
   const { data: exercises, isLoading: isExercisesLoading } = useExercisesWithRecords('daily', date)
 
@@ -14,7 +14,7 @@ const TrainingDetail: React.FC<Props> = ({navigation, route}) => {
 
   useEffect(() => {
     if(Boolean(exerciseId)) {
-      navigation.navigate('TrainingInput', { date: date, exerciseId: exerciseId })
+      navigation.navigate('TrainingNew', { date: date, exerciseId: exerciseId })
     }
   }, [exerciseId])
 
@@ -31,4 +31,4 @@ type Props = {
   route: any
 }
 
-export default TrainingDetail
+export default TrainingIndex

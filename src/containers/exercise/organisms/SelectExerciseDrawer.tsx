@@ -1,7 +1,7 @@
 import { initialIsOpenExerciseDrawer } from "@common/recoil/atoms"
 import { TRANSP_BLACK } from "@common/styles/themes"
 import { animateMove, DrawerState } from "@common/utils/drawer"
-import { useEffect, useRef } from "react"
+import { ReactNode, useEffect, useRef } from "react"
 import { Animated, Dimensions } from "react-native"
 import { useRecoilState } from "recoil"
 
@@ -104,6 +104,7 @@ const SelectExerciseDrawer: React.FC<Props> = ({children, onDrawerStateChange}) 
 }
 
 type Props = {
+  children: ReactNode
   onDrawerStateChange: (nextState: DrawerState) => void;
 }
 

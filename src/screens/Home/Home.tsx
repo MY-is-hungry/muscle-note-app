@@ -9,7 +9,6 @@ import { getDatabase, ref, set } from 'firebase/database';
 
 const Home = ({ navigation }: any) => {
   const { data: monthlyData, isError, isLoading } = useRecords('monthly')
-  console.log(monthlyData)
 
   const testDB = () => {
     const db = getDatabase();

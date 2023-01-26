@@ -11,7 +11,6 @@ const HomeCalendar: React.FC<Props> = ({monthlyRecord, navigation}) => {
   ), {})
 
   const handleClickDate = (date: DateData) => {
-    console.log(date.dateString)
     navigation.navigate('TrainingDetail', { date: date.dateString })
   }
 

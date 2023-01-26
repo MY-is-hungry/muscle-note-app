@@ -7,14 +7,13 @@ import { useEffect } from "react"
 const TrainingDetail: React.FC<Props> = ({navigation, route}) => { 
   const { date, exerciseId } = route.params
   const { data: exercises, isLoading: isExercisesLoading } = useExercisesWithRecords('daily', date)
-  console.log(exercises)
 
   const handlePressFn = () => {
     console.log('a')
   }
 
   useEffect(() => {
-    if(!!exerciseId) {
+    if(Boolean(exerciseId)) {
       navigation.navigate('TrainingInput', { date: date, exerciseId: exerciseId })
     }
   }, [exerciseId])

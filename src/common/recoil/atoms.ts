@@ -10,25 +10,11 @@ export const initialCurrentUser = atom<any>({
   default: { categories: [] }
 })
 
-// バックエンド処理のフラグ
-export const initialIsProcessing = atom<boolean>({
-  key: "isProcessing",
-  default: false
-})
-
-export const initialErrorState = atom({
-  key: "errorState",
-  default: []
-})
-
 export const initialBgImage = atom({
   key: "bgImage",
   default: 'trainingroom'
 })
 
-
-// 種目選択ドロワー
-//----------------------------------
 export const initialIsOpenExerciseDrawer = atom<boolean>({
   key: "isOpenExerciseDrawer",
   default: false

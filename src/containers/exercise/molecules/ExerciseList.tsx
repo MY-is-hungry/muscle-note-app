@@ -1,4 +1,4 @@
-import { useCategories } from "@common/hooks/useCategory"
+import { useCategories } from "@common/hooks/api/useCategory"
 import { initialCurrentUser, initialIsOpenExerciseDrawer, initialSelectExerciseName } from "@common/recoil/atoms"
 import { CategoryType } from "@common/types"
 import { getSplitTime } from "@common/utils/time"

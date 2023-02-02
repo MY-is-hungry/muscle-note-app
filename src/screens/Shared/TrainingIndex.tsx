@@ -1,4 +1,4 @@
-import { useExercisesWithRecords } from "@common/hooks/useExercise"
+import { useExercisesWithRecords } from "@common/hooks/api/useExercise"
 import ScrollWrapper from "@components/layout/ScrollWrapper"
 import AddTrainingButton from "@containers/training/index/atoms/AddTrainingButton"
 import RecordArea from "@containers/training/index/organisms/RecordArea"

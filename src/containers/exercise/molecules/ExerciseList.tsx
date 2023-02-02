@@ -1,11 +1,11 @@
 import { useCategories } from "@common/hooks/api/useCategory"
-import { initialCurrentUser, initialIsOpenExerciseDrawer, initialSelectExerciseName } from "@common/recoil/atoms"
-import { CategoryType } from "@common/types"
+import { initialCurrentUser, initialIsOpenExerciseDrawer, initialSelectDate, initialSelectExerciseName } from "@common/recoil/atoms"
+import { CategoryType, ExerciseType } from "@common/types"
 import { getSplitTime } from "@common/utils/time"
 import ButtonLabel from "@components/atoms/ButtonLabel"
 import React, { useEffect, useState } from "react"
 import { View } from "react-native"
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import { useRecoilValue, useSetRecoilState } from "recoil"
 import { useTailwind } from "tailwind-rn/dist"
 import SimpleText from "../atoms/CategoryName"
 import { ALL_CATEGORY_OBJ } from "./CategoryList"
@@ -16,15 +16,20 @@ const ExerciseList: React.FC<Props> = ({navigation}) => {
 
   const { data: categories } = useCategories()
   const currentUser = useRecoilValue(initialCurrentUser)
-  const [selectedCategoryName, setSelectedCategoryName] = useRecoilState(initialSelectExerciseName)
+  const selectDate = useRecoilValue(initialSelectDate)
+  const selectedCategoryName = useRecoilValue(initialSelectExerciseName)
   const existCategories: CategoryType[] = categories?.length ? categories : currentUser?.categories
   const [displayCategories, setDisplayCateogories] = useState<CategoryType[]>(existCategories)
 
-  const renderTodayTrainingIndex = (e:any, exerciseId: number) => {
-    e.stopPropagation();
-    const formatDate = getSplitTime(String(new Date()), 'yyyy-MM-dd')
+  const renderTodayTrainingIndex = (e:any, exercise:ExerciseType) => {
+    e.stopPropagation()
     setIsOpenExerciseDrawer(false)
-    navigation.navigate('TrainingIndex', { date: formatDate, exerciseId: exerciseId })
+    if (selectDate) {
+      navigation.navigate('TrainingNew', { date: selectDate, exercise: exercise })
+    } else {
+      const formatDate = getSplitTime(String(new Date()), 'yyyy-MM-dd')
+      navigation.navigate('TrainingIndex', { date: formatDate, exercise: exercise })
+    }
   }
 
   useEffect(() => {
@@ -43,7 +48,7 @@ const ExerciseList: React.FC<Props> = ({navigation}) => {
               <SimpleText text={category.name} color="white" size="xl"/>
             </View>
             { category.exercises?.map(exercise => {
-              return <ButtonLabel key={`exercise${exercise.id}`} name={exercise.name} onPressFn={(e) => renderTodayTrainingIndex(e, exercise.id)}/>
+              return <ButtonLabel key={`exercise${exercise.id}`} name={exercise.name} onPressFn={(e) => renderTodayTrainingIndex(e, exercise)}/>
             })}
           </View>
         )

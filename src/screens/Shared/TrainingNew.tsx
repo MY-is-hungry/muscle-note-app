@@ -1,11 +1,14 @@
 import ScrollWrapper from "@components/layout/ScrollWrapper"
-import { Text } from "react-native"
+import Form from "@containers/training/new/organisms/Form"
+import { useTailwind } from "tailwind-rn/dist"
 
-const TrainingNew: React.FC<Props> = ({navigation, route}) => { 
+const TrainingNew: React.FC<Props> = ({navigation, route}) => {
+  const { date, exercise } = route.params
+  const tailwind = useTailwind()
 
   return (
     <ScrollWrapper>
-      <Text>ここが登録ページだぞ！！！！！！</Text>
+      <Form exercise={exercise} navigation={navigation} date={date}/>
     </ScrollWrapper>
   )
 }

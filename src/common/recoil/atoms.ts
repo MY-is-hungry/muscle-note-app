@@ -20,6 +20,14 @@ export const initialIsOpenExerciseDrawer = atom<boolean>({
   default: false
 })
 
+export const initialSelectDate = atom<string>({
+  key: "selectDate",
+  default: ""
+})
+
+// 種目選択ドロワー内
+//----------------------------------
+
 export const initialDrawerScroll = atom<boolean>({
   key: "drawerScroll",
   default: true

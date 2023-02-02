@@ -111,7 +111,7 @@ export type RecordType = ModelBaseType & {
   rep: number
   volume: number
   daysCount: number
-  startAt: string
+  executedOn: string
 }
 
 export type DetailRecordType = {

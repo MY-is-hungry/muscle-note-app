@@ -6,3 +6,8 @@ export const useRecords = (dateType: DateType) => useApi(
   ['records', dateType],
   async (dateType) => getRequest<DetailRecordType>(`records?type=${dateType}`),
 )
+
+export const useCreateRecord = () =>
+  useGenericMutation<any, any, any[]>(
+    async (params) => postRequest<any>(`records`, { records: params.records, exerciseId: params.exerciseId, date: params.date })
+  );

@@ -1,13 +1,20 @@
-import { Text, View } from "react-native"
+import { Text } from "react-native"
+import { Button } from "react-native-paper"
 import { useTailwind } from "tailwind-rn/dist"
 
 const AddTrainingButton: React.FC<Props> = ({onPressFn}) => {
   const tailwind = useTailwind()
 
   return (
-    <View style={tailwind('flex justify-center items-center w-60 h-14 mx-auto mt-4 bg-primary rounded-lg')}>
-      <Text style={tailwind('text-white text-base')}>トレーニングを追加</Text>
-    </View>
+    <Button
+      mode='contained'
+      onPress={onPressFn}
+      contentStyle={tailwind('w-full h-full')}
+      labelStyle={tailwind('text-base')}
+      style={tailwind('w-64 h-16 mx-auto mt-6 bg-primary rounded-lg')}
+    >
+      <Text>トレーニングを追加</Text>
+    </Button>
   )
 }
 

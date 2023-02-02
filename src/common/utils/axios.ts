@@ -75,6 +75,16 @@ export const getRequest = async <T>(url: string, config?: AxiosRequestConfig): P
   return axiosInstance.get(url, config).then((res) => res.data)
 }
 
+export const postRequest = async <T>(url: string, params: any, config?: AxiosRequestConfig): Promise<T> => {
+  const axiosInstance = createAxiosInstance()
+  return axiosInstance.post(url, params, config).then((res) => res.data)
+}
+
+export const patchRequest = async <T>(url: string, params: any, config?: AxiosRequestConfig): Promise<T> => {
+  const axiosInstance = createAxiosInstance()
+  return axiosInstance.post(url, params, config).then((res) => res.data)
+}
+
 // export const fetch = async (
 //   // '例: /api/v1/~'
 //   path: string,

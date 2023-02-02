@@ -1,6 +1,6 @@
 import { ExerciseType } from "@common/types";
 import { getRequest } from "@common/utils/axios";
-import { useApi } from "./useApi";
+import { useApi } from "../useApi";
 
 export const useCategories = () => useApi(
   ['categories'],

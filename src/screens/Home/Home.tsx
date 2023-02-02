@@ -1,4 +1,4 @@
-import { useRecords } from '@common/hooks/useRecord';
+import { useRecords } from '@common/hooks/api/useRecord';
 import { firebaseAuth } from '@common/utils/firebase';
 import ScrollWrapper from '@components/layout/ScrollWrapper';
 import StartTrainingButton from '@containers/home/atoms/StartTrainingButton';
@@ -9,7 +9,6 @@ import { getDatabase, ref, set } from 'firebase/database';
 
 const Home = ({ navigation }: any) => {
   const { data: monthlyData, isError, isLoading } = useRecords('monthly')
-  console.log(monthlyData)
 
   const testDB = () => {
     const db = getDatabase();

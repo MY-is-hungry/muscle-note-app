@@ -1,6 +1,6 @@
 import { DateType, ExerciseWithRecordType } from "@common/types"
 import { getRequest } from "@common/utils/axios"
-import { useApi } from "./useApi"
+import { useApi } from "../useApi"
 
 export const useExercisesWithRecords = (dateType: DateType, date?: string) => {
   const dateParams = date ? `&date=${date}` : ''

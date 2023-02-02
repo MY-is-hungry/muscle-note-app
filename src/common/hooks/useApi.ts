@@ -34,9 +34,7 @@ export const useGenericMutation = <TVariables, TData, TContext>(
   options?: UseMutationOptions<TData | void, unknown, TVariables, TContext>,
 ) => {
   return useMutation(
-    async (params: TVariables) => {
-      return await fetcher(params)
-    },
+    async (params: TVariables) => await fetcher(params),
     { ...options },
   )
 }

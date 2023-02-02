@@ -1,18 +1,19 @@
 import { homeCalendarThemes } from "@common/styles/calendar";
 import { RecordType } from "@common/types";
-import { getSplitTime } from "@common/utils/time";
 import { Calendar, DateData, LocaleConfig } from "react-native-calendars";
 import { useTailwind } from "tailwind-rn/dist";
 
 const HomeCalendar: React.FC<Props> = ({monthlyRecord, navigation}) => {
   const tailwind = useTailwind()
   const markedDates = monthlyRecord.reduce((prevObj, record) => (
-    {...prevObj, [getSplitTime(record.startAt, 'yyyy-MM-dd')]: {selected: true}}
+    {...prevObj, [record.executedOn]: {selected: true}}
   ), {})
+  // const markedDates = monthlyRecord.reduce((prevObj, record) => (
+  //   {...prevObj, [getSplitTime(record.executedOn, 'yyyy-MM-dd')]: {selected: true}}
+  // ), {})
 
   const handleClickDate = (date: DateData) => {
-    console.log(date.dateString)
-    navigation.navigate('TrainingDetail', { date: date.dateString })
+    navigation.navigate('TrainingIndex', { date: date.dateString })
   }
 
   return (

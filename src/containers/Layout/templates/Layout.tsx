@@ -45,14 +45,6 @@ const Layout: React.FC = () => {
     })
   }, [firebaseAuth?.currentUser])
 
-  // useEffect(() => {
-  //   if(firebaseAuth?.currentUser?.uid && !isCategoryLoading) {
-  //     const db = getDatabase()
-  //     const reference = ref(db, `users/${firebaseAuth.currentUser.uid}`)
-  //     update(reference, { categories: categories })
-  //   }
-  // }, [categories])
-
   return (
     <ImageBackground source={REQUIRE_BG_IMAGES[bgImage as keyof OnlyKeys] as ImageSourcePropType} resizeMode="cover" style={tailwind('flex-1 w-full h-full')}>
       <View style={tailwind('flex-1 bg-black bg-opacity-50')}>

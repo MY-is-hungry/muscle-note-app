@@ -33,7 +33,7 @@ export const initialDrawerScroll = atom<boolean>({
   default: true
 })
 
-export const initialSelectExerciseName = atom<string>({
+export const initialSelectCategoryName = atom<string>({
   key: "selectExerciseName",
   default: "全て"
 })

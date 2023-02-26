@@ -2,7 +2,7 @@ import { useCreateRecord } from "@common/hooks/api/useRecord";
 import { PRIMARY_COLOR, SECONDARY_COLOR } from "@common/styles/themes";
 import { ExerciseType } from "@common/types";
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { Button, IconButton, TextInput } from 'react-native-paper';
 import { useTailwind } from "tailwind-rn/dist";
@@ -29,8 +29,7 @@ const Form: React.FC<Props> = ({exercise, navigation, date}) => {
   const saveRecord = () => {
     createRecord.mutate({records: fields, exerciseId: exercise.id, date: date}, {
       onSuccess: () => {
-        // TODO: おそらくキャッシュを更新するリクエストが違う要確認
-        queryClient.invalidateQueries(['records', 'daily'])
+        queryClient.invalidateQueries(['exercisesWithRecords'])
         navigation.navigate('TrainingIndex', { date: date })
       },
     })
@@ -48,7 +47,7 @@ const Form: React.FC<Props> = ({exercise, navigation, date}) => {
               </Text>
               {[row.weight, row.rep].map((value, v_i)=> {
                 return (
-                  <>
+                  <React.Fragment key={`${i}_${v_i}`}>
                     <View style={tailwind('flex flex-row items-center mr-3 ml-3')}>
                       <TextInput
                         keyboardType='numeric'
@@ -61,7 +60,7 @@ const Form: React.FC<Props> = ({exercise, navigation, date}) => {
                       </Text>
                     </View>
                     { v_i == 0 && <Text style={tailwind('text-white text-lg')}>×</Text> }
-                  </>
+                  </React.Fragment>
                 )
               })}
               <IconButton

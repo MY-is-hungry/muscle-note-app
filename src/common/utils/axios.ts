@@ -1,7 +1,7 @@
 import { LOCAL_IP_ADDR } from '@env';
 import axios, { AxiosRequestConfig } from 'axios';
 import humps from 'humps';
-import { firebaseAuth } from './firebase';
+import { firebaseAuth, getJwt, getPromiseJwt } from './firebase';
 
 interface Options {
   isAuth?: boolean
@@ -16,9 +16,10 @@ const getBackendUrl = () => {
   return process.env.NODE_ENV === 'development' ? `http://${LOCAL_IP_ADDR}:3000/` : ''
 }
 
-export const getApiConfig = () => {
+export const createAxiosInstance = (idToken: string, options?: Options) => {
+  // const isAuth = options ? options.isAuth : false
   const backendUrl = getBackendUrl()
-  return {
+  const apiConfig = {
     baseURL: `${backendUrl}api/v1/`,
     timeout: 5000,
     withCredentials: true,
@@ -27,37 +28,18 @@ export const getApiConfig = () => {
       "Accept": 'application/json',
       "Access-Control-Allow-Origin": "*",
       'X-Requested-With': 'XMLHttpRequest',
-      'Authorization': `Bearer ${firebaseAuth?.currentUser?.uid}`,
+      'Authorization': `Bearer ${idToken}`,
     },
   }
-}
-
-const getAuthApiConfig = () => {
-  const backendUrl = getBackendUrl()
-  return {
-    baseURL: backendUrl,
-    timeout: 5000,
-    headers: {
-      ContentType: 'application/json',
-      Accept: 'application/json',
-      // 'access-token': authInfo().Token,
-      // client: authInfo().Client,
-      // uid: authInfo().Uid,
-    },
-  }
-}
-
-export const createAxiosInstance = (options?: Options) => {
-  const isAuth = options ? options.isAuth : false
-  const apiConfig = isAuth ? getAuthApiConfig() : getApiConfig()
   const instance = axios.create(apiConfig)
 
   instance.interceptors.response.use(
     (response) => {
+      const camelRes = parseSnakeToCamel(response)
       if (process.env.NODE_ENV === 'development') {
-        console.log(parseSnakeToCamel(response))
+        console.log(camelRes)
       }
-      return parseSnakeToCamel(response)
+      return camelRes
     },
     (error) => {
       if (process.env.NODE_ENV === 'development') {
@@ -71,17 +53,20 @@ export const createAxiosInstance = (options?: Options) => {
 }
 
 export const getRequest = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
-  const axiosInstance = createAxiosInstance()
+  const idToken = await getPromiseJwt(firebaseAuth.currentUser)
+  const axiosInstance = createAxiosInstance(idToken, {})
   return axiosInstance.get(url, config).then((res) => res.data)
 }
 
 export const postRequest = async <T>(url: string, params: any, config?: AxiosRequestConfig): Promise<T> => {
-  const axiosInstance = createAxiosInstance()
+  const idToken = await getPromiseJwt(firebaseAuth.currentUser)
+  const axiosInstance = createAxiosInstance(idToken, {})
   return axiosInstance.post(url, params, config).then((res) => res.data)
 }
 
 export const patchRequest = async <T>(url: string, params: any, config?: AxiosRequestConfig): Promise<T> => {
-  const axiosInstance = createAxiosInstance()
+  const idToken = await getPromiseJwt(firebaseAuth.currentUser)
+  const axiosInstance = createAxiosInstance(idToken, {})
   return axiosInstance.post(url, params, config).then((res) => res.data)
 }
 

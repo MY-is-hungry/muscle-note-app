@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "front",
-    "slug": "front",
+    "name": "muscle-note",
+    "slug": "muscle-note",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,6 +29,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3d980a7a-c383-42ed-ba4e-97d1ce4cd229"
+      }
+    },
+    "owner": "yuuki_mizuno"
   }
 }

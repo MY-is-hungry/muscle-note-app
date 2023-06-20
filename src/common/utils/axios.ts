@@ -1,7 +1,7 @@
 import { LOCAL_IP_ADDR } from '@env';
 import axios, { AxiosRequestConfig } from 'axios';
 import humps from 'humps';
-import { firebaseAuth, getJwt, getPromiseJwt } from './firebase';
+import { firebaseAuth, getFirebaseIdToken } from './firebase';
 
 interface Options {
   isAuth?: boolean
@@ -53,21 +53,21 @@ export const createAxiosInstance = (idToken: string, options?: Options) => {
 }
 
 export const getRequest = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
-  const idToken = await getPromiseJwt(firebaseAuth.currentUser)
-  const axiosInstance = createAxiosInstance(idToken, {})
-  return axiosInstance.get(url, config).then((res) => res.data)
+  const idToken = await getFirebaseIdToken(firebaseAuth.currentUser)
+  const axios = createAxiosInstance(idToken, {})
+  return axios.get(url, config).then((res) => res.data)
 }
 
 export const postRequest = async <T>(url: string, params: any, config?: AxiosRequestConfig): Promise<T> => {
-  const idToken = await getPromiseJwt(firebaseAuth.currentUser)
-  const axiosInstance = createAxiosInstance(idToken, {})
-  return axiosInstance.post(url, params, config).then((res) => res.data)
+  const idToken = await getFirebaseIdToken(firebaseAuth.currentUser)
+  const axios = createAxiosInstance(idToken, {})
+  return axios.post(url, params, config).then((res) => res.data)
 }
 
 export const patchRequest = async <T>(url: string, params: any, config?: AxiosRequestConfig): Promise<T> => {
-  const idToken = await getPromiseJwt(firebaseAuth.currentUser)
-  const axiosInstance = createAxiosInstance(idToken, {})
-  return axiosInstance.post(url, params, config).then((res) => res.data)
+  const idToken = await getFirebaseIdToken(firebaseAuth.currentUser)
+  const axios = createAxiosInstance(idToken, {})
+  return axios.post(url, params, config).then((res) => res.data)
 }
 
 // export const fetch = async (

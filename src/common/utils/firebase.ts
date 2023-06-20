@@ -26,18 +26,7 @@ export const firebaseAuth = getAuth(firebaseApp)
 
 export const isAuth = !!firebaseAuth?.currentUser?.uid
 
-export const getPromiseJwt = async (user: User | null): Promise<string> => {
+export const getFirebaseIdToken = async (user: User | null): Promise<string> => {
   if (!user) return ''
   return await getIdToken(user)
-}
-export const getJwt = (user: User | null): string => {
-  if (!user) return ''
-  getIdToken(user).then((idToken) => {
-    return idToken
-  }).catch(error => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(error)
-    }
-  })
-  return ''
 }
